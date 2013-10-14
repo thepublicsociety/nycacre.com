@@ -57,10 +57,10 @@ $(function(){
     	return false;
     });
   }
-  $(".contact_text h2").click(function(e){
-  	$(".application").find(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
-  	var toggle = $(".application").find(".dropdown_panel a").data("toggle");
-  	$("."+toggle).toggle();
+  $(".beginApplication, .contact_text h2").click(function(e){
+  	//$(".application").find(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
+  	//var toggle = $(".application").find(".dropdown_panel a").data("toggle");
+  	$(".tenant_application").toggle();
   	$(".contact_text").toggle();
   });
 //contact loaders
