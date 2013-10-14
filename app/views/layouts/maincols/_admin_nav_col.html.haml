@@ -63,15 +63,15 @@
       .dropdown_panel.dropdown_panel-right
         %h2
           %a{:href => "#", :data => {:toggle => "add_contact_form"}}
-            Add A Tool
+            Add A Perk
     .add_contact_form.add_resource_form
       .panel
         .heading
           %h2
-            Add a Tool
+            Add a Perk
         = simple_form_for(@tool, :remote => true) do |f|
-          = f.input :name, :label => "Name of Tool"
-          = f.input :website, :label => "Website of Tool"
+          = f.input :name, :label => "Name of Perk"
+          = f.input :website, :label => "Website of Perk"
           = f.label :specialty, "Area of Specialty"
           = select_tag("tool_specialty_fake", options_from_collection_for_select(@tool_specialty_options, "value", "name"), :include_blank => true)
           = f.input :specialty, :as => "hidden"

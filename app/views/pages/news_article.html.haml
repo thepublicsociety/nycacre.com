@@ -37,11 +37,12 @@
                   Related News
                 %ul.unstyled
                   - @related.each do |r|
-                    %li
-                      .related_title
-                        = link_to r.title, "/news/#{r.title}"
-                      .related_subheading
-                        = r.subheading
+                    %a{href: "/news/#{URI.encode(r.title)}"}
+                      %li
+                        .related_title
+                          = r.title
+                        .related_subheading
+                          = r.subheading
                 = link_to "see all articles &raquo;".html_safe, news_path, :class => "more"
           -#
             - unless @further.blank?

@@ -31,4 +31,6 @@ class Tenant < ActiveRecord::Base
   has_many :tenant_stats, :dependent => :destroy
   accepts_nested_attributes_for :tenant_stats, :allow_destroy => true
   has_many :users
+  has_and_belongs_to_many :resumes
+  has_many :job_postings
 end

@@ -45,6 +45,9 @@
                 %li.bgManage
                   %i{:class => "icon-picture"}
                   = link_to "Manage backgrounds", tenant_backgrounds_path
+                %li.jobManage
+                  %i{:class => "icon-briefcase"}
+                  = link_to "Manage job postings", job_postings_path
           .user_logout
             = link_to "", "/logout"
 - else

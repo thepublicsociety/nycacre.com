@@ -166,7 +166,7 @@ class AdministrationController < ApplicationController
     when "resume"
       @resource = Resume.find(id)
       @related =  []
-      Resume.where("specialty like ?", "%#{@resource.specialty}%").each do |r|
+      Resume.where("specialty like ? and publish = ?", "%#{@resource.specialty}%", true).each do |r|
         @related.push(r)
       end
       @related = @related.uniq
@@ -296,15 +296,15 @@ class AdministrationController < ApplicationController
     @resource = params[:resource]
     case @resource
     when "provider"
-      @search_results = Provider.where("name like ? or description like ? or specialty like ? or author like ? or content like ? or tag like ? or category like ? or sector like ? or tenant like ?", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%")
+      @search_results = Provider.where("name like ? and publish = ? or description like ? and publish = ? or specialty like ? and publish = ? or author like ? and publish = ? or content like ? and publish = ? or tag like ? and publish = ? or category like ? and publish = ? or sector like ? and publish = ? or tenant like ? and publish = ?", "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true)
     when "resume"
-      @search_results = Resume.where("name like ? or specialty like ? or cover_letter like ?", "%#{term}%", "%#{term}%", "%#{term}%")
+      @search_results = Resume.where("name like ? and publish = ? or specialty like ? and publish = ? or cover_letter like ? and publish = ?", "%#{term}%", true, "%#{term}%", true, "%#{term}%", true)
     when "grant"
-      @search_results = Grant.where("name like ? or description like ? or specialty like ? or author like ? or content like ? or tag like ? or category like ? or sector like ? or tenant like ?", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%")
+      @search_results = Grant.where("name like ? and publish = ? or description like ? and publish = ? or specialty like ? and publish = ? or author like ? and publish = ? or content like ? and publish = ? or tag like ? and publish = ? or category like ? and publish = ? or sector like ? and publish = ? or tenant like ? and publish = ?", "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true)
     when "tool"
-      @search_results = Tool.where("name like ? or description like ? or specialty like ? or tag like ? or category like ?", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%")
+      @search_results = Tool.where("name like ? and publish = ? or description like ? and publish = ? or specialty like ? and publish = ? or tag like ? and publish = ? or category like ? and publish = ?", "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true)
     when "news"
-      @search_results = NewsSite.where("name like ? or website like ? or description like ? or specialty like ? or author like ? or content like ? or tag like ? or category like ? or sector like ? or tenant like ?", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%", "%#{term}%")
+      @search_results = NewsSite.where("name like ? and publish = ? or website like ? and publish = ? or description like ? and publish = ? or specialty like ? and publish = ? or author like ? and publish = ? or content like ? and publish = ? or tag like ? and publish = ? or category like ? and publish = ? or sector like ? and publish = ? or tenant like ? and publish = ?", "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true, "%#{term}%", true)
     else
       @search_results = ["Nothing found"]
     end
@@ -336,6 +336,8 @@ class AdministrationController < ApplicationController
         @results = Resume.where("created_at > ?", 5.days.ago)
       when "specialty"
         @results = Resume.all.group_by {|p| p.specialty}
+      when "yours"
+        @results = current_user.tenant.resumes
       when "saved"
         @results = []
         Resume.all.each do |r|
@@ -515,7 +517,7 @@ class AdministrationController < ApplicationController
   end
   
   def applicants
-    @applicants = TenantApplication.all
+    @applicants = TenantApplication.find(:all, :order => "created_at desc")
   end
   
   def remove_announcement

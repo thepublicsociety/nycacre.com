@@ -145,7 +145,7 @@ class PagesController < ApplicationController
   end
   def search
     query = params[:query]
-    @search_results = Post.where("title like ? or author like ? or content like ? or tag like ? or category like ? or subheading like ? and internal_only=?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", false)
+    @search_results = Post.where("title like ? or author like ? or content like ? or tag like ? or category like ? or subheading like ? and internal_only=?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", false).order("created_at desc")
   end
   def news_article
     @user = current_user
@@ -153,7 +153,7 @@ class PagesController < ApplicationController
     @bgimg = bg.background_image.url
     @bgheight = bg.height.to_i
     @bgwidth = bg.width.to_i
-    @post = Post.find_by_title(params[:title])
+    @post = Post.find_by_title(params[:title]).blank? ? Post.where("title like ?", "%#{params[:title]}%").first : Post.find_by_title(params[:title])
     
     #@otherevents = Event.find(:all, :order => "eventdate ASC", :limit => 3)
     client = Twitter::Client.new(
@@ -240,6 +240,10 @@ class PagesController < ApplicationController
     @message = Message.new
     @resume_specialty_options = ResumeSpecialtyOption.all
     @funding_status_options = FundingStatusOption.all
+    @jobs = JobPosting.find(:all, :joins => :tenant, :conditions => ["job_postings.publish = ?", true], :order => "tenants.name asc")
+    unless params[:job].blank?
+      @job = JobPosting.find(params[:job])
+    end
   end
   def calendar
     @user = current_user

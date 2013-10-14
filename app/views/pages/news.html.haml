@@ -19,10 +19,11 @@
                 .panel
                   - unless f.news_photos.where("caption=?", "main").blank?
                     .feature_image
-                      = image_tag(f.news_photos.where("caption=?", "main").first.image)
+                      %a{href: "/news/#{URI.encode(f.title)}"}
+                        = image_tag(f.news_photos.where("caption=?", "main").first.image)
                   .featured_headline
                     %h3
-                      = link_to f.title, "/news/#{f.title.gsub(" ", "%20")}"
+                      = link_to f.title, "/news/#{URI.encode(f.title)}"
                   .featured_subheading
                     = f.subheading
           .news_list

@@ -38,6 +38,33 @@
                       = s.value
                     .statistic_name
                       = s.name
+        - unless @tenant.job_postings.blank?
+          .job-postings
+            .panel
+              %h2
+                Job Openings at
+                = @tenant.name
+              .job-postings-content
+                %table.table
+                  %tr
+                    %th
+                      Position
+                    %th
+                      Description
+                    %th
+                      Salary
+                    %th
+                      Apply
+                  - @tenant.job_postings.each do |j|
+                    %tr
+                      %th
+                        = j.position
+                      %th
+                        = j.description
+                      %th
+                        = j.salary
+                      %th
+                        = link_to "Apply", "/contact?job=#{j.id.to_s}", class: "btn btn-default btn-xs"
         .acre_news_and_twitter
           .acre_news
             .panel

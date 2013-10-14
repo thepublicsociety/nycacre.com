@@ -24,7 +24,7 @@
     <th>Address</th>
     <th>Phone</th>
     <th>Email</th>
-    <th></th>
+    <th>Date</th>
     <th></th>
     <th></th>
   </tr>
@@ -53,7 +53,7 @@
     <td><%= tenant_application.address %></td>
     <td><%= tenant_application.phone %></td>
     <td><%= tenant_application.email %></td>
-    <td><%= link_to 'Show', tenant_application %></td>
+    <td><%= tenant_application.created_at %></td>
     <td><%= link_to 'Edit', edit_tenant_application_path(tenant_application) %></td>
     <td><%= link_to 'Destroy', tenant_application, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

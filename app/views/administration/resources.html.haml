@@ -101,11 +101,11 @@
                 .contact_database_list.database_list
                   .heading
                     %h3
-                      Tools Database
+                      Perks Database
                   %ul.unstyled
                     - if @recent_tools.empty?
                       %li
-                        No recent tools
+                        No recent perks
                     - @recent_tools.each do |db|
                       %li
                         - if db.saved?(@user)
@@ -274,6 +274,8 @@
                         %li
                           = link_to "Specialty", "#", 'data-resource' => 'resume', 'data-search' => 'specialty'
                         %li
+                          = link_to "Your Resumes", "#", 'data-resource' => 'resume', 'data-search' => 'yours'
+                        %li
                           = link_to "Saved", "#", 'data-resource' => 'resume', 'data-search' => 'saved'
                 .key
                   .color_box
@@ -297,7 +299,7 @@
             .panel
               .heading
                 %h2
-                  Tools
+                  Perks
               .search_and_key
                 .search
                   .search_by
@@ -367,8 +369,8 @@
           .panel
             .dropdown_panel.dropdown_panel-right
               %h2
-                %a{:href => "#", :data => {:toggle => "contact_resource_list", :html => "Tools Database", :form_toggle => "add_contact"}}
-                  Tools Database
+                %a{:href => "#", :data => {:toggle => "contact_resource_list", :html => "Perks Database", :form_toggle => "add_contact"}}
+                  Perks Database
                   
         .events
           .panel

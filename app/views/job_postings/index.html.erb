@@ -1,0 +1,32 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing job postings</h1>
+
+<table class="table">
+  <tr>
+    <th>Position</th>
+    <th>Description</th>
+    <!--<th>Available</th>-->
+    <th>Publish</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @job_postings.each do |job_posting| %>
+  <tr>
+    <td><%= job_posting.position %></td>
+    <td><%= job_posting.description %></td>
+    <!--<td><%= job_posting.available %></td>-->
+    <td><%= job_posting.publish %></td>
+    <td><%= link_to 'Show', job_posting %></td>
+    <td><%= link_to 'Edit', edit_job_posting_path(job_posting) %></td>
+    <td><%= link_to 'Destroy', job_posting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New job posting'.html_safe, new_job_posting_path, :class => "btn btn-mini" %>
+</div>

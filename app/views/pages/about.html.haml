@@ -77,8 +77,8 @@
                 ACRE News
               %ul.unstyled
                 - @news.each do |n|
-                  %li
-                    = link_to n.title, "/news/#{n.title.gsub(" ", "%20")}"
+                  %li.acre_news_li{data: {link: "/news/#{URI.encode(n.title)}"}}
+                    = link_to n.title, "/news/#{URI.encode(n.title)}"
                     .subh.light
                       = n.subheading
               .more
@@ -150,3 +150,8 @@
                       = e.eventdate.strftime("%l:%M%p")
                       \-
                       = e.eventenddate.strftime("%l:%M%p")
+:javascript
+  $(".acre_news_li").click(function(e){
+  	var link = $(this).data("link");
+  	window.location.href = link;
+  });

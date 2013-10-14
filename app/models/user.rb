@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin, :name, :role, :tenant_id,
-                  :google_oauth, :refresh_token, :expires_at, :selected_calendar, :fb_token, :fb_expires_at
+                  :google_oauth, :refresh_token, :expires_at, :selected_calendar, :fb_token, :fb_expires_at, :invitation_created_at
   has_and_belongs_to_many :companies
   belongs_to :tenant
   has_many :questions

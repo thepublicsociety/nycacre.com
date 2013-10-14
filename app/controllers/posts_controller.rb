@@ -45,6 +45,22 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
+    
+    if params[:post][:category] == "newsletter" || params[:post][:title].include?("newsletter")
+      title = params[:post][:title].gsub(/ /, "_")
+      FileUtils.mkdir_p("#{Rails.root.to_s}/public/#{title}")
+      html = params[:post][:content]
+      doc = Nokogiri::HTML(html)
+      doc.css("img").each do |img|
+        src = img["src"]
+        filename = File.basename(src)
+        #File.open("#{Rails.root.to_s}/public/#{title}/#{filename}", 'wb'){|f| f.write(open(src).read)}
+        system %x{wget -O "#{Rails.root.to_s}/public/#{title}/#{filename}" #{src}}
+        img['src'] = "/#{title}/#{filename}"
+      end
+      params[:post][:content] = doc.to_html
+    end
+    
     @post = Post.new(params[:post])
 
     respond_to do |format|

@@ -27,6 +27,7 @@ class TenantsController < ApplicationController
   # GET /tenants/new.xml
   def new
     @tenant = Tenant.new
+    @prefs = ResumeSpecialtyOption.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +38,8 @@ class TenantsController < ApplicationController
   # GET /tenants/1/edit
   def edit
     @tenant = Tenant.find(params[:id])
+    @prefs = ResumeSpecialtyOption.all
+    @tprefs = @tenant.resume_prefs.blank? ? [] : @tenant.resume_prefs.split(",").collect(&:strip)
   end
 
   # POST /tenants

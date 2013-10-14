@@ -45,6 +45,10 @@ class ResumesController < ApplicationController
   # POST /resumes.xml
   def create
     @resume = Resume.create(params[:resume])
+    tenant_ids = params[:direct].split(",")
+    tenant_ids.each do |id|
+      @resume.tenants << Tenant.find_by_id(id)
+    end
   end
 
   # PUT /resumes/1
@@ -54,6 +58,15 @@ class ResumesController < ApplicationController
 
     respond_to do |format|
       if @resume.update_attributes(params[:resume])
+        if params[:resume][:publish] == "1"
+
+            @resume.tenants.each do |t|
+              t.users.each do |u|
+                SendMail.resnotification(@resume, u.email).deliver
+              end
+            end
+
+        end
         format.html { redirect_to(resumes_url, :notice => 'Resume was successfully updated.') }
         format.xml  { head :ok }
       else

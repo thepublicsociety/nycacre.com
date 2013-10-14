@@ -1,0 +1,39 @@
+<%= form_for(@job_posting) do |f| %>
+  <% if @job_posting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@job_posting.errors.count, "error") %> prohibited this job_posting from being saved:</h2>
+
+      <ul>
+      <% @job_posting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :tenant_id, :value => current_user.tenant.id %>
+  <div class="field">
+    <%= f.label :position %><br />
+    <%= f.select(:position, options_from_collection_for_select(ResumeSpecialtyOption.find(:all, :order => "name ASC"), "value", "name"), :include_blank => true) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <!--<div class="field">
+    <label class="string optional control-label" for="job_posting_available">Availability</label>
+    <div id="job_datetimepicker" class="input-append">
+      <input value="<%= @job_posting.available.strftime("%m/%d/%Y %I:%M:%S %p") unless @job_posting.available.blank? %>" class="string optional date-time-pick" id="job_posting_available" name="job_posting[available]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+  </div>-->
+  <div class="field bool">
+    <%= f.label :publish %><br />
+    <%= f.check_box :publish %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -13,7 +13,7 @@
         -#
           = @acre.blank? ? "" : @acre.content.truncate_html(1000, at_end = "<div class='trunc'>&hellip; <a href='#' class='more'>read more &raquo;</a></div>").html_safe
         
-        = @acre.blank? ? "" : smart_truncate(@acre.content, "#", :words => 130).html_safe
+        = @acre.blank? ? "" : smart_truncate(@acre.content, "#", :words => 100).html_safe
       .extra_acre_text_content.hide
         = @acre.blank? ? "" : @acre.content.html_safe
         = link_to "less &laquo;".html_safe, "#", :class => "more"

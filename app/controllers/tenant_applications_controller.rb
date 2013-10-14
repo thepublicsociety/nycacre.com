@@ -46,6 +46,7 @@ class TenantApplicationsController < ApplicationController
 
     respond_to do |format|
       if @tenant_application.save
+        SendMail.appnotification.deliver
         format.html { redirect_to("/contact", :notice => 'Application received') }
         format.xml  { render :xml => @tenant_application, :status => :created, :location => @tenant_application }
       else

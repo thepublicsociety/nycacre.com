@@ -1,4 +1,6 @@
 //main css
+a.bold
+  font-weight: bold
 @font-face
   font-family: 'battersea'
   src: url('/fonts/battersea_semibold.eot')
@@ -508,7 +510,7 @@ body.pages-index, body.pages-map
         margin-right: 20px
         .panel
           .acre_text_content
-            height: 327px
+            min-height: 327px
           .extra_acre_text_content
             p:nth-child(n+2)
               margin-bottom: 4px
@@ -574,6 +576,9 @@ body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-grad
               font-size: 17px
               line-height: 33px
               text-transform: uppercase
+              display: block
+              width: 100%
+              height: 100%
     .news.col
       .panel
         ul
@@ -865,7 +870,10 @@ body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-grad
             margin-bottom: 15px
         .tenant_list, .graduate_list
           li
-            margin-bottom: 15px
+            a
+              margin-bottom: 5px
+              padding-bottom: 10px
+              display: block
     .newsMain.col
       width: 649px
       margin-right: 20px
@@ -931,10 +939,24 @@ body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-grad
         .panel
           padding-top: 20px
         ul
+          a
+            color: $darkgray
+          .more
+            color: $red
+          .news_list_link
+            display: block
+            height: 100%
+            width: 100%
+          p
+            .news_list_link
+              display: inline
           li
             border-bottom: 1px solid $grayborder
             margin-bottom: 15px
+            cursor: pointer
             &:last-child
+              border-bottom: 0
+            &:last-of-type
               border-bottom: 0
             .news_headline
               width: 540px
@@ -972,11 +994,14 @@ body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-grad
           margin-right: 19px
           width: 315px
           ul
-            li
-              margin-bottom: 15px
+            a
               border-bottom: 1px solid $grayborder
+              display: block
+              margin-bottom: 10px
               &:last-child
                 border-bottom: none
+            li
+              margin-bottom: 15px
               .related_title
               .related_subheading
                 color: $light
@@ -1795,10 +1820,10 @@ body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-grad
               padding-top: 5px
         .resource_display
           .resource_group
-            float: left
+            float: none
             width: 298px
-            margin-bottom: 20px
-            margin-right: 20px
+            margin-bottom: 40px
+            margin-right: 0px
             h3
               border-bottom: 1px solid $grayborder
               padding-bottom: 5px
@@ -3064,3 +3089,67 @@ body.administration-cms_index
 .mainabout
   h4
     margin-top: 0
+.direct_app,
+.direct_app_header,
+.news_single_display .necessarycopy
+  display: none
+.field.bool
+  margin-bottom: 20px
+.pages-contact .job-postings
+  display: none
+.job-postings
+  margin-bottom: 20px
+.direct_app
+  margin-bottom: 5px
+  &:last-child
+    margin-bottom: 10px
+  input
+    margin-top: -3px
+.direct_app_header
+  padding: 10px 0 5px
+
+.dd-options
+  height: 200px
+  overflow: scroll
+.acre_news_li
+  cursor: pointer
+
+a:hover
+  color: #555 !important
+header
+  a:hover
+    color: #f9d84a !important
+.news.col
+  li:hover
+    background-color: #f5f5f5 !important
+  li
+    padding: 0 !important
+    a
+      display: block
+      padding: 12px 0
+.tenant_list, .graduate_list
+  a:hover
+    background-color: #f5f5f5 !important
+  a
+    margin-bottom: 0 !important
+    padding-top: 5px
+.acre_news_li:hover, .news_list_li:hover
+  background-color: #f5f5f5 !important
+.main .cols .newsMain.col .news_list ul li, .challenge .cols .newsMain.col .news_list ul li, .tenant .cols .newsMain.col .news_list ul li, .graduate .cols .newsMain.col .news_list ul li, .contact .cols .newsMain.col .news_list ul li, .news_page .cols .newsMain.col .news_list ul li, .calendar .cols .newsMain.col .news_list ul li, .mainDashboard .cols .newsMain.col .news_list ul li, .resources .cols .newsMain.col .news_list ul li, .eventDisplay .cols .newsMain.col .news_list ul li
+  margin-bottom: 0
+  padding-top: 10px
+.related_and_further_reading
+  a:hover
+    background-color: #f5f5f5 !important
+  a
+    margin-bottom: 0 !important
+    padding-top: 10px
+.contact_text h2
+  cursor: pointer
+.jobs_back_link
+  float: right
+.administration .resourcesMain .main_resource_list .panel .database_lists .database_list ul li, .registrations .resourcesMain .main_resource_list .panel .database_lists .database_list ul li, .invitations .resourcesMain .main_resource_list .panel .database_lists .database_list ul li
+  overflow: hidden
+  cursor: pointer
+  &:hover
+    background-color: #f5f5f5 !important

@@ -10,6 +10,9 @@ function loadingIcon(target){
 	}, 100);
 }
 $(function(){
+//  $("a").hover(function(){
+//    if($(this).css("display") == "block"){$(this).addClass("bold")}
+//    }, function(){$(this).removeClass("bold")});
 //show/hide flash messages
 	if($('.msg').html() != ""){
 		$('.messages').show(0);
@@ -44,6 +47,7 @@ $(function(){
 //contact page dropdowns
   if(onPage("pages-contact")){
     $(".dropdown_panel a").click(function(e){
+      $(".job-postings").hide();
     	$(this).closest(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
     	var toggle = $(this).data("toggle");
     	$("."+toggle).toggle();
@@ -53,6 +57,12 @@ $(function(){
     	return false;
     });
   }
+  $(".contact_text h2").click(function(e){
+  	$(".application").find(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
+  	var toggle = $(".application").find(".dropdown_panel a").data("toggle");
+  	$("."+toggle).toggle();
+  	$(".contact_text").toggle();
+  });
 //contact loaders
   if(onPage("pages-contact")){
     $("#new_subscription input[type=submit], #new_resume input[type=submit]").click(function(e){
@@ -78,8 +88,14 @@ $(function(){
           marker.remove();
         	$("input#resume_specialty").val("Please specify");
         	$("input#resume_specialty").select();
+        	$(".direct_app, .direct_app_header").hide();
         } else {
+          $(".direct_app, .direct_app_header").hide();
         	$("input#resume_specialty").val(data.selectedData.value);
+        	if($(".direct_app."+data.selectedData.value.replace(/ /g, "_").replace("/", "_")).length > 0){
+        		$(".direct_app_header").show();
+        	}
+        	$(".direct_app."+data.selectedData.value.replace(/ /g, "_").replace("/", "_")).show();
         }
       }
     });
@@ -113,6 +129,11 @@ $(function(){
       }
     });
   }
+//hide job posts
+  $(".jobs_back_link").click(function(e){
+    e.preventDefault();
+  	$(".job-postings").hide();
+  });
 //contact page tenant application back link
   if(onPage("pages-contact")){
     $(".tenant_application_back_link").click(function(e){
@@ -193,7 +214,7 @@ $(function(){
     $.post("/acceptanswer", {id: answerid, option: action}, function(){$(that).closest("li").toggleClass("acceptedAnswer");});
   });
 //datepicker
-  $('#event_datetimepicker, #event_datetimepicker2, #post_datetimepicker, #article_datetimepicker, #grant_datetimepicker, #google_datetimepicker').datetimepicker({
+  $('#event_datetimepicker, #event_datetimepicker2, #post_datetimepicker, #article_datetimepicker, #grant_datetimepicker, #google_datetimepicker, #job_datetimepicker').datetimepicker({
     language: "en",
     pick12HourFormat: true
   });
@@ -298,6 +319,15 @@ $(function(){
     	 $(".main_resource_list").toggle();
     	 $(this).html(html);
     	} 
+    	var groups = $("."+toggle+" .resource_group").length;
+    	var left = document.createElement("div");
+    	$(left).css({"float":"left","margin-right":"20px"});
+    	var right = document.createElement("div");
+    	$(right).css({"float":"right"});
+    	$("."+toggle+" .resource_display").prepend(left);
+    	$("."+toggle+" .resource_display").prepend(right);
+    	$(left).append($("."+toggle+" .resource_group").slice(0,(groups/2)));
+    	$(right).append($("."+toggle+" .resource_group").slice((groups/2),groups));
     	return false;
     });
   }
@@ -557,7 +587,7 @@ $(function(){
   $('#mapModal').appendTo($("body"));
 //user options dropdown
   $(".user_options > a").click(function(e){
-  	$(".user_options_dropdown").show();
+  	$(".user_options_dropdown").toggle();
   	return false;
   });
 //tenant bg select
@@ -631,9 +661,9 @@ $(window).load(function(){
       $('.main div.col').each(function() {
         maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
       });
-      $('.main div.col .panel').eq(0).height(maxHeight-32);
-      $('.main div.col .panel').eq(1).height(maxHeight-32);
-      $('.main div.col .panel').eq(3).height(maxHeight-32-$(".upcoming").height()-20);
+      $('.main div.col .panel').eq(0).height(maxHeight-22);
+      $('.main div.col .panel').eq(1).height(maxHeight-22);
+      $('.main div.col .panel').eq(3).height(maxHeight-22-$(".upcoming").height()-20);
     } else {
     	if($(".current_announcement .panel").height() < ($(".events_and_stuff").height()-32)){
     		$(".current_announcement .panel").height($(".events_and_stuff").height()-32);
@@ -661,6 +691,40 @@ $(window).load(function(){
   		$(".acre_news_and_twitter .acre_news .panel").height($(".acre_news_and_twitter .twitter .panel").height());
   	}
   }
+//resume prefs
+  $("#resume_prefs_select").change(function(){
+  	var title = $("#resume_prefs_select option:selected").text();
+  	var id = $("#resume_prefs_select option:selected").val();
+  	var ar = $("#tenant_resume_prefs").val().split(",");
+  	$("#tenant_resume_prefs").val($("#tenant_resume_prefs").val() == 0 ? id : $("#tenant_resume_prefs").val()+","+id);
+  });
+// resume/tenants
+//  $(".submit_resume_form input.disabled").live("click", function(e){return false});
+  $(".submit_resume_form input[type=submit]").click(function(e){
+  	//e.preventDefault();
+  	$(this).addClass("disabled");
+  	if($("#resume_specialty").val().length == 0){
+  		alert("Please select an area of specialty to proceed");
+  		return false;
+  	} else {
+  	 var tenants = "";
+    	$(".submit_resume_form .direct_app input:checked").each(function(){
+    		tenants += $(this).val()+",";
+    	});
+    	$("input#direct").val(tenants);	
+  	}
+  });
+//view jobs
+  $(".submit_resume_blurb a").click(function(e){
+  	e.preventDefault();
+  	$(".job-postings").show();
+  });
+//job prefill
+  if(window.location.href.indexOf("contact?job") != -1){
+  	$(".submit_resume").show();
+  	$(".submit_resume .dd-selected").html("<label class='dd-selected-text'>"+$("#resume_specialty").val()+"</label>");
+  }
+
 });
 
 $(window).resize(function(){

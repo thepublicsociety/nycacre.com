@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-
+#gem 'rack', '1.4.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -28,7 +28,7 @@ gem "devise"
 gem "devise_invitable"
 gem "cancan"
 gem "paperclip", "= 3.0.4"
-gem "remotipart"
+gem "remotipart", "1.0.5"
 gem 'garb'
 gem "nested_form"
 gem 'rails_bootstrap_navbar'
@@ -49,3 +49,4 @@ gem 'bootstrap-will_paginate'
 gem 'feedzirra'
 gem 'whenever'
 gem 'gibbon', :git => 'git://github.com/amro/gibbon.git'
+gem 'nokogiri'

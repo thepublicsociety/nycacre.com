@@ -18,6 +18,7 @@ class Resume < ActiveRecord::Base
   has_attached_file :resume_document
   validates_presence_of :resume_document
   validates_format_of :resume_document_file_name, :with => %r{\.(pdf)$}i
+  has_and_belongs_to_many :tenants
   
   def saved?(user)
     item_id = self.id

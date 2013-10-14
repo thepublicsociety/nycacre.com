@@ -52,6 +52,33 @@
             .clear
         .clear
         .maincontact
+          .job-postings
+            .panel
+              %h2
+                Job Openings
+              <a href="#" class="more jobs_back_link">BACK »</a>
+              .job-postings-content
+                %table.table
+                  %tr
+                    %th
+                      Position
+                    %th
+                      Tenant
+                    %th
+                      Description
+                    %th
+                      Apply
+                  - @jobs.each do |j|
+                    %tr
+                      %th
+                        = j.position
+                      %th
+                        = j.tenant.name
+                      %th
+                        = j.description
+                      %th
+                        = link_to "Apply", "/contact?job=#{j.id.to_s}", class: "btn btn-default btn-xs"
+                      
           .contact_text
             .panel
               %h2
@@ -87,12 +114,13 @@
                   = f.input :thing, :as => :hidden, :input_html => {:value => "newsletter"}
                   .processingSubmission
                   = f.button :submit
-        .application
-          .panel
-            .dropdown_panel.dropdown_panel-right
-              %h2
-                %a{:href => "#", :data => {:toggle => "tenant_application"}}
-                  Tenant Application
+        -#
+          .application
+            .panel
+              .dropdown_panel.dropdown_panel-right
+                %h2
+                  %a{:href => "#", :data => {:toggle => "tenant_application"}}
+                    Tenant Application
         .resume
           .panel
             .dropdown_panel.dropdown_panel-right
@@ -109,7 +137,14 @@
                   = f.input :name
                   = f.label :specialty, "Area of Specialty"
                   = select_tag("specialty_fake", options_from_collection_for_select(@resume_specialty_options, "value", "name"), :include_blank => true)
-                  = f.input :specialty, :as => "hidden"
+                  = f.input :specialty, :as => "hidden", input_html: {value: @job.blank? ? "" : @job.position}
+                  .direct_app_header
+                    Apply directly to relevant ACRE tenants
+                  - @tenants.each do |t|
+                    .direct_app{class: "#{t.resume_prefs.blank? ? "other" : t.resume_prefs.gsub(/ /, "_").gsub("/", "_").gsub(",", " ")}"}
+                      = check_box_tag t.name, t.id, t.id == (@job.blank? ? "0" : @job.tenant.id)
+                      = t.name
+                  = hidden_field_tag "direct"
                   = f.input :cover_letter, :label => "Tell us about yourself"
                   .processingSubmission
                   = f.button :submit

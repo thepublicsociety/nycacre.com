@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  require 'truncate_html' # string.truncate_html(0, at_end = "&hellip;").html_safe
 
   def after_sign_in_path_for(resource)
    administration_root_path

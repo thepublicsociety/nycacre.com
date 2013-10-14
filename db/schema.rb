@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725232851) do
+ActiveRecord::Schema.define(:version => 20131007213247) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
@@ -290,6 +290,17 @@ ActiveRecord::Schema.define(:version => 20130725232851) do
     t.string   "telephone"
   end
 
+  create_table "job_postings", :force => true do |t|
+    t.string   "position"
+    t.text     "description"
+    t.string   "salary"
+    t.datetime "available"
+    t.boolean  "publish"
+    t.integer  "tenant_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "memos", :force => true do |t|
     t.integer  "user_id"
     t.integer  "item_id"
@@ -423,6 +434,11 @@ ActiveRecord::Schema.define(:version => 20130725232851) do
     t.string   "telephone"
   end
 
+  create_table "resumes_tenants", :id => false, :force => true do |t|
+    t.integer "resume_id"
+    t.integer "tenant_id"
+  end
+
   create_table "sectors", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -545,6 +561,7 @@ ActiveRecord::Schema.define(:version => 20130725232851) do
     t.string   "facebook_link"
     t.string   "twitter_link"
     t.string   "website"
+    t.text     "resume_prefs"
   end
 
   create_table "tool_specialty_options", :force => true do |t|
@@ -623,6 +640,7 @@ ActiveRecord::Schema.define(:version => 20130725232851) do
     t.string   "selected_calendar"
     t.string   "fb_token"
     t.string   "fb_expires_at"
+    t.datetime "invitation_created_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

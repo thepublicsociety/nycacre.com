@@ -46,6 +46,11 @@
     <% end %>
     <div class="clear vspacer20"></div>
     <%= f.link_to_add "<i class='icon-plus'></i> Add Statistic".html_safe, :tenant_stats, :class => "btn btn-mini", :style => "margin: 10px 0" %>
+    <div class="clear vspacer20"></div>
+    <h3>Resume Submission opt-in</h3>
+    <%= select_tag("resume_prefs_select", options_from_collection_for_select(@prefs, "value", "name"), :prompt => "Select Specialties") %>
+    
+    <%= f.input :resume_prefs, as: "string", label: "Selected:" %>
   </div>
 
   <div class="form-actions">

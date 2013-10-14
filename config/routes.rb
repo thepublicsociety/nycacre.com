@@ -1,4 +1,7 @@
 DevelopmentMetatroidCom::Application.routes.draw do
+  resources :job_postings
+
+
   resources :tool_specialty_options
 
 
