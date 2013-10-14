@@ -1,0 +1,32 @@
+= render :partial => "layouts/header"
+.content
+  .news_page
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .newsMain.col
+        .heading
+          .panel
+            %h2
+              news
+            .search
+              = form_tag("/search") do
+                %input{:class => "news_search_input", :value => "Search"}
+            .clear
+        .news_display
+          .featured_news
+            - @features.each do |f|
+              .feature.news_feature
+                .panel
+                  - unless f.news_photos.where("caption=?", "main").blank?
+                    .feature_image
+                      = image_tag(f.news_photos.where("caption=?", "main").first.image)
+                  .featured_headline
+                    %h3
+                      = link_to f.title, "/news/#{f.title.gsub(" ", "%20")}"
+                  .featured_subheading
+                    = f.subheading
+          .news_list
+            .panel
+              %ul.unstyled.newses
+                = render 'news_list'
+      = render :partial => "layouts/maincols/news_events_and_twitter_col"

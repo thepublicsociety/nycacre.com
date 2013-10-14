@@ -1,0 +1,10 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+test/**/*
+config/database.yml.git
+config/database.yml
+config/initializers/secret_token.rb
+config/initializers/secret_token.rb.git
+google-api.yaml

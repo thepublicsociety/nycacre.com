@@ -1,0 +1,97 @@
+= render :partial => "layouts/header"
+.content
+  .eventDisplay
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .eventDisplayMain.col
+        .heading
+          .panel
+            %h2
+              Calendar
+        .details_and_map
+          .details
+            .panel
+              %h2
+                = @event.name
+              .save
+                = link_to "save a memo", "#", :class => "saveEventMemo", 'data-resource_type' => "userevent", 'data-resource_id' => @event.id
+              .date
+                #{@event.event_start.strftime("%A, %b %-d, %Y")} | #{@event.event_start.strftime("%l:%M%P")} - #{@event.event_end.strftime("%l:%M%P")}
+              .location
+                = @event.location.gsub(/__.*/, "") unless @event.location.blank?
+                - if @event.location && @event.location.include?("__")
+                  %br
+                  = @event.location.gsub(/.*__/, "") unless @event.location.blank?
+                
+        .clear
+        - unless @event.calendar_event_image_file_name.blank?
+          .event_image
+            .panel
+              = image_tag(@event.calendar_event_image.url(:main))
+        .maineventDisplay
+          .panel
+            = @event.description.html_safe unless @event.description.blank?
+      .events_and_updates.col
+        .back_to_calendar
+          .panel
+            %h2
+              = link_to "Back To Calendar", "/calendar"
+        .events
+          .panel
+            %h2
+              Upcoming
+            .cal_link
+              = link_to "full calendar &raquo;".html_safe, calendar_path, :class => "more"
+            .events_key
+              %ul.unstyled
+                %li.acre_events
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "event"}}
+                  .key
+                    ACRE events
+                %li.funding_and_grants
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "grant"}}
+                  .key
+                    Funding & Grants
+                %li.your_calendar
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "google"}}
+                  .key
+                    Your Calendar
+            .events_list
+              %ul.unstyled
+                - @uevents.each do |e|
+                  %li{:class => "#{e.origin} #{e.saved?(@user) ? "saved" : ""}"}
+                    .event_type
+                    .event_link
+                      - if e.origin == "event"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "grant"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+                      - else
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+                    .event_times
+                      = e.event_start.strftime("%m-%d-%y")
+                      \/
+                      = e.event_start.strftime("%l:%M%p")
+                      \-
+                      = e.event_end.strftime("%l:%M%p")
+              
+        .updates
+          .panel
+            %h2
+              Internal Updates
+            %ul.unstyled.fbfeed
+              - @feed.each do |f|
+                %li
+                  .feed_story
+                    = f["message"].html_safe unless f["message"].blank?
+                    = f["name"].html_safe unless f["name"].blank?
+                    = f["link"].html_safe unless f["link"].blank?
+                  .feed_time
+                    \-
+                    = time_ago_in_words(f["created_time"])
+                    ago via Facebook
+            = link_to "more updates &raquo;".html_safe, "https://www.facebook.com/groups/116539501741873/", :target => "_blank", :class => "more"
+

@@ -1,0 +1,32 @@
+<%= simple_form_for(@grant) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <label class="string optional control-label" for="grant_due_date">Due date</label>
+    <div id="grant_datetimepicker" class="input-append">
+      <input value="<%= @grant.due_date.strftime("%m/%d/%Y %I:%M:%S %p") unless @grant.due_date.blank? %>" class="string optional date-time-pick" id="grant_due_date" name="grant[due_date]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+    <%= f.input :author %>
+    <%= f.input :specialty %>
+    <%= f.input :website %>
+    <%= f.input :email %>
+    <%= f.input :telephone %>
+    <%= f.input :description %>
+    <%= f.input :content %>
+    <%= f.input :category %>
+    <%= f.input :tenant, :as => "hidden" %>
+    <%= label_tag "Related tenant(s)" %>
+    <%= select_tag("tenant_fake", options_from_collection_for_select(@tenants, "id", "name"), :include_blank => true) %>
+    <%= f.input :sector %>
+    <%= f.input :tag %>
+    <%= f.input :publish %> 
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

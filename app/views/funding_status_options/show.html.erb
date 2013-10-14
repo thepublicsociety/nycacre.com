@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @funding_status_option.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @funding_status_option.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_funding_status_option_path(@funding_status_option) %> |
+<%= link_to 'Back', funding_status_options_path %>

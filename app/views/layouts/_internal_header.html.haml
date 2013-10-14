@@ -1,0 +1,49 @@
+%header
+  .content
+    .empty_column.col
+      .hpanel
+    .view_options_column.col
+      .view_options_options
+        .public_view_option
+          .hpanel
+            = link_to "Public View", root_path
+        .dashboard_view_options
+          .hpanel
+            = link_to "Tenant Dashboard View", administration_root_path
+            - if controller.action_name != "dashboard"
+              .dashboard_arrow
+        .dashboard_twitter_header
+          .hpanel
+            = link_to "", "https://twitter.com/nycacre", :target => "_blank"
+        .dashboard_facebook_header
+          .hpanel
+            = link_to "", "https://www.facebook.com/nycacre", :target => "_blank"
+      - if controller.action_name == "dashboard"
+        .view_arrow
+    .user_options_column.col
+      .hpanel
+        .username
+          - if user_signed_in?
+            Welcome back, #{@user.name}!
+          - else
+            Welcome, Guest!
+        .user_options
+          = link_to "", "#"
+          - if user_signed_in?
+            .user_options_dropdown.hide
+              %ul.unstyled
+                %li.userEdit
+                  %i{:class => "icon-user"}
+                  = link_to "Edit account information", edit_user_registration_path(@user)
+                - unless @user.tenant.blank?
+                  %li.tenantEdit
+                    %i{:class => "icon-edit"}
+                    = link_to "Edit tenant information", edit_tenant_path(@user.tenant)
+                %li.newsManage
+                  %i{:class => "icon-inbox"}
+                  = link_to "Manage news sources", news_sources_path
+                %li.bgManage
+                  %i{:class => "icon-picture"}
+                  = link_to "Manage backgrounds", tenant_backgrounds_path
+        .user_logout
+          = link_to "", "/logout"

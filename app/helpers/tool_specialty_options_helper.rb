@@ -1,0 +1,2 @@
+module ToolSpecialtyOptionsHelper
+end

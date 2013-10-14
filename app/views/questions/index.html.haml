@@ -1,0 +1,58 @@
+= render :partial => "layouts/cms_header"
+.container
+  .row
+    .span10
+      %h1
+        Questions
+      .questions
+        %ul.unstyled
+          - @questions.each do |q|
+            %li
+              .questionContainer
+                .voting
+                  = link_to "", "#", :class => "votequp icon-circle-arrow-up icon-2x", :title => "Vote Up"
+                  .voteCount
+                    = q.votes.blank? ? "0" : q.votes
+                  = link_to "", "#" , :class => "voteqdown icon-circle-arrow-down icon-2x", :title => "Vote Down"
+                .question
+                  .questionContent
+                    %p
+                      = q.content
+                    .asker
+                      Asked by:
+                      = q.user.name.blank? ? q.user.email : q.user.name
+                    .controls
+                      .answering
+                        - unless q.answers.empty?
+                          = link_to "View answers", "#", :class => "viewAnswers"
+                          = link_to "Add answer", question_path(q)
+                        - else
+                          = link_to "Answer question", question_path(q)                
+                  - unless q.answers.empty?
+                    .answers
+                      %ul.unstyled
+                        - q.answers.each do |a|
+                          %li{:class => a.accepted? ? "acceptedAnswer" : "potentialAnswer"}
+                            .answerContainer
+                              .answerVoting
+                                = link_to "", "#", :class => "voteaup icon-circle-arrow-up", :title => "Vote Up"
+                                .voteCount
+                                  = a.votes.blank? ? "0" : a.votes
+                                = link_to "", "#" , :class => "voteadown icon-circle-arrow-down", :title => "Vote Down"
+                              .answer
+                                .answerContent
+                                  %p
+                                    = a.content
+                                .answerer
+                                  Answered by:
+                                  = a.user.name.blank? ? a.user.email : a.user.name
+                                - if q.user == current_user
+                                  .accept
+                                    - unless a.accepted?
+                                      %a{:href => "#", :class => "acceptAnswer", :data => {:answer_id => a.id, :action => "accept"}}
+                                        Accept this answer
+                                    - else
+                                      %a{:href => "#", :class => "acceptAnswer", :data => {:answer_id => a.id, :action => "unaccept"}}
+                                        Unaccept this answer
+                              .clear
+                .clear

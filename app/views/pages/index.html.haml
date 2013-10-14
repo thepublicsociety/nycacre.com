@@ -1,0 +1,32 @@
+= render :partial => "layouts/header"
+.content
+  .main
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      - if @current_announcement.blank?
+        = render :partial => "layouts/maincols/news_col"
+        = render :partial => "layouts/maincols/acre_col"
+      - else
+        .current_announcement.col
+          .panel
+            .current_announcement_image
+              = image_tag(@current_announcement.announcement_image.url(:display))
+            .current_announcement_text
+              %h2
+                - if !@current_announcement.post_id.blank?
+                  = word_truncate(Post.find(@current_announcement.post_id).title, :words => 3).html_safe
+                - elsif !@current_announcement.tenant_id.blank?
+                  = Tenant.find(@current_announcement.tenant_id).name
+                - else
+                  = @current_announcement.headline
+              - if !@current_announcement.post_id.blank?
+                = smart_truncate(Post.find(@current_announcement.post_id).content, "/news/#{Post.find(@current_announcement.post_id).title.gsub(" ", "%20")}", :words => 40).html_safe
+              - elsif !@current_announcement.tenant_id.blank?
+                = smart_truncate(Tenant.find(@current_announcement.tenant_id).content, "/about/#{Tenant.find(@current_announcement.tenant_id).name.gsub(" ", "%20")}", :words => 40).html_safe
+              - else
+                = smart_truncate(@current_announcement.content, "/announcement/#{@current_announcement.id}", :words => 40).html_safe
+      = render :partial => "layouts/maincols/events_and_stuff_col"
+    -#
+      - if @current_announcement.blank?
+        .home-statement
+          = @statement.content.blank? ? "" : @statement.content.html_safe

@@ -1,0 +1,2 @@
+module NewsSiteSpecialtyOptionsHelper
+end

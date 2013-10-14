@@ -1,0 +1,63 @@
+= render :partial => "layouts/header"
+.content
+  .news_page.news_single
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .newsMain.col
+        .heading
+          .panel
+            %h2
+              news
+        - unless @post.news_photos.where("caption=?", "main").blank?
+          .news_main_image
+            .panel
+              = image_tag(@post.news_photos.where("caption=?", "main").first.image(:main))
+        .news_display.news_single_display
+          .featured_news
+            .feature
+              .panel
+                .featured_headline
+                  %h2
+                    = @post.title
+                .featured_metadata
+                  By
+                  = @post.author
+                  \/
+                  = @post.created_at.strftime("%m-%d-%y")
+                .featured_content
+                  = @post.content.html_safe
+                .article_tags
+                  - unless @post.tag.blank?
+                    Tags: #{@post.tag}
+        .related_and_further_reading
+          - unless @related.blank?
+            .related
+              .panel
+                %h2
+                  Related News
+                %ul.unstyled
+                  - @related.each do |r|
+                    %li
+                      .related_title
+                        = link_to r.title, "/news/#{r.title}"
+                      .related_subheading
+                        = r.subheading
+                = link_to "see all articles &raquo;".html_safe, news_path, :class => "more"
+          -#
+            - unless @further.blank?
+              .further_reading
+                .panel
+                  %h2
+                    Further Reading
+                  %ul.unstyled
+                    - @further.each do |f|
+                      %li
+                        .further_reading_title
+                          = link_to f.title, "/article/#{f.title}"
+                        .further_reading_subheading
+                          = f.subtitle
+                        .further_reading_author
+                          By
+                          = f.author
+                  = link_to "see all articles &raquo;".html_safe, articles_path, :class => "more"
+      = render :partial => "layouts/maincols/news_events_and_twitter_col"

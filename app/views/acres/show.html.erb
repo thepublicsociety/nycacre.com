@@ -1,0 +1,31 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <br>
+  <%= @acre.title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@acre.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Subtitle:</b>
+  <br>
+  <%= @acre.subtitle %>
+</p>
+<br>
+<p>
+  <b>Featured:</b>
+  <br>
+  <%= @acre.featured %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_acre_path(@acre) %> |
+<%= link_to 'Back', acres_path %>
+</div>

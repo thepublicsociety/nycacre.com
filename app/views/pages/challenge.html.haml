@@ -1,0 +1,88 @@
+= render :partial => "layouts/header"
+.content
+  .challenge
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .the_challenge.col
+        .heading
+          .panel
+            %h2
+              The Challenge
+        .mainchallenge
+          .panel
+            - unless @challenge.content_title.blank?
+              %h2
+                = @challenge.content_title
+            .challenge_content
+              = @challenge.content.html_safe
+            .challenge_subcontent
+              - unless @challenge.subcontent_title.blank?
+                %h2
+                  = @challenge.subcontent_title unless @challenge.subcontent_title.blank?
+              = @challenge.subcontent.html_safe
+        - unless @challenge.challenge_stats.where("publish=?", true).empty? 
+          .subchallenge
+            .panel
+              .challenge_numbers#stats
+                - @challenge.challenge_stats.where("publish=?", true).each do |s|
+                  .statistic
+                    .statistic_value
+                      - if s.is_dollar_value?
+                        %span.dollarsign
+                          $
+                      = s.value
+                    .statistic_name
+                      = s.name
+      .events_and_stuff.col
+        - unless @news.empty?
+          .related_news
+            .panel
+              %h2
+                Related News
+              %ul.unstyled
+                - @news.each do |n|
+                  %li
+                    = link_to n.title, "/news/#{n.title.gsub(" ", "%20")}"
+                    .subh.light
+                      = n.subheading
+              .more
+                = link_to "see all articles &raquo;".html_safe, "#"
+        -#
+          .further_reading
+            .panel
+              %h2
+                Further Reading
+              %ul.unstyled
+                - @articles.each do |a|
+                  %li
+                    = link_to a.title, "/article/#{a.title.gsub(" ", "%20")}"
+                    .subt
+                      = a.subtitle
+                    .auth.light
+                      by
+                      = a.author
+              .more
+                = link_to "see all articles &raquo;".html_safe, "#"
+        .upcoming
+          .panel
+            %h2
+              Upcoming
+            .cal_link
+              = link_to "full calendar &raquo;".html_safe, calendar_path, :class => "more"
+            .events_list
+              %ul.unstyled
+                - @events.each do |e|
+                  %li
+                    .event_link
+                      - if e.origin == "event"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "grant"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+                      - else
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+                    .event_times
+                      = e.eventdate.strftime("%m-%d-%y")
+                      \/
+                      = e.eventdate.strftime("%l:%M%p")
+                      \-
+                      = e.eventenddate.strftime("%l:%M%p")

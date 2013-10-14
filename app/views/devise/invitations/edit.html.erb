@@ -1,0 +1,19 @@
+<%= render :partial => "layouts/internal_header" %>
+<div class="content">
+  <div class="userManageForm">
+    <h2><%= t 'devise.invitations.edit.header' %></h2>
+    
+    <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :invitation_token %>
+      <%= f.input :name, :required => true %>
+      <%= label_tag "Choose Tenant" %>
+      <%= select_tag("tenant_id_fake", options_from_collection_for_select(Tenant.find(:all, :order => "name ASC"), "id", "name"), :include_blank => true) %>
+      <%= f.input :tenant_id, :as => "hidden" %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+    
+      <%= f.submit t("devise.invitations.edit.submit_button") %>
+    <% end %>
+  </div>
+</div>

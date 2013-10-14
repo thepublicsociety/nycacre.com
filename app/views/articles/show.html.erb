@@ -1,0 +1,43 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <br>
+  <%= @article.title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= @article.content.blank? ? "" : strip_tags(@article.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Author:</b>
+  <br>
+  <%= @article.author %>
+</p>
+<br>
+<p>
+  <b>Tags:</b>
+  <br>
+  <%= @article.tag %>
+</p>
+<br>
+<p>
+  <b>Category:</b>
+  <br>
+  <%= @article.category %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @article.publish %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+</div>

@@ -1,0 +1,38 @@
+<script>
+
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		$('#calendar .panel').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			columnFormat: {
+			 month: 'dddd',
+			 week: 'dddd, MMM dS',
+			 day: 'dddd, MMM dS'
+			},
+			editable: false,
+			events: [
+  				<% @events.each do |e| %>
+  				{
+  				  id: <%= e.id %>,
+  				  title: "<%= e.title %>",
+  				  start: new Date('<%= e.eventdate.strftime("%-m/%-d/%Y %-k:%M") %>'),
+  				  end: new Date('<%= e.eventenddate.strftime("%-m/%-d/%Y %-k:%M") %>'),
+  				  allDay: false
+  				}<% unless e == @events.last %>,<% end %>
+				<% end %>
+			],
+			timeFormat: 'h:mmtt { - h:mmtt}'
+		});
+		
+	});
+
+</script>

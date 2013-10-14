@@ -1,0 +1,11 @@
+<% if @resource == "provider" %>
+  $(".provider_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @search_results, :as => :p) %></ul>");
+<% elsif @resource == "resume" %>
+  $(".resume_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @search_results, :as => :p) %></ul>");
+<% elsif @resource == "grant" %>
+  $(".grant_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @search_results, :as => :p) %></ul>");
+<% elsif @resource == "tool" %>
+  $(".contacts_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @search_results, :as => :p) %></ul>");
+<% elsif @resource == "news" %>
+  $(".news_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @search_results, :as => :p) %></ul>");
+<% end %>

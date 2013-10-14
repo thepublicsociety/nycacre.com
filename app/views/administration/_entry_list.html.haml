@@ -1,0 +1,13 @@
+- @entries.each do |n|
+  %li{:class => "#{n.category}"}
+    .news_headline
+      %h3
+        = link_to n.title.html_safe, n.link, :target => "_blank"
+    .news_meta_info
+      - unless n.category.blank?
+        #{n.category} /
+      - unless n.author.blank?
+        By #{n.author} /
+      #{n.published_date.blank? ? n.created_at.strftime("%m-%d-%y") : n.published_date.strftime("%m-%d-%y")}
+.paging
+  = will_paginate(@entries)

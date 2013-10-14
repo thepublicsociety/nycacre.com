@@ -1,0 +1,14 @@
+= render :partial => "layouts/header"
+.content
+  .main
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .mainMap.col
+        .heading
+          .panel
+            %h2
+              Map
+        .map
+          .panel
+            = image_tag("http://maps.googleapis.com/maps/api/staticmap?center=137+Varick+st,New+York,NY&zoom=15&size=623x623&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:A%7C137+Varick+St+New+York+NY&key=AIzaSyAB4WVGb5YRtWGMYIrfFBCJwA3GWbLaLHE&sensor=false")
+      = render :partial => "layouts/maincols/events_and_stuff_col"

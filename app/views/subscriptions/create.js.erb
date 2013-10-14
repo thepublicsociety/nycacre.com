@@ -1,0 +1,12 @@
+<% if @subscription.errors.any? %>
+  $("#subscription_email").val("INVALID!");
+  clearInterval(loadAction);
+  $(".signup_newsletter_form .processingSubmission").html("");
+<% else %>
+  $(".newsletter").find(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
+  $(".signup_newsletter").hide();
+  $("#subscription_email").val("");
+  clearInterval(loadAction);
+  $(".signup_newsletter_form .processingSubmission").html("");
+  alert("Thank you! Your email has been successfully entered.");
+<% end %>

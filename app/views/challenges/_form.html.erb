@@ -1,0 +1,34 @@
+<%= simple_nested_form_for(@challenge, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :content_title %>
+    <%= f.input :content %>
+    <%= f.input :subcontent_title %>
+    <%= f.input :subcontent %>
+    <%= f.input :challenge_image %>
+    <%= f.input :featured %>
+    <div class="clear vspacer20"></div>
+    <div class="lightline"></div>
+    <h2>Statistics</h2>
+    <%= f.simple_fields_for :challenge_stats do |s| %>
+      <%= s.input :name %>
+      <%= s.input :value %>
+      <%= s.input :is_dollar_value, :label => "Is this a dollar value?" %>
+      <div class="clear"></div>
+      <!--<%= s.input :description, :as => "string" %>-->
+      <%= s.input :publish %>
+      <div class="clear"></div>
+      <%= s.link_to_remove "Remove this Statistic" %>
+      <div class="line"></div>
+      <div class="vspacer20"></div>
+    <% end %>
+    <div class="clear vspacer20"></div>
+    <%= f.link_to_add "<i class='icon-plus'></i> Add Statistic".html_safe, :challenge_stats, :class => "btn btn-mini", :style => "margin: 10px 0" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

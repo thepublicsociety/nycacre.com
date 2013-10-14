@@ -1,0 +1,31 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <br>
+  <%= @about.title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@about.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Subtitle:</b>
+  <br>
+  <%= @about.subtitle %>
+</p>
+<br>
+<p>
+  <b>Featured:</b>
+  <br>
+  <%= @about.featured %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_about_path(@about) %> |
+<%= link_to 'Back', abouts_path %>
+</div>

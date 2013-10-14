@@ -1,0 +1,61 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @graduate.name %>
+</p>
+<br>
+<p>
+  <b>Content title:</b>
+  <br>
+  <%= @graduate.content_title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@graduate.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Subcontent title:</b>
+  <br>
+  <%= @graduate.subcontent_title %>
+</p>
+<br>
+<p>
+  <b>Subcontent:</b>
+  <br>
+  <%= strip_tags(@graduate.subcontent).html_safe %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= strip_tags(@graduate.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @graduate.sector %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @graduate.publish %>
+</p>
+<br>
+<p>
+  <b>Featured:</b>
+  <br>
+  <%= @graduate.featured %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_graduate_path(@graduate) %> |
+<%= link_to 'Back', graduates_path %>
+</div>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @statement.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @statement.content %>
+</p>
+
+<p>
+  <b>Publish:</b>
+  <%= @statement.publish %>
+</p>
+
+
+<%= link_to 'Edit', edit_statement_path(@statement) %> |
+<%= link_to 'Back', statements_path %>

@@ -1,0 +1,27 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing announcements</h1>
+
+<table class="table">
+  <tr>
+    <th>Headline</th>
+    <th>Content</th>
+    <th>Image</th>
+    <th>Displayed</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @announcements.each do |announcement| %>
+  <tr>
+    <td><%= announcement.headline %></td>
+    <td><%= announcement.content %></td>
+    <td><%= announcement.announcement_image_file_name %></td>
+    <td><%= announcement.displayed %></td>
+    <td><% if announcement.displayed? %> <%= link_to "Remove", "#", 'data-announcement_id' => announcement.id, :class => 'btn btn-inverse btn-mini hideAnnouncementLink' %> <% else %> <%= link_to 'Display', "#", :class => "btn btn-inverse btn-mini displayAnnouncementLink", 'data-announcement_id' => announcement.id %> <% end %></td>
+    <td><%= link_to 'Destroy', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>

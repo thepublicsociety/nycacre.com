@@ -1,0 +1,23 @@
+= render :partial => "layouts/header"
+.content
+  .calendar
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .calendarMain.col
+        .heading_and_month_select
+          .heading
+            .panel
+              %h2
+                Calendar
+          .month_select
+            .panel
+              .previous_month
+                = link_to "<", "#", :class => "previousMonthLink"
+              .current_month
+                %h2
+                  May 2013
+              .next_month
+                = link_to ">", "#", :class => "nextMonthLink"
+        #calendar
+          .panel
+= render :partial => "layouts/js/fullcalendar"

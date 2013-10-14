@@ -1,0 +1,32 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing backgrounds</h1>
+
+<table class="table">
+  <tr>
+    <th>Page URL</th>
+    <th>Controller</th>
+    <th>Action</th>
+    <th>Image file name</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @backgrounds.each do |b| %>
+  <tr>
+    <td><%= b.page_url %></td>
+    <td><%= b.page_controller %></td>
+    <td><%= b.page_action %></td>
+    <td><%= b.background_image_file_name %></td>
+    <td><%= image_tag(b.background_image.url(:thumb)) %></td>
+    <td><%= link_to 'Edit', edit_background_path(b) %></td>
+    <td><%= link_to 'Destroy', b, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-picture"></i> New background image'.html_safe, new_background_path, :class => "btn btn-mini" %>
+</div>

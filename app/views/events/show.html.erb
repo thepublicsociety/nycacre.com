@@ -1,0 +1,30 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Title:</b>
+  <br>
+  <%= @event.title %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= strip_tags(@event.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Start:</b>
+  <br>
+  <%= @event.eventdate.strftime("%m-%d-%y %l:%M%p") %>
+</p>
+<br>
+<p>
+  <b>End:</b>
+  <br>
+  <%= @event.eventenddate.strftime("%m-%d-%y %l:%M%p") %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+</div>

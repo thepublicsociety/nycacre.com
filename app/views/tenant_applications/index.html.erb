@@ -1,0 +1,65 @@
+<h1>Listing tenant_applications</h1>
+
+<table>
+  <tr>
+    <th>Company name</th>
+    <th>Company technology</th>
+    <th>Funding status</th>
+    <th>Inception</th>
+    <th>Value proposition</th>
+    <th>Current structure</th>
+    <th>Ownership</th>
+    <th>Description</th>
+    <th>Revenue model</th>
+    <th>Benefits</th>
+    <th>Evolution status</th>
+    <th>Competitors</th>
+    <th>Competition edge</th>
+    <th>Sustainability</th>
+    <th>Intellectual property</th>
+    <th>Target market</th>
+    <th>Entry barriers</th>
+    <th>Customers</th>
+    <th>Name and title</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tenant_applications.each do |tenant_application| %>
+  <tr>
+    <td><%= tenant_application.company_name %></td>
+    <td><%= tenant_application.company_technology %></td>
+    <td><%= tenant_application.funding_status %></td>
+    <td><%= tenant_application.inception %></td>
+    <td><%= tenant_application.value_proposition %></td>
+    <td><%= tenant_application.current_structure %></td>
+    <td><%= tenant_application.ownership %></td>
+    <td><%= tenant_application.description %></td>
+    <td><%= tenant_application.revenue_model %></td>
+    <td><%= tenant_application.benefits %></td>
+    <td><%= tenant_application.evolution_status %></td>
+    <td><%= tenant_application.competitors %></td>
+    <td><%= tenant_application.competition_edge %></td>
+    <td><%= tenant_application.sustainability %></td>
+    <td><%= tenant_application.intellectual_property %></td>
+    <td><%= tenant_application.target_market %></td>
+    <td><%= tenant_application.entry_barriers %></td>
+    <td><%= tenant_application.customers %></td>
+    <td><%= tenant_application.name_and_title %></td>
+    <td><%= tenant_application.address %></td>
+    <td><%= tenant_application.phone %></td>
+    <td><%= tenant_application.email %></td>
+    <td><%= link_to 'Show', tenant_application %></td>
+    <td><%= link_to 'Edit', edit_tenant_application_path(tenant_application) %></td>
+    <td><%= link_to 'Destroy', tenant_application, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tenant application', new_tenant_application_path %>

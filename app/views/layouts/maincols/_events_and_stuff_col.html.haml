@@ -1,0 +1,47 @@
+.events_and_stuff.col
+  .upcoming
+    .panel
+      %h2
+        Upcoming
+      .cal_link
+        = link_to "full calendar &raquo;".html_safe, calendar_path, :class => "more"
+      .events_list
+        %ul.unstyled
+          - @events.each do |e|
+            %li
+              .event_link
+                - if e.origin == "event"
+                  = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+                - elsif e.origin == "grant"
+                  = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+                - else
+                  = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+              .event_times
+                = e.eventdate.strftime("%m-%d-%y")
+                \/
+                = e.eventdate.strftime("%l:%M%p")
+                \-
+                = e.eventenddate.strftime("%l:%M%p")
+  .twitter
+    .panel
+      %h2
+        On Twitter
+      .twitter_link
+        = link_to "@nycacre", "https://twitter.com/nycacre", :target => "_blank"
+      .twitter_list
+        %ul.unstyled
+          - if @tweets.class == Array
+            - @tweets.each do |t|
+              %li
+                .tweet_text
+                  = t.text.blank? ? "Error parsing Twitter feed" : t.text
+                .tweet_date
+                  \-
+                  = time_ago_in_words(t.created_at) unless t.created_at.blank?
+                  - unless t.created_at.blank?
+                    ago via Twitter
+          - else
+            %li
+              .tweet_text
+                Error parsing Twitter feed
+        = link_to "more tweets &raquo;".html_safe, "https://twitter.com/nycacre", :target => "_blank", :class => "more"

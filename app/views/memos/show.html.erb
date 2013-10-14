@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @memo.user_id %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @memo.item_id %>
+</p>
+
+<p>
+  <b>Item type:</b>
+  <%= @memo.item_type %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @memo.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_memo_path(@memo) %> |
+<%= link_to 'Back', memos_path %>

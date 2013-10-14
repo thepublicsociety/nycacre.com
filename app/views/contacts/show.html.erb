@@ -1,0 +1,67 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @contact.name %>
+</p>
+<br>
+<p>
+  <b>Email:</b>
+  <br>
+  <%= @contact.email %>
+</p>
+<br>
+<p>
+  <b>Address:</b>
+  <br>
+  <%= @contact.address %>
+</p>
+<br>
+<p>
+  <b>Specialty:</b>
+  <br>
+  <%= @contact.specialty %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= @contact.description.blank? ? "" : strip_tags(@contact.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= @contact.content.blank? ? "" : strip_tags(@contact.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Related tenants:</b>
+  <br>
+  <%= @contact.tenant %>
+</p>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @contact.sector %>
+</p>
+<br>
+<br>
+<p>
+  <b>Tags:</b>
+  <br>
+  <%= @contact.tag %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @contact.publish %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
+</div>

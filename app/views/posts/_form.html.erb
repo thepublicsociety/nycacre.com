@@ -1,0 +1,49 @@
+<%= simple_nested_form_for(@post, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :subheading, :as => "string" %>
+    <%= f.input :author %>
+    <%= f.input :content %>
+    <%= f.simple_fields_for :news_photos do |p| %>
+      <%= p.input :image %>
+      <% if controller.action_name == "edit" %>
+        <div class="preview" style="margin-bottom: 10px">
+          <div class="preview_image">
+            <%= image_tag(p.object.image(:thumb)) %>
+            <%= p.link_to_remove "Delete" %>
+          </div>
+        </div>
+      <% end %>
+      <%= p.input :caption, :label => "Label <span class='smalltxt'>(Use \"main\" for main photo display)</span>" %>
+      <div class="line"</div>
+    <% end %>
+    <%= f.link_to_add "<i class='icon-plus'></i> Add Photo".html_safe, :news_photos, :class => "btn btn-mini", :style => "margin: 10px 0" %>
+    <%= f.input :tag, :label => "Tags" %>
+    <%= f.input :category %>
+    <%= f.input :tenant, :as => "hidden" %>
+    <%= label_tag "Related tenant(s)" %>
+    <% if controller.action_name == "edit" %>
+      <%= select_tag("tenant_fake", options_from_collection_for_select(@tenants, "id", "name", @post.tenant), :include_blank => true) %>
+    <% else %>
+      <%= select_tag("tenant_fake", options_from_collection_for_select(@tenants, "id", "name"), :include_blank => true) %>
+    <% end %>
+    <%= f.input :sector %>
+    <%= f.input :publish %>
+    <%= f.input :featured %>
+    <%= f.input :archive %>
+    <%= f.input :internal_only %>
+    <label class="string optional control-label" for="post_published_date">Published date</label>
+    <div id="post_datetimepicker" class="input-append">
+      <input value="<%= @post.published_date.strftime("%m/%d/%Y %I:%M:%S %p") unless @post.published_date.blank? %>" class="string optional date-time-pick" id="post_published_date" name="post[published_date]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

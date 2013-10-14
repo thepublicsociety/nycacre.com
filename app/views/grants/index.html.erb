@@ -1,0 +1,46 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing grants</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Due date</th>
+    <th>Author</th>
+    <th>Specialty</th>
+    <th>Description</th>
+    <th>Content</th>
+    <th>Category</th>
+    <th>Related tenants</th>
+    <th>Sector</th>
+    <th>Tags</th>
+    <th>Published</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @grants.each do |grant| %>
+  <tr>
+    <td><%= grant.name %></td>
+    <td><%= grant.due_date.blank? ? "" : grant.due_date.strftime("%m-%d-%y") %></td>
+    <td><%= grant.author %></td>
+    <td><%= grant.specialty %></td>
+    <td><%= grant.description.blank? ? "" : truncate(strip_tags(grant.description), :length => 100).html_safe %></td>
+    <td><%= grant.content.blank? ? "" : truncate(strip_tags(grant.content), :length => 100).html_safe %></td>
+    <td><%= grant.category %></td>
+    <td><%= grant.tenant %></td>
+    <td><%= grant.sector %></td>
+    <td><%= grant.tag %></td>
+    <td><%= grant.publish %></td>
+    <td><%= link_to 'Show', grant %></td>
+    <td><%= link_to 'Edit', edit_grant_path(grant) %></td>
+    <td><%= link_to 'Destroy', grant, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New grant'.html_safe, new_grant_path, :class => "btn btn-mini" %>
+</div>

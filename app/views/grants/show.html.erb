@@ -1,0 +1,61 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @grant.name %>
+</p>
+<br>
+<p>
+  <b>Author:</b>
+  <br>
+  <%= @grant.author %>
+</p>
+<br>
+<p>
+  <b>Specialty:</b>
+  <br>
+  <%= @grant.specialty %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= strip_tags(@grant.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@grant.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Related tenants:</b>
+  <br>
+  <%= @grant.tenant %>
+</p>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @grant.sector %>
+</p>
+<br>
+<br>
+<p>
+  <b>Tags:</b>
+  <br>
+  <%= @grant.tag %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @grant.publish %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_grant_path(@grant) %> |
+<%= link_to 'Back', grants_path %>
+</div>

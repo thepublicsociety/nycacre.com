@@ -1,0 +1,13 @@
+.news.col
+  .panel
+    %h2
+      News
+    %ul.unstyled
+      - @news.each do |n|
+        %li
+          = link_to n.title, "/news/#{n.title.gsub(" ", "%20")}"
+          -#
+            .subh.light
+              = n.subheading
+    .more
+      = link_to "more news &raquo;".html_safe, news_path

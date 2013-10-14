@@ -1,0 +1,2 @@
+module TenantApplicationsHelper
+end

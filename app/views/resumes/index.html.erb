@@ -1,0 +1,31 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+  <h1>Listing resumes</h1>
+  
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Specialty</th>
+      <th>Cover letter</th>
+      <th>Resume pdf</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @resumes.each do |resume| %>
+    <tr>
+      <td><%= resume.name %></td>
+      <td><%= resume.specialty %></td>
+      <td><%= truncate(strip_tags(resume.cover_letter), :length => 100).html_safe unless resume.cover_letter.blank? %></td>
+      <td><%= link_to resume.resume_document_file_name, resume.resume_document.url, :target => "_blank" %></td>
+      <td><%= link_to 'Show', resume %></td>
+      <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
+      <td><%= link_to 'Destroy', resume, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+  
+  <br />
+  <%= link_to '<i class="icon-pencil"></i> New resume'.html_safe, new_resume_path, :class => "btn btn-mini" %>
+</div>

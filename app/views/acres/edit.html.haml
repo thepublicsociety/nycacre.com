@@ -1,0 +1,9 @@
+= render :partial => "layouts/cms_header"
+.content
+  %h1
+    Editing acre section
+  .form.adminform
+    = render 'form'
+  .links
+    = link_to 'Show', @acre
+    = link_to 'Back', acres_path

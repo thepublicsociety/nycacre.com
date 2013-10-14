@@ -1,0 +1,13 @@
+=== 1.1.0 (2013-03-23)
+
+* Handle MM/DD/YYYY substrings in the middle of strings, not just the beginning (sd, clonezone, jeremyevans) (#5)
+
+=== 1.0.1 (2013-03-20)
+
+* Don't freeze the regular expression used, to allow easier overrides (jeremyevans)
+
+* Raise TypeError if passed object not implicitly convertible to String (jeremyevans) (#6)
+
+=== 1.0.0 (2011-12-12)
+
+* Initial public release

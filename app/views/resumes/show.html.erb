@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @resume.name %>
+</p>
+
+
+<p>
+  <b>Cover Letter:</b>
+  <%= @resume.cover_letter %>
+</p>
+
+<p>
+  <b>Document:</b>
+  <%= link_to "Resume Document", @resume.resume_document.url %>
+</p>
+
+<%= link_to 'Edit', edit_resume_path(@resume) %> |
+<%= link_to 'Back', resumes_path %>

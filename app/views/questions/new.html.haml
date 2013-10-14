@@ -1,0 +1,11 @@
+= render :partial => "layouts/cms_header"
+.container
+  .row
+    .span6
+      %h1
+        Submit a question
+      .questionform
+        - simple_form_for @question do |f|
+          = f.input :user_id, :as => "hidden", :input_html => {:value => current_user.id}
+          = f.input :content, :autofocus => true, :as => "text", :label => "Question:"
+          = f.button :submit, "Submit"

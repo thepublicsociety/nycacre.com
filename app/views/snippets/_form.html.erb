@@ -1,0 +1,16 @@
+<%= simple_form_for(@snippet, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.input :subcontent_title %>
+    <%= f.input :subcontent %>
+    <%= f.input :snippet_image, :label => "Image" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

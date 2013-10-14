@@ -1,0 +1,11 @@
+- @news.each do |n|
+  %li
+    .news_headline
+      %h3
+        = link_to n.title, "/news/#{n.title.gsub(" ", "%20")}"
+    .news_subheading
+      = n.subheading
+    .news_excerpt
+      = smart_truncate(n.content, "/news/#{n.title.gsub(" ", "%20")}", :words => 40).html_safe
+.paging
+  = will_paginate(@news)

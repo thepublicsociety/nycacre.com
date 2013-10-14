@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @provider_specialty_option.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @provider_specialty_option.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_provider_specialty_option_path(@provider_specialty_option) %> |
+<%= link_to 'Back', provider_specialty_options_path %>

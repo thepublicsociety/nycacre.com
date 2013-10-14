@@ -1,0 +1,8 @@
+%li
+  .news_headline
+    %h3
+      = r.title
+  .news_subheading
+    = r.subheading
+  .news_excerpt
+    = smart_truncate(r.content, "/news/#{r.title.gsub(" ", "%20")}", :words => 40).html_safe

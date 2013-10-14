@@ -1,0 +1,100 @@
+= render :partial => "layouts/internal_header"
+- unless current_user.admin?
+  .content
+    .hero-unit
+      %h1
+        Hello,
+        = @user.name
+      %p
+        Your account must by verified before you can access the rest of the site. Thank you for you patience.
+- else
+  .content
+    .mainDashboard
+      .cols
+        = render :partial => "layouts/maincols/admin_nav_col"
+        .dashboard_news.col
+          - unless @alert.blank?
+            .alert_display
+              .alert_header
+                = @alert.title
+              .alert_body
+                = @alert.content.html_safe unless @alert.content.blank?
+          .panel
+            .dashboard_news_header
+              %h2
+                News For #{@user.name}
+              .filter
+                .filter_key
+                  .filter_key_color_box
+                  .filter_key_text
+                    \= ACRE
+                .filter_select
+                  = form_tag("/dashboard-news-filter") do
+                    = select_tag("dashboard_news_filter", "<option value='all'>All</option><option value='acre'>ACRE</option>"+options_from_collection_for_select(@sources, 'feed_url', 'name'), :prompt => "Filter your feed")
+                    
+            .dashboard_news_listing
+              %ul.unstyled.entries
+                = render 'entry_list'
+        .events_and_updates.col
+          .events
+            .panel
+              %h2
+                Upcoming
+              .cal_link
+                = link_to "full calendar &raquo;".html_safe, administration_calendar_path, :class => "more"
+              .events_key
+                %ul.unstyled
+                  %li.acre_events
+                    .circle
+                      %a{:href => "#", :data => {:event_type => "event"}}
+                    .key
+                      ACRE events
+                  %li.funding_and_grants
+                    .circle
+                      %a{:href => "#", :data => {:event_type => "grant"}}
+                    .key
+                      Funding & Grants
+                  %li.your_calendar
+                    .circle
+                      %a{:href => "#", :data => {:event_type => "google"}}
+                    .key
+                      Your Calendar
+              .events_list
+                - if @token.blank?
+                  = link_to "Authorize Google Calendar", "/auth/google_oauth2"
+                %ul.unstyled
+                  - @uevents.each do |e|
+                    %li{:class => "#{e.origin} #{e.saved?(@user) ? "saved" : ""}"}
+                      .event_type
+                      .event_link
+                        - if e.origin == "event"
+                          = link_to word_truncate(e.name, :words => 5).html_safe, "/events/#{e.id}", 'data-event-id' => e.id
+                        - elsif e.origin == "grant"
+                          = link_to word_truncate(e.name, :words => 5).html_safe, "/grants/#{e.id}", 'data-event-id' => e.id
+                        - elsif e.origin == "acregoogle"
+                          = link_to word_truncate(e.name, :words => 5).html_safe, "/event/#{e.id}", 'data-event-id' => e.id
+                        - else
+                          = link_to word_truncate(e.name, :words => 5).html_safe, e.google_link, :target => "_blank"
+                      .event_times
+                        = e.event_start.strftime("%m-%d-%y")
+                        \/
+                        = e.event_start.strftime("%l:%M%p")
+                        \-
+                        = e.event_end.strftime("%l:%M%p")
+                
+          .updates
+            .panel
+              %h2
+                Internal Updates
+              %ul.unstyled.fbfeed
+                - @feed.each do |f|
+                  %li
+                    .feed_story
+                      = f["message"].html_safe unless f["message"].blank?
+                      = f["name"].html_safe unless f["name"].blank?
+                      = f["link"].html_safe unless f["link"].blank?
+                    .feed_time
+                      \-
+                      = time_ago_in_words(f["created_time"])
+                      ago via Facebook
+              = link_to "more updates &raquo;".html_safe, "https://www.facebook.com/groups/116539501741873/", :target => "_blank", :class => "more"

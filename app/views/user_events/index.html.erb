@@ -1,0 +1,39 @@
+<h1>Listing user_events</h1>
+
+<table>
+  <tr>
+    <th>Origin</th>
+    <th>Event start</th>
+    <th>Event end</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Url</th>
+    <th>Content</th>
+    <th>Location</th>
+    <th>Map</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_events.each do |user_event| %>
+  <tr>
+    <td><%= user_event.origin %></td>
+    <td><%= user_event.event_start %></td>
+    <td><%= user_event.event_end %></td>
+    <td><%= user_event.name %></td>
+    <td><%= user_event.description %></td>
+    <td><%= user_event.url %></td>
+    <td><%= user_event.content %></td>
+    <td><%= user_event.location %></td>
+    <td><%= user_event.map %></td>
+    <td><%= link_to 'Show', user_event %></td>
+    <td><%= link_to 'Edit', edit_user_event_path(user_event) %></td>
+    <td><%= link_to 'Destroy', user_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User event', new_user_event_path %>

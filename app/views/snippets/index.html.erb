@@ -1,0 +1,138 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing site contents</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @snippets.each do |s| %>
+  <tr>
+    <td><%= s.name %></td>
+    <td><%= s.title %></td>
+    <td><%= truncate(strip_tags(s.content), :length => 100).html_safe unless s.content.blank? %></td>
+    <td><%= link_to 'Show', s %></td>
+    <td><%= link_to 'Edit', edit_snippet_path(s) %></td>
+    <td><%= link_to 'Destroy', s, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Content'.html_safe, new_snippet_path, :class => "btn btn-mini" %>
+
+<div class="vspacer20"></div><div class="vspacer20"></div>
+
+<h2>Resume Specialty Options</h2>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resume_specialty_options.each do |resume_specialty_option| %>
+  <tr>
+    <td><%= resume_specialty_option.name %></td>
+    <td><%= resume_specialty_option.value %></td>
+    <td><%= link_to 'Show', resume_specialty_option %></td>
+    <td><%= link_to 'Edit', edit_resume_specialty_option_path(resume_specialty_option) %></td>
+    <td><%= link_to 'Destroy', resume_specialty_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Resume specialty option'.html_safe, new_resume_specialty_option_path, :class => "btn btn-mini" %><div class="vspacer20"></div><div class="vspacer20"></div>
+
+<h2>Provider Specialty Options</h2>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @provider_specialty_options.each do |resume_specialty_option| %>
+  <tr>
+    <td><%= resume_specialty_option.name %></td>
+    <td><%= resume_specialty_option.value %></td>
+    <td><%= link_to 'Show', resume_specialty_option %></td>
+    <td><%= link_to 'Edit', edit_provider_specialty_option_path(resume_specialty_option) %></td>
+    <td><%= link_to 'Destroy', resume_specialty_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Provider specialty option'.html_safe, new_provider_specialty_option_path, :class => "btn btn-mini" %>
+
+<div class="vspacer20"></div><div class="vspacer20"></div>
+
+<h2>Tool Specialty Options</h2>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tool_specialty_options.each do |resume_specialty_option| %>
+  <tr>
+    <td><%= resume_specialty_option.name %></td>
+    <td><%= resume_specialty_option.value %></td>
+    <td><%= link_to 'Show', resume_specialty_option %></td>
+    <td><%= link_to 'Edit', edit_tool_specialty_option_path(resume_specialty_option) %></td>
+    <td><%= link_to 'Destroy', resume_specialty_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Tool specialty option'.html_safe, new_tool_specialty_option_path, :class => "btn btn-mini" %>
+
+<div class="vspacer20"></div><div class="vspacer20"></div>
+
+<h2>Funding Status Options</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @funding_status_options.each do |funding_status_option| %>
+  <tr>
+    <td><%= funding_status_option.name %></td>
+    <td><%= funding_status_option.value %></td>
+    <td><%= link_to 'Show', funding_status_option %></td>
+    <td><%= link_to 'Edit', edit_funding_status_option_path(funding_status_option) %></td>
+    <td><%= link_to 'Destroy', funding_status_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Funding status option'.html_safe, new_funding_status_option_path, :class => "btn btn-mini" %>
+
+</div>

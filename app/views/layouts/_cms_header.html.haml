@@ -1,0 +1,113 @@
+= nav_bar :brand => "ACRE", :responsive => true do
+  = menu_group do
+    = menu_item "Dashboard", administration_root_path
+    = menu_divider
+    - if current_user && current_user.role == "admin"
+      = menu_item "CMS", administration_cms_path
+      = menu_divider
+      %li.dropdown
+        %a{:href => "#", :class => "dropdown_toggle", :data => {:toggle => "dropdown"}}
+          Resources
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "/administration/unapproved-resources"}
+              Awaiting Approval
+          %li.dropdown-submenu
+            %a{:href => "#"}
+              Providers
+            %ul.dropdown-menu
+              %li
+                = link_to "Add Provider", new_provider_path
+              %li
+                = menu_item "List Providers", providers_path
+          %li.dropdown-submenu
+            %a{:href => "#"}
+              Resumes
+            %ul.dropdown-menu
+              %li
+                = link_to "Add Resume", new_resume_path
+              %li
+                = menu_item "List Resumes", resumes_path
+          %li.dropdown-submenu
+            %a{:href => "#"}
+              Funding And Grants
+            %ul.dropdown-menu
+              %li
+                = link_to "Add Grant", new_grant_path
+              %li
+                = menu_item "List Grants", grants_path
+          %li.dropdown-submenu
+            %a{:href => "#"}
+              Tools
+            %ul.dropdown-menu
+              %li
+                = link_to "Add Tool", new_tool_path
+              %li
+                = menu_item "List Tools", tools_path
+          %li.dropdown-submenu
+            %a{:href => "#"}
+              News
+            %ul.dropdown-menu
+              %li
+                = link_to "Add News Site", new_news_site_path
+              %li
+                = menu_item "List News Sites", news_sites_path
+      = menu_divider
+      = drop_down "News" do
+        = menu_item "Add Post", new_post_path
+        = menu_item "List Posts", posts_path
+      = menu_divider
+      -#
+        = drop_down "Articles" do
+          = menu_item "Add Article", new_article_path
+          = menu_item "List Articles", articles_path
+      = menu_divider
+      = drop_down "Events" do
+        = menu_item "Add Event", new_event_path
+        = menu_item "List Events", events_path
+      = menu_divider
+      = drop_down "Tenants" do
+        = menu_item "Add Tenant", new_tenant_path
+        = menu_item "List Tenants", tenants_path
+      = menu_divider
+      = drop_down "Advisory Board" do
+        = menu_item "Add Advisor", new_advisor_path
+        = menu_item "List Advisors", advisors_path
+      = menu_divider
+      = drop_down "Graduates" do
+        = menu_item "Add Graduate", new_graduate_path
+        = menu_item "List Graduates", graduates_path
+      = menu_divider
+      = menu_item "Applicants", administration_applicants_path
+      = menu_divider
+      = drop_down "Text blocks" do
+        = menu_item "Acre sections", acres_path
+        = menu_item "Challenge sections", challenges_path
+        = menu_item "Site contents", snippets_path
+      = menu_divider
+      = menu_item "Announcements", announcements_path
+      = menu_divider
+      = menu_item "Backgrounds", backgrounds_path
+      = menu_divider
+    - if current_user && current_user.role == "user"
+      = menu_item "Backgrounds", tenant_backgrounds_path
+      = menu_divider
+      = menu_item "News Sources", news_sources_path
+  %ul.nav.pull-right
+    %li.dropdown
+      %a.dropdown-toggle{:href => "#", :data => {:toggle => "dropdown"}}
+        %span.normal-text
+          Logged in as
+        %span#username
+          = current_user.blank? ? "guest" : current_user.email
+        %b.caret
+      %ul.dropdown-menu
+        - if current_user
+          %li
+            %a{:class => "logout", :href => "/logout"}
+              Log out
+        - else
+          %li
+            %a{:class => "logout", :href => "/login"}
+              Log in

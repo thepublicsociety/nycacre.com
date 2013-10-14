@@ -1,0 +1,21 @@
+= render :partial => "layouts/header"
+.content
+  .news_page.news_single
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .newsMain.col
+        .heading
+          .panel
+            %h2
+              news
+        .news_display.news_single_display
+          .featured_news
+            .feature
+              .panel
+                .featured_headline
+                  %h2
+                    = @announcement.headline
+                .featured_content
+                  = @announcement.content.html_safe
+        
+      = render :partial => "layouts/maincols/news_events_and_twitter_col"

@@ -1,0 +1,3066 @@
+//main css
+@font-face
+  font-family: 'battersea'
+  src: url('/fonts/battersea_semibold.eot')
+  src: url('/fonts/battersea_semibold.eot?#iefix') format('embedded-opentype'), url('/fonts/battersea_semibold.woff') format('woff'), url('/fonts/battersea_semibold.ttf') format('truetype'), url('/fonts/battersea_semibold.svg#Battersea2011SemiBold') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'glight'
+  src: url('/fonts/goodot-light.eot')
+  src: url('/fonts/goodot-light.eot?#iefix') format('embedded-opentype'), url('/fonts/goodot-light.woff') format('woff'), url('/fonts/goodot-light.ttf') format('truetype'), url('/fonts/goodot-light.svg#GoodOTLight') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'gbooki'
+  src: url('/fonts/goodot-bookitalic.eot')
+  src: url('/fonts/goodot-bookitalic.eot?#iefix') format('embedded-opentype'), url('/fonts/goodot-bookitalic.woff') format('woff'), url('/fonts/goodot-bookitalic.ttf') format('truetype'), url('/fonts/goodot-bookitalic.svg#GoodOTBookItalic') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'gbook'
+  src: url('/fonts/goodot-book.eot')
+  src: url('/fonts/goodot-book.eot?#iefix') format('embedded-opentype'), url('/fonts/goodot-book.woff') format('woff'), url('/fonts/goodot-book.ttf') format('truetype'), url('/fonts/goodot-book.svg#GoodOTBook') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'gboldi'
+  src: url('/fonts/goodot-bolditalic.eot')
+  src: url('/fonts/goodot-bolditalic.eot?#iefix') format('embedded-opentype'), url('/fonts/goodot-bolditalic.woff') format('woff'), url('/fonts/goodot-bolditalic.ttf') format('truetype'), url('/fonts/goodot-bolditalic.svg#GoodOTBoldItalic') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'gbold'
+  src: url('/fonts/goodot-bold.eot')
+  src: url('/fonts/goodot-bold.eot?#iefix') format('embedded-opentype'), url('/fonts/goodot-bold.woff') format('woff'), url('/fonts/goodot-bold.ttf') format('truetype'), url('/fonts/goodot-bold.svg#GoodOTBold') format('svg')
+  font-weight: normal
+  font-style: normal
+@font-face
+  font-family: 'symbols'
+  src: url('/fonts/icomoon.eot')
+  src: url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'), url('/fonts/icomoon.woff') format('woff'), url('/fonts/icomoon.ttf') format('truetype'), url('/fonts/icomoon.svg#icomoon') format('svg')
+  font-weight: normal
+  font-style: normal
+.symbols
+  font-family: symbols
+.clear
+  clear: both
+strong
+  font-family: gbold
+html
+  height: 100%
+body > img
+  max-width: none
+html
+  height: 100%
+  width: 100%
+  position: absolute
+  top: 0
+  left: 0
+body.pages, body.administration, body.registrations, body.invitations
+  overflow: hidden
+  padding: 0
+  margin: 0
+  height: 100%
+  width: 100%
+#bgimg
+  position: absolute
+  z-index: -1
+#realBody
+  position: absolute
+  z-index: 5
+  overflow: auto
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+
+body.internals
+  .navbar
+    margin: 0 0 20px
+  .userslist
+    ul
+      li
+        clear: both
+        .name, .checkedin
+          float: left
+        .name
+          margin: 0 10px 10px 0
+          width: 150px
+
+.questionform, .answerForm
+  textarea
+    height: 150px
+    width: 100%
+    outline: none
+    resize: none
+.questionContainer
+  margin: 0 0 50px
+  padding: 10px 0
+  border: 2px solid #eee
+  clear: both
+  .voting, .question
+    float: left
+  .voting
+    width: 50px
+    text-align: center
+    a:hover
+      text-decoration: none
+  .question
+    .questionContent
+      width: 100%
+    .answers
+      display: none
+      margin: 10px 0 0 0
+      .acceptedAnswer
+        background: #f0f0f0
+      li
+        padding: 10px 0 10px 25px
+        border-bottom: 1px dotted #eee
+        .answerContainer
+          .answerVoting, .answer
+            float: left
+          .answerVoting
+            width: 25px
+            text-align: center
+            a:hover
+              text-decoration: none
+
+= vendor-prefix($name, $argument)
+  #{$name}: $argument
+  -webkit-#{$name}: $argument
+  -ms-#{$name}: $argument
+  -moz-#{$name}: $argument
+  -o-#{$name}: $argument
+$blue: #2a3b8f
+$mediumgray: #231f20
+$yellow: #fcdd2d
+$red: #be1e2d
+$light: #939598
+$lighter: #adadad
+$grayborder: #afb1b4
+$darkgray: #191919
+$grayinput: #e7e7e8
+$saved: #fadcdc
+body
+  font-family: gbook
+  color: $darkgray
+  font-size: 13px
+  line-height: 18px
+a, a:hover
+  text-decoration: none
+  color: $blue
+a:focus, input:focus
+  outline: none
+  +vendor-prefix(box-shadow, 0)
+  border: none
+textarea
+  resize: none
+  &:focus
+    outline: none
+    +vendor-prefix(box-shadow, 0)
+    border: none
+h1, h2, h3, h4, h5, h6
+  font-weight: normal
+h2
+  font-size: 19px
+  line-height: 33px
+  font-family: battersea
+  margin: 0 0 4px 0
+  color: $darkgray
+  text-transform: uppercase
+h2.normalCaps
+  text-transform: none
+h3
+  font-size: 19px
+  line-height: 33px
+  font-family: battersea
+  margin: 0 0 4px 0
+  color: $darkgray
+p
+  margin: 0 0 18px
+blockquote
+  margin-bottom: 0
+  p
+    font-size: 13px
+    line-height: 18px
+    font-weight: normal
+    margin: 0 0 18px
+ul
+  margin: 0
+  padding: 0
+input[type=email], input[type=text], input[type=password], input[type=tel], input[type=url], textarea
+  border: none
+  +vendor-prefix(border-radius, 0)
+  +vendor-prefix(box-shadow, 0)
+  color: $darkgray
+  font-family: gbook
+  &:focus
+    border: 0
+    box-shadow: none
+.more, .more a
+  color: $red
+  font-family: gbold
+.light, .light a
+  color: $light
+.open+.dropdown-menu
+  display: block
+.dropdown_panel-down
+  background: url(/assets/right_down_arrow.png) no-repeat
+  height: 7px
+  margin: 10px 0 9px
+  background-position: right 0
+  h2
+    letter-spacing: -1px
+    position: relative
+    bottom: 11px
+    a
+      color: $darkgray
+      display: block
+.dropdown_panel-right
+  background: url(/assets/right_down_arrow.png) no-repeat
+  height: 12px
+  margin: 7px 0
+  background-position: right -7px
+  h2
+    letter-spacing: -1px
+    position: relative
+    bottom: 8px
+    a
+      color: $darkgray
+      display: block
+.vspacer20
+  height: 20px
+.line
+  border-bottom: 1px solid #afb1b4
+  margin-bottom: 10px
+.lightline
+  border-bottom: 1px solid #eee
+  margin-bottom: 10px
+.smalltxt
+  font-size: 10px
+input[type="file"]
+  line-height: 1px
+.messages
+  position: absolute
+  left: 0
+  top: 0
+  background: rgba(255,255,255,0.3)
+  z-index: 9
+  display: none
+  .msg
+    color: #37303f
+    padding: 8px 15px 7px
+.dd-container
+  margin-bottom: 5px
+.dd-selected
+  padding: 1px 3px
+  color: $darkgray
+  height: 20px
+.dd-select
+  height: 26px
+  border: none
+  border-radius: 0
+  background-color: $grayinput !important
+.dd-pointer-down
+  border-top: solid 5px #6d6e71
+.dd-pointer-up
+  border-bottom: solid 5px #6d6e71 !important
+.dd-option:hover
+  background: $grayinput
+.dd-option
+  label.dd-option-text
+    font-size: 13px
+    width: 100% !important
+.dd-selected-text
+  position: relative
+  bottom: 7px
+  font-size: 13px
+  height: 20px
+  overflow: hidden
+body.admin
+  padding-bottom: 50px
+
+.content
+  width: 1105px
+  margin: 0 auto
+header
+  height: 33px
+  font-family: gbook
+  .header
+    float: right
+    margin-right: 1px
+  .social
+    float: left
+    width: 91px
+    .twitter
+      float: left
+      a
+        display: block
+        height: 33px
+        width: 34px
+        background: url(/assets/social_buttons.png)
+        background-position: 0 0
+        margin-right: 3px
+    .facebook
+      float: left
+      a
+        display: block
+        height: 33px
+        width: 34px
+        background: url(/assets/social_buttons.png)
+        background-position: -37px 0
+        margin-right: 20px
+  .login
+    float: left
+    position: relative
+    width: 249px
+    .login_button
+      position: relative
+      z-index: 2
+      a
+        display: block
+        height: 33px
+        width: 239px
+        background: url(/assets/login_drop_button.png)
+        color: $blue
+        font-size: 13px
+        line-height: 33px
+        padding-left: 10px
+    .login_expanded
+      display: none
+      background: $yellow
+      overflow: hidden
+      padding: 33px 10px 0
+      height: 145px
+      width: 229px
+      position: absolute
+      top: 0
+      z-index: 1
+      +vendor-prefix(box-shadow, 1px 2px 2px rgba(0, 0, 0, 0.2))
+      label
+        width: 100px
+        color: $blue
+        display: block
+        width: 60px
+        font-size: 13px
+        line-height: 23px
+        float: left
+        abbr
+          display: none
+      .controls
+        float: left
+        width: 135px
+        input[type=text], input[type=email], input[type=password], input[type=tel], input[type=url]
+          width: 125px
+          height: 23px
+          font-size: 13px
+          line-height: 23px
+          padding: 0 5px
+          background: white
+          border: none
+          +vendor-prefix(border-radius, 0)
+          +vendor-prefix(box-shadow, none)
+      .forgotpass
+        clear: both
+        margin-bottom: 5px
+        a,
+        a:hover
+          color: $blue
+          text-decoration: none
+          font-family: gbooki
+          font-size: 12px
+          margin-left: 60px
+      input[type=submit]
+        border: 0
+        padding: 0
+        margin: 0
+        +vendor-prefix(border-radius, 0)
+        background: url(/assets/login_button.png)
+        width: 59px
+        height: 14px
+        margin-left: 136px
+  .col
+    float: left
+    margin-right: 20px
+    .hpanel
+      background: #272e99
+      color: #f9d84a
+      font-family: gbook
+      font-size: 13px
+      line-height: 20px
+      overflow: hidden
+      a
+        color: #f9d84a
+        text-transform: uppercase
+  .empty_column
+    width: 166px
+    .hpanel
+      height: 33px
+  .view_options_column
+    width: 649px
+    position: relative
+    .view_options_options
+      .public_view_option
+        float: left
+        width: 113px
+        margin-right: 2px
+        a
+          padding: 7px 0 6px 10px
+          display: block
+      .dashboard_view_options
+        float: left
+        width: 462px
+        margin-right: 2px
+        a
+          padding: 7px 0 6px 10px
+          display: block
+          float: left
+        .dashboard_arrow
+          float: left
+          width: 10px
+          height: 33px
+          margin-left: 5px
+          background: url(/assets/dashboard_view_arrow.png) center center no-repeat
+      .dashboard_twitter_header
+        float: left
+        margin-right: 2px
+        a
+          display: block
+          width: 34px
+          height: 33px
+          background: url(/assets/dashboard_twitter_facebook_header.png) 0 0 no-repeat
+      .dashboard_facebook_header
+        float: left
+        a
+          display: block
+          width: 34px
+          height: 33px
+          background: url(/assets/dashboard_twitter_facebook_header.png) -36px 0 no-repeat
+    .view_arrow
+      height: 14px
+      width: 19px
+      background: url(/assets/dashboard_arrow.png)
+      position: absolute
+      bottom: -14px
+      left: 180px
+  .user_options_column
+    width: 249px
+    margin-right: 0
+    position: relative
+    .username
+      float: left
+      padding: 7px 0 6px 10px
+      width: 178px
+    .user_options
+      float: left
+      padding-top: 8px
+      width: 30px
+      a
+        display: block
+        width: 17px
+        height: 16px
+        background: url(/assets/user_option_icons.png) 0 0 no-repeat
+      .user_options_dropdown
+        position: absolute
+        left: 0
+        top: 33px
+        width: 229px
+        padding: 5px 10px
+        background: #272e99
+        z-index: 9
+        ul
+          li
+            margin-bottom: 5px
+            i
+              float: left
+              margin: 2px 3px 0 0
+            a
+              width: auto
+              height: auto
+              background: transparent
+              text-transform: none
+          .tenantEdit
+            i
+              margin-left: 1px
+    .user_logout
+      float: left
+      padding-top: 8px
+      a
+        display: block
+        width: 16px
+        height: 16px
+        background: url(/assets/user_option_icons.png) -27px 0 no-repeat
+
+body.pages-index, body.pages-map
+  .main
+    .cols
+      height: 460px
+      .news.col
+        width: 314px
+        margin-right: 20px
+        .panel
+          height: auto
+          .more
+            margin-top: 4px
+      .acre.col
+        width: 315px
+        margin-right: 20px
+        .panel
+          .acre_text_content
+            height: 327px
+          .extra_acre_text_content
+            p:nth-child(n+2)
+              margin-bottom: 4px
+      .events_and_stuff.col
+        width: 249px
+        margin-right: 0px
+        .upcoming
+          .panel
+            height: auto
+        .twitter
+          margin-bottom: 0
+          .panel
+            height: auto
+body.pages-challenge, body.pages-about, body.pages-about_tenant, body.pages-graduate, body.pages-contact, body.pages-news, body.pages-calendar, body.pages-news_article, body.pages-article
+  .events_and_stuff.col
+    width: 249px
+    margin-right: 0px
+
+.mainMap
+  margin-right: 20px
+  .heading
+    margin-bottom: 20px
+    h2
+      line-height: 1
+      margin: 8px 0 4px
+
+.main, .challenge, .tenant, .graduate, .contact, .news_page, .calendar, .eventDisplay
+  position: relative
+  top: 25px
+.main, .challenge, .tenant, .graduate, .contact, .news_page, .calendar, .mainDashboard, .resources, .eventDisplay
+  clear: both
+  overflow: hidden
+  .cols
+    .col
+      float: left
+    .panel
+      background: #fff
+      padding: 16px
+    nav.col
+      width: 166px
+      margin-right: 20px
+      .logo
+        margin-bottom: 20px
+        a
+          display: block
+          width: 166px
+          height: 166px
+          background: url(/assets/main_logo.png)
+      .navigation
+        background: url(/assets/main_menu_bg.png)
+        width: 166px
+        height: 166px
+        margin-bottom: 20px
+        ul
+          margin: 0 0 0 25px
+          padding: 20px 0 0 0
+          li
+            margin: 0
+            padding: 0
+            a
+              color: $blue
+              font-family: battersea
+              font-size: 17px
+              line-height: 33px
+              text-transform: uppercase
+    .news.col
+      .panel
+        ul
+          li
+            border-bottom: 1px solid #afb1b4
+            padding: 12px 0
+            &:last-child
+              border-bottom: none
+              padding-bottom: 0
+            &:first-child
+              padding-top: 0
+        .more
+          margin-bottom: 8px
+    .acre.col
+      .panel
+        .acre_image
+          float: left
+          padding: 0 10px 0 0
+        .acre_text_title
+          font-size: 16px
+        .acre_text_subtitle
+          font-size: 13px
+          font-family: glight
+          margin-bottom: 10px
+        .acre_text_content, .extra_acre_text_content
+          font-family: glight
+    .events_and_stuff.col
+      .upcoming
+        margin-bottom: 20px
+        .panel
+          h2
+            float: left
+          .cal_link
+            float: right
+            padding-top: 8px
+          .events_list
+            clear: both
+            ul
+              li
+                border-bottom: 1px solid #afb1b4
+                padding: 5px 0
+                &:last-child
+                  border-bottom: none
+                  padding-bottom: 1px
+                .event_link
+                  font-size: 13px
+                  line-height: 16px
+                .event_times
+                  font-size: 11px
+                  line-height: 14px
+                  color: $light
+      .twitter
+        margin-bottom: 20px
+        .panel
+          h2
+            float: left
+            margin-right: 5px
+          .twitter_link
+            float: left
+            font-size: 15px
+            line-height: 16px
+            padding: 6px 0 5px
+          .twitter_list
+            clear: both
+            ul
+              li
+                border-bottom: 1px solid #afb1b4
+                padding: 15px 0
+                &:last-child
+                  border-bottom: none
+                  padding-bottom: 7px
+                &:first-child
+                  padding-top: 0
+                .tweet_text
+                  font-size: 12px
+                  line-height: 16px
+                .tweet_date
+                  font-size: 11px
+                  line-height: 14px
+                  font-family: glight
+                  color: $light
+    .current_announcement
+      width: 649px
+      margin-right: 20px
+      position: relative
+      .panel
+        height: 428px
+        overflow: hidden
+      .current_announcement_image
+        height: 428px
+        overflow: hidden
+        img
+          width: 100%
+          height: 100%
+      .current_announcement_text
+        position: absolute
+        width: 235px
+        height: 170px
+        background: rgba(255,255,255,0.8)
+        bottom: 38px
+        right: 32px
+        padding: 20px 20px 30px
+        h2
+          font-size: 28px
+          line-height: 30px
+    .the_challenge.col
+      width: 649px
+      margin-right: 20px
+      .heading,
+      .mainchallenge
+        margin-bottom: 20px
+      .heading
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+      .mainchallenge
+        .challenge_content
+          padding-top: 10px
+          margin-bottom: 25px
+          ul
+            margin-left: 16px
+        .challenge_subcontent
+          ul
+            margin-left: 16px
+          h2
+            margin-bottom: 10px
+      .subchallenge
+        height: 683px
+        margin-bottom: 50px
+        .panel
+          height: 323px
+          img
+            width: 100%
+    .events_and_stuff
+      .related_news,
+      .further_reading
+        margin-bottom: 20px
+        ul
+          li
+            border-bottom: 1px solid #afb1b4
+            padding: 12px 0
+            &:last-child
+              border-bottom: none
+            &:first-child
+              padding-top: 0
+            >a
+              display: block
+              line-height: 1.3
+      .further_reading
+        .subt
+          color: #231f20
+          font-size: 11px
+          line-height: 14px
+        .auth
+          font-size: 11px
+          line-height: 14px
+    .about.col
+      width: 649px
+      margin-right: 20px
+      .heading,
+      .tenant_image, .graduate_image,
+      .mainabout
+        margin-bottom: 20px
+      .heading
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+      .mainabout
+        .tenant_content, .graduate_content
+          padding-top: 10px
+          margin-bottom: 25px
+          ul
+            margin-left: 16px
+        .tenant_subcontent, .graduate_subcontent
+          ul
+            margin-left: 16px
+          h2
+            margin-bottom: 10px
+      .subtenant, .subgraduate
+        margin-bottom: 20px
+        .panel
+          height: auto
+          min-height: 323px
+          img
+            width: 100%
+      .acre_sponsors
+        clear: both
+        margin-bottom: 20px
+        .panel
+          overflow: hidden
+          h2
+            margin-bottom: 20px
+          ul
+            li
+              float: left
+              a
+                display: block
+                background: url(/assets/acre-sponsors.png) no-repeat
+                width: 295px
+                height: 58px
+            li.nycedc
+              a
+                background-position: 0 0
+            li.nyserda
+              margin-top: 6px
+              margin-left: 50px
+              width: 255px
+              a
+                background-position: 0 -155px
+                height: 68px
+            li.nyupoly
+              margin-top: 25px
+              margin-bottom: 15px
+              a
+                background-position: 0 -59px
+                height: 95px
+            li.nationalgrid
+              margin-top: 25px
+              margin-left: 25px
+              width: 295px
+              a
+                background-position: 0 -223px
+                height: 88px
+      .acre_news_and_twitter
+        overflow: hidden
+        margin-bottom: 20px
+        .acre_news
+          width: 314px
+          margin-right: 20px
+          float: left
+          .panel
+            min-height: 470px
+            h2
+            ul
+              li
+                border-bottom: 1px solid #afb1b4
+                padding: 12px 0
+                &:last-child
+                  border-bottom: none
+                  padding-bottom: 0
+                &:first-child
+                  padding-top: 0
+            .more
+              margin-bottom: 8px
+              margin-top: 4px
+        .twitter
+          width: 315px
+          float: left
+          .panel
+            min-height: 470px
+            h2
+              float: left
+              margin-right: 5px
+            .twitter_link
+              float: left
+              font-size: 15px
+              line-height: 16px
+              padding: 6px 0 5px
+            .twitter_list
+              clear: both
+              ul
+                li
+                  border-bottom: 1px solid #afb1b4
+                  padding: 15px 0
+                  &:last-child
+                    border-bottom: none
+                    padding-bottom: 7px
+                  &:first-child
+                    padding-top: 0
+                  .tweet_text
+                    font-size: 12px
+                    line-height: 16px
+                  .tweet_date
+                    font-size: 11px
+                    line-height: 14px
+                    font-family: glight
+                    color: $light
+
+    .events_and_stuff
+      .about_acre,
+      .acre_tenants,
+      .acre_graduates
+        margin-bottom: 20px
+      .acre_tenants, .acre_graduates
+        .acre_tenants_blurb, .acre_graduates_blurb
+          border-bottom: 1px solid $grayborder
+          margin-bottom: 30px
+          p
+            margin-bottom: 15px
+        .tenant_list, .graduate_list
+          li
+            margin-bottom: 15px
+    .newsMain.col
+      width: 649px
+      margin-right: 20px
+      .heading
+        margin-bottom: 20px
+        width: 649px
+        position: relative
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+        .search
+          position: absolute
+          top: 19px
+          right: 13px
+          input
+            background: $grayinput url(/assets/right_arrow.png) 160px center no-repeat
+            border: 0
+            box-shadow: none
+            width: 155px
+            padding: 3px 10px 2px
+      .news_single_display
+        .featured_news
+          .feature
+            width: 100%
+            margin-right: 0
+          .article_tags
+            font-family: glight
+            color: $light
+            font-size: 11px
+            line-height: 14px
+      .featured_news
+        margin-bottom: 20px
+        overflow: hidden
+        .feature
+          float: left
+          margin-right: 19px
+          width: 315px
+          position: relative
+          &:last-child
+            margin-right: 0
+          .panel
+            min-height:  265px
+          .feature_image
+            width: 295px
+            height: 190px
+            margin-bottom: 15px
+            overflow: hidden
+            img
+              width: 100%
+          .featured_headline
+            h3, h2
+              line-height: 1.3
+              margin-bottom: 0
+              a
+                color: $darkgray
+          .featured_subheading
+            font-size: 15px
+            line-height: 19px
+            color: #231f20
+
+      .news_list
+        margin-bottom: 50px
+        .panel
+          padding-top: 20px
+        ul
+          li
+            border-bottom: 1px solid $grayborder
+            margin-bottom: 15px
+            &:last-child
+              border-bottom: 0
+            .news_headline
+              width: 540px
+              h3
+                line-height: 1.3
+                margin-bottom: 0
+                a
+                  color: $darkgray
+            .news_subheading
+              width: 530px
+              font-size: 15px
+              line-height: 19px
+              color: #231f20
+              margin-bottom: 15px
+            .news_excerpt
+              width: 530px             
+      .news_main_image
+        margin-bottom: 20px
+        img
+          width: 100%
+      .news_single_display
+        .featured_metadata
+          font-family: glight
+          color: $light
+          margin-bottom: 15px
+        .featured_headline,
+        .featured_metadata,
+        .featured_content
+          width: 530px
+      .related_and_further_reading
+        margin-bottom: 50px
+        overflow: hidden
+        .related
+          float: left
+          margin-right: 19px
+          width: 315px
+          ul
+            li
+              margin-bottom: 15px
+              border-bottom: 1px solid $grayborder
+              &:last-child
+                border-bottom: none
+              .related_title
+              .related_subheading
+                color: $light
+                font-family: glight
+                margin-bottom: 15px
+        .further_reading
+          float: left
+          width: 315px
+          ul
+            li
+              margin-bottom: 15px
+              border-bottom: 1px solid $grayborder
+              &:last-child
+                border-bottom: none
+              .further_reading_title
+                line-height: 18px
+              .further_reading_subheading
+                font-family: glight
+                font-size: 11px
+                line-height: 14px
+              .further_reading_author
+                color: $light
+                font-family: glight
+                font-size: 11px
+                line-height: 14px
+                margin-bottom: 10px
+    .contactMain.col, .eventDisplayMain.col
+      width: 649px
+      margin-right: 20px
+      .heading,
+      .address,
+      .contactATenant,
+      .map,
+      .maincontact
+        margin-bottom: 20px
+      .heading
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+      .maincontact
+        .tenant_application
+          display: none
+          .tenant_application_back_link
+            float: right
+            position: relative
+            bottom: 32px
+          .tenant_application_form
+            clear: both
+            width: 530px
+            .form_section_header
+              clear: both
+              h3
+                font-size: 15px
+                line-height: 19px
+                font-family: battersea
+            .control-group
+              overflow: hidden
+            label
+              font-size: 15px
+              line-height: 19px
+              font-family: glight
+              color: $darkgray
+            input[type=text], input[type=email], input[type=tel], input[type=url]
+              font-size: 15px
+              line-height: 19px
+              font-family: gbook
+              color: $darkgray
+              border: none
+              background: $grayinput
+              +vendor-prefix(border-radius, 0)
+              +vendor-prefix(box-shadow, 0)
+              padding: 3px
+              width: 524px
+            textarea
+              font-size: 15px
+              line-height: 19px
+              font-family: gbook
+              color: $darkgray
+              border: none
+              background: $grayinput
+              +vendor-prefix(border-radius, 0)
+              +vendor-prefix(box-shadow, 0)
+              padding: 3px
+              width: 524px
+              height: 77px
+            .tenant_application_form_basics
+              margin-bottom: 20px
+              label
+                float: left
+                margin-right: 15px
+                padding-top: 3px
+              .controls
+                float: left
+              label[for=tenant_application_company_name]
+                width: 110px
+              label[for=tenant_application_company_technology]
+                width: 240px
+              label[for=tenant_application_funding_status]
+                width: 255px
+              input#tenant_application_company_name
+                width: 399px
+              input#tenant_application_company_technology
+                width: 269px
+              input#tenant_application_funding_status
+                width: 254px
+              .dd-container
+                float: right
+              
+            .form-actions
+              padding: 0
+              margin: 0
+              background: transparent
+              border: 0
+              input
+                border: none
+                +vendor-prefix(border-radius, 0)
+                +vendor-prefix(box-shadow, 0)
+                background: transparent url(/assets/submit_button.png)
+                width: 60px
+                height: 11px
+                cursor: pointer
+                clear: both
+                float: right
+                text-indent: -9999px
+                margin-right: 3px
+      .address_contact_and_map
+        .address_and_contact, .map
+          float: left
+        .address_and_contact
+          width: 314px
+          margin-right: 20px
+          .address
+            address
+              margin-bottom: 10px
+          .contactATenant
+            h2
+              line-height: 23px
+              margin-bottom: 0
+              padding-top: 5px
+            .tenant_contact
+              display: none
+              position: absolute
+              width: 314px
+              border-right: 1px solid #ddd
+              border-bottom: 1px solid #ddd
+              z-index: 9
+              .tenant_contact_form
+                margin-bottom: 5px
+                label
+                  float: left
+                  width: 70px
+                  padding: 3px 0 0
+                  font-size: 15px
+                  abbr
+                    display: none
+                input[type=email], input[type=text]
+                  float: left
+                  width: 189px
+                  border: none
+                  background: $grayinput
+                  +vendor-prefix(border-radius, 0)
+                  +vendor-prefix(box-shadow, 0)
+                  padding: 3px
+                textarea
+                  float: left
+                  width: 190px
+                  border: none
+                  background: $grayinput
+                  +vendor-prefix(border-radius, 0)
+                  +vendor-prefix(box-shadow, 0)
+                  padding: 3px
+                  height: 149px
+                label[for=Select_Tenant]
+                  text-indent: -9999px
+                  background: url(/assets/select_tenant.png)
+                  width: 111px
+                  height: 8px
+                  margin-right: 15px
+                .dd-container
+                  float: left
+                  position: relative
+                  bottom: 7px
+                
+                input[type=submit]
+                  border: none
+                  +vendor-prefix(border-radius, 0)
+                  +vendor-prefix(box-shadow, 0)
+                  background: transparent url(/assets/send.png)
+                  width: 45px
+                  height: 11px
+                  cursor: pointer
+                  clear: both
+                  float: right
+                  text-indent: -9999px
+                  margin-right: 21px
+                  margin-top: 5px
+        .map
+          width: 315px
+          .panel
+            padding: 8px
+      .application
+        clear: both
+    .application_resume_and_newsletter
+      width: 249px
+      margin-right: 0px
+      float: left
+      .contact_page_side_image,
+      .application,
+      .resume,
+      .newsletter
+        margin-bottom: 20px
+        h2
+          line-height: 23px
+          margin-bottom: 0
+          padding-top: 5px
+      .contact_page_side_image
+        .panel
+          padding: 8px
+      .newsletter
+        .signup_newsletter
+          display: none
+          position: relative
+          .panel
+            padding: 0 13px 10px
+          .signup_newsletter_form
+            overflow: hidden
+            margin-bottom: 10px
+            .processingSubmission
+              clear: both
+              height: 20px
+              width: 20px
+              position: absolute
+              bottom: 14px
+              left: 151px
+            label
+              float: left
+              width: 95px
+              padding: 3px 0 0
+              font-size: 15px
+              abbr
+                display: none
+            input[type=email]
+              float: left
+              width: 120px
+              border: none
+              background: $grayinput
+              +vendor-prefix(border-radius, 0)
+              +vendor-prefix(box-shadow, 0)
+              padding: 3px
+            input[type=submit]
+              border: none
+              +vendor-prefix(border-radius, 0)
+              +vendor-prefix(box-shadow, 0)
+              background: transparent url(/assets/submit_button.png)
+              width: 60px
+              height: 11px
+              cursor: pointer
+              clear: both
+              float: right
+              text-indent: -9999px
+              margin-right: 3px
+      .resume
+        .submit_resume
+          position: relative
+          display: none
+          .submit_resume_form
+            margin-bottom: 30px
+            .processingSubmission
+              clear: both
+              height: 20px
+              width: 20px
+              position: absolute
+              bottom: 13px
+              left: 138px
+            input[type=email], input[type=text], input[type=tel], input[type=url]
+              width: 203px
+              padding: 3px
+              background: $grayinput
+            input[type=file]
+              +vendor-prefix(opacity, 0)
+              filter: alpha(opacity=0)
+              height: 0
+            label.file
+              background: $grayinput
+              padding: 3px
+              width: 203px
+              overflow: hidden
+              abbr
+                display: none
+            textarea
+              height: 172px
+              width: 203px
+              padding: 3px
+              background: $grayinput
+            .control-group.string
+              margin-bottom: 0
+            .control-group.file
+              margin-bottom: 0
+              .controls
+                height: 0
+            
+            input[type=submit]
+              border: none
+              +vendor-prefix(border-radius, 0)
+              +vendor-prefix(box-shadow, 0)
+              background: transparent url(/assets/upload_button.png)
+              width: 62px
+              height: 11px
+              cursor: pointer
+              clear: both
+              float: right
+              text-indent: -9999px
+              margin-right: 13px
+    .calendarMain.col
+      width: 918px
+      .heading_and_month_select
+        overflow: hidden
+        .heading
+          margin-bottom: 20px
+          width: 649px
+          position: relative
+          margin-right: 20px
+          float: left
+          h2
+            line-height: 1
+            margin: 8px 0 4px
+        .month_select
+          float: left
+          width: 249px
+          .panel
+            overflow: hidden
+          .previous_month
+            float: left
+            padding-left: 7px
+            padding-top: 8px
+            text-indent: -9999px
+            a
+              display: block
+              width: 7px
+              height: 13px
+              background: url(/assets/left_right_arrows.png) 0 0 no-repeat
+          .current_month
+            float: left
+            width: 189px
+            text-align: center
+            h2
+              margin: 8px 0 4px
+              line-height: 1
+          .next_month
+            float: left
+            padding-right: 7px
+            padding-top: 8px
+            text-indent: -9999px
+            a
+              display: block
+              width: 7px
+              height: 13px
+              background: url(/assets/left_right_arrows.png) -8px 0 no-repeat
+      #calendar
+        .panel
+          padding: 0 13px 10px
+        .fc-header
+          display: none
+        .fc-day-header
+          border-width: 0
+          position: relative
+          left: 10px
+          top: 23px
+          color: #adadad
+          &:first-child
+            border-width: 0
+        .fc-grid th
+          text-align: left
+        .fc-grid .fc-day-number
+          padding: 5px 10px 0 0
+          color: #adadad
+        .fc-grid .fc-other-month .fc-day-number
+          opacity: 1
+          filter: alpha(opacity=100)
+        .fc-day
+          border-width: 0 0 1px 1px
+          
+          &:first-child
+            border-width: 0 0 1px 0
+          >div
+            height: 165px
+        .fc-last
+          .fc-day
+            border-width: 0 0 0 1px
+            &:first-child
+              border-width: 0
+        .fc-state-highlight
+          background: transparent
+.pages-contact
+  .contact
+    overflow: visible
+.mainDashboard, .resources, .admin_news_page, .admin_calendar, .admin_contact
+  position: relative
+  top: 25px
+
+.admin, .administration, .invitations
+  .form
+    width: 650px
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=url],
+    textarea
+      width: 636px
+    input.date-time-pick
+      width: 608px
+    input#article_published_date
+      width: 511px
+    #tenant_fake
+      margin-bottom: 20px
+      .dd-select
+        background-color: #fff !important
+        border: none
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075)
+        border-left: 1px solid rgba(0,0,0,0.075)
+      .dd-options
+        border: none
+      .dd-option
+        border-bottom: 1px solid rgba(0,0,0,0.075)
+    input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=url]:focus
+      border: 1px solid black
+      box-shadow: none
+    #post_published_date
+      width: 311px
+    textarea
+      height: 300px
+    .boolean
+      float: left
+      width: 100px
+    .form-actions
+      clear: both
+      padding: 20px 0
+      background-color: transparent
+  .navbar
+    background: #000
+  .navbar-inner
+    background-color: #444
+    background-image: linear-gradient(to bottom, #111, #4f4f4f)
+    background-image: -moz-linear-gradient(top, #111, #4f4f4f)
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#111), to(#4f4f4f))
+    background-image: -webkit-linear-gradient(top, #111, #4f4f4f)
+    background-image: -o-linear-gradient(top, #111, #4f4f4f)
+    background-image: linear-gradient(to bottom, #111, #4f4f4f)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff111111', endColorstr='#ff4f4f4f', GradientType=0)
+    border-radius: 0
+    border: none
+  .navbar
+    .brand
+      color: #eee
+      text-shadow: 0 1px 0 #000
+    .divider-vertical
+      margin: 0
+      border-left: 1px solid #666
+      border-right: 1px solid #444
+    .nav
+      >li
+        >a
+          color: #eee
+          text-shadow: 0 1px 0 #000
+      >.active
+        >a
+          color: #555
+          text-shadow: 0 1px 0 white
+      li.dropdown.open
+        >.dropdown-toggle
+          text-shadow: 0 1px 0 #fff
+    .nav.pull-right
+      .dropdown-toggle
+        font-size: 12px
+        color: #aaa
+      li.dropdown.open
+        >.dropdown-toggle
+          background-color: #fff
+.dropdown-menu
+  >li
+    >a:hover
+      background-image: linear-gradient(to bottom, #6a6a6a, #0a0a0a)
+      background-image: -moz-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6a6a6a), to(#0a0a0a))
+      background-image: -webkit-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: -o-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: linear-gradient(to bottom, #6a6a6a, #0a0a0a)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6a6a6a', endColorstr='#ff0a0a0a', GradientType=0)
+  >.active
+    >a
+      background-image: linear-gradient(to bottom, #6a6a6a, #0a0a0a)
+      background-image: -moz-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6a6a6a), to(#0a0a0a))
+      background-image: -webkit-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: -o-linear-gradient(top, #6a6a6a, #0a0a0a)
+      background-image: linear-gradient(to bottom, #6a6a6a, #0a0a0a)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6a6a6a', endColorstr='#ff0a0a0a', GradientType=0)
+      
+.registrations, .invitations
+  .dd-container
+    margin-bottom: 20px
+
+.administration, .registrations, .invitations
+  .hero-unit
+    width: 450px
+    padding: 40px
+    background: rgba(255,255,255,0.8)
+
+  .events
+    margin-bottom: 20px
+    .panel
+      h2
+        float: left
+      .cal_link
+        float: right
+        padding-top: 8px
+      .events_key
+        clear: both
+        font-family: glight
+        overflow: hidden
+        border-bottom: 1px solid $grayborder
+        padding-bottom: 5px
+        ul
+          li
+            float: left
+            width: 108px
+            .circle
+              float: left
+              a
+                display: block
+                margin-right: 5px
+                width: 9px
+                height: 8px
+                margin-top: 5px
+                background: url(/assets/solid_circles.png)
+                cursor: pointer
+            .circle.off
+              a
+                background: url(/assets/empty_circles.png)
+            .key
+              float: left
+              width: 94px
+          .acre_events
+            .circle, .circle.off
+              a
+                background-position: 0 0
+          .funding_and_grants
+            .circle, .circle.off
+              a
+                background-position: -10px 0
+          .your_calendar
+            .circle, .circle.off
+              a
+                background-position: -20px 0
+      .events_list
+        clear: both
+        ul
+          li
+            border-bottom: 1px solid #afb1b4
+            padding: 5px 0
+            &:last-child
+              border-bottom: none
+              padding-bottom: 1px
+            .event_link
+              font-size: 13px
+              line-height: 16px
+            .event_times
+              font-size: 11px
+              line-height: 14px
+              color: $light
+            .event_link
+              text-transform: capitalize
+            .event_type
+              float: left
+              margin-right: 5px
+              width: 9px
+              height: 8px
+              margin-top: 3px
+              background: url(/assets/solid_circles.png)
+              cursor: pointer
+            .event_type.off
+              background: url(/assets/empty_circles.png)
+          .grant
+            .event_type, .event_type.off
+              background-position: -10px 0
+          .event, .acregoogle
+            .event_type, .event_type.off
+              background-position: 0 0
+          .google
+            .event_type, .event_type.off
+              background-position: -20px 0
+          .saved
+            background: $saved url(/assets/inexplicable_clock.png) 200px 3px no-repeat
+
+  .dashboard_news
+    width: 649px
+    margin-right: 20px
+    .panel
+      .dashboard_news_header
+        h2
+          float: left
+        .filter
+          float: right
+          .filter_key
+            float: left
+            margin: 3px 45px 0 0
+            .filter_key_color_box
+              float: left
+              width: 24px
+              height: 24px
+              background: #dfedd6
+            .filter_key_text
+              float: left
+              font-family: gbook
+              font-size: 13px
+              line-height: 18px
+              padding: 4px 0 0 5px
+          .filter_select
+            float: left
+      .dashboard_news_listing
+        clear: both
+      .dashboard_news_listing > ul
+        li
+          border-bottom: 1px solid $grayborder
+          padding: 10px 0 0 5px
+          .news_headline
+            h3
+              font-size: 13px
+              line-height: 1
+              margin-bottom: 0
+          .news_meta_info
+            font-family: glight
+            color: $light
+            text-transform: capitalize
+        .acre, .ACRE
+          background: #dfedd6
+  .events_and_updates
+    width: 248px
+    .events
+    .updates
+      .panel
+        %h2
+        .fbfeed
+          li
+            .feed_story
+            .feed_time
+
+
+  .resourcesMain
+    width: 649px
+    margin-right: 20px
+    .heading
+      margin-bottom: 20px
+      .panel
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+    .single_resource_display
+      display: none
+      .single_resource_display_contents
+        margin-bottom: 20px
+        .panel
+          .heading
+            margin-bottom: 0
+            h2
+              margin-bottom: 0
+              line-height: 1
+          .resource_meta
+            float: left
+            font-family: glight
+            color: $light
+            margin-right: 10px
+          .resource_save
+            float: left
+            a
+          .resource_content
+            padding-top: 40px
+            ul
+              margin-left: 16px
+          .resource_subcontent
+            ul
+              margin-left: 16px
+            h2
+              margin-bottom: 10px
+      .related_resources
+        width: 315px
+        .panel
+          .heading
+            margin-bottom: 5px
+            h2
+          ul
+            li
+              border-bottom: 1px solid $grayborder
+              margin-bottom: 10px
+              .info
+                font-family: glight
+                color: $light
+                p
+                  margin-bottom: 10px
+            
+    .main_resource_list
+      .panel
+        .heading
+          float: left
+          margin-bottom: 5px
+          h2
+        .key
+          float: right
+          margin-right: 25px
+          .color_box
+            float: left
+            width: 25px
+            height: 25px
+            background: $saved
+            margin-right: 5px
+          .key_text
+            float: left
+            padding-top: 5px
+        .database_lists
+          overflow: hidden
+          clear: both
+          .db_row
+            clear: both
+          .database_list
+            float: left
+            width: 291px
+            margin-bottom: 20px
+            &:nth-child(2n+1)
+              clear: left
+            .heading
+              border-bottom: 1px solid $grayborder
+              float: none
+              margin-bottom: 10px
+              h3
+                margin-bottom: 5px
+            ul
+              li
+                clear: both
+                .saved_indicator
+                  width: 8px
+                  height: 13px
+                  background: $saved
+                  float: left
+                  margin-right: 5px
+                  margin-top: 2px
+                .specialty
+                  float: left
+                  margin-right: 2px
+                  font-family: glight
+                  color: $light
+                  span
+                    color: $darkgray
+                    padding-right: 1px
+                    position: relative
+                    right: 1px
+                .name
+                  float: left
+                  a
+          .provider_database_list, .grant_database_list
+            margin-right: 20px
+    .resource_list
+      .panel
+        overflow: hidden
+        .heading
+          margin-bottom: 15px
+          h2
+        .search_and_key
+          margin-bottom: 40px
+          .search
+            float: left
+            width: 175px
+            position: relative
+            .search_by
+              padding: 5px 10px
+              background: $grayinput url(/assets/right_arrow.png) 155px 8px no-repeat
+              cursor: pointer
+            .search_keyword
+              display: none
+              position: absolute
+              top: 0
+              left: 0
+              width: 175px
+              background: $grayinput
+              form
+                margin: 0
+                input
+                  width: 155px
+                  padding: 5px 10px
+                  background: transparent
+                  border: none
+                  box-shadow: none
+            .search_expanded
+              position: absolute
+              top: 0
+              left: 0
+              background: white
+              width: 175px
+              box-shadow: 1px 1px 1px rgba(0,0,0,0.1)
+              display: none
+              .search_by
+                background: #fff url(/assets/down_arrow.png) 155px 8px no-repeat
+              .search_list
+                padding: 5px 10px 20px
+          .key
+            float: right
+            position: relative
+            bottom: -1px
+            .color_box
+              float: left
+              width: 25px
+              height: 25px
+              background: $saved
+              margin-right: 5px
+            .key_text
+              float: left
+              padding-top: 5px
+        .resource_display
+          .resource_group
+            float: left
+            width: 298px
+            margin-bottom: 20px
+            margin-right: 20px
+            h3
+              border-bottom: 1px solid $grayborder
+              padding-bottom: 5px
+              margin-bottom: 15px
+            &:nth-child(even)
+              margin-right: 0
+            &:nth-child(2n+1)
+              clear: left
+            ul
+              li
+                clear: both
+                .saved_indicator
+                  width: 8px
+                  height: 13px
+                  background: $saved
+                  float: left
+                  margin-right: 5px
+                  margin-top: 2px
+                .name
+                  float: left
+                  a
+
+
+    .provider_resource_list,
+    .resume_resource_list,
+    .grants_resource_list,
+    .contact_resource_list,
+    .news_resource_list
+      display: none
+    
+    .provider_resource_list
+    .resume_resource_list
+    .grants_resource_list
+    .contact_resource_list
+    .news_resource_list
+        
+  .resource_selections_events_and_updates
+    width: 249px
+    margin-right: 0px
+    .provider_database
+      margin-bottom: 20px
+    .resume_database
+      margin-bottom: 20px
+    .grants_database
+      margin-bottom: 20px
+    .contact_database
+      margin-bottom: 20px
+    .news_database
+      margin-bottom: 20px
+
+  .add_resource
+    display: none
+    .panel
+      h2
+        a
+          font-size: 16px
+    .add_resource_form
+      display: none
+      box-shadow: 0 0 4px rgba(0,0,0,0.2)
+  
+  .contactMain, .eventDisplayMain
+    .address_contact_and_image
+      .contactForm
+        float: left
+        margin-right: 20px
+        width: 314px
+        padding-bottom: 20px
+        .panel
+          padding: 20px 10px
+        label
+          float: left
+          width: 70px
+          padding: 3px 0 0
+          font-size: 15px
+          abbr
+            display: none
+        input[type=email], input[type=text]
+          float: left
+          width: 189px
+          border: none
+          background: $grayinput
+          +vendor-prefix(border-radius, 0)
+          +vendor-prefix(box-shadow, 0)
+          padding: 3px
+        textarea
+          float: left
+          width: 190px
+          border: none
+          background: $grayinput
+          +vendor-prefix(border-radius, 0)
+          +vendor-prefix(box-shadow, 0)
+          padding: 3px
+          height: 149px
+        label[for=Select_Contact]
+          text-indent: -9999px
+          background: url(/assets/select_contact.png)
+          width: 117px
+          height: 8px
+          margin-right: 15px
+        .dd-container
+          float: left
+          position: relative
+          bottom: 7px
+        
+        input[type=submit]
+          border: none
+          +vendor-prefix(border-radius, 0)
+          +vendor-prefix(box-shadow, 0)
+          background: transparent url(/assets/send.png)
+          width: 45px
+          height: 11px
+          cursor: pointer
+          clear: both
+          float: right
+          text-indent: -9999px
+          margin-right: 21px
+          margin-top: 5px
+          margin-bottom: 12px
+
+      .address_and_image
+        float: left
+        width: 315px
+        .contact_image
+          margin-bottom: 20px
+          .panel
+            padding: 10px
+        .address
+          address
+            margin-bottom: 4px
+.administration-contact
+  .contact
+    overflow: visible
+
+
+.resources
+  overflow: visible
+  .add_resource
+    position: relative
+    .add_provider_form, .add_contact_form, .add_news_site_form
+      position: absolute
+      top: 0
+      left: 0
+      .panel
+        padding: 10px 13px 35px
+      .heading
+        h2
+          background: url(/assets/down_arrow.png) center right no-repeat
+          cursor: pointer
+      .control-group
+        margin-bottom: 0
+        input[type=text], input[type=tel], input[type=email]
+          margin-bottom: 10px
+          background: $grayinput
+      textarea
+        height: 172px
+        width: 211px
+        padding: 3px
+        background: $grayinput
+      input[type=submit]
+        border: none
+        border-radius: 0
+        -webkit-border-radius: 0
+        -ms-border-radius: 0
+        -moz-border-radius: 0
+        -o-border-radius: 0
+        box-shadow: 0
+        -webkit-box-shadow: 0
+        -ms-box-shadow: 0
+        -moz-box-shadow: 0
+        -o-box-shadow: 0
+        background: transparent url(/assets/submit_button.png)
+        width: 60px
+        height: 11px
+        cursor: pointer
+        text-indent: -9999px
+        float: right
+        margin: 15px 0
+    .add_resume_form
+      position: absolute
+      top: 0
+      left: 0
+      width: 347px
+      .panel
+        padding: 10px 13px 5px
+      .heading
+        h2
+          background: url(/assets/down_arrow.png) center right no-repeat
+          cursor: pointer
+      .submit_resume_form
+        margin-bottom: 30px
+        .processingSubmission
+          clear: both
+          height: 20px
+          width: 20px
+          position: absolute
+          bottom: 13px
+          left: 138px
+        input[type=email], input[type=text], input[type=tel], input[type=url]
+          width: 203px
+          padding: 3px
+          background: $grayinput
+        input[type=file]
+          +vendor-prefix(opacity, 0)
+          filter: alpha(opacity=0)
+          height: 0
+        label.file
+          background: $grayinput
+          padding: 3px
+          width: 311px
+          overflow: hidden
+          abbr
+            display: none
+        label.string, label.text, label[for=resume_specialty], label.tel, label.email
+          float: left
+          width: 108px
+        textarea
+          height: 172px
+          width: 203px
+          padding: 3px
+          background: $grayinput
+        .control-group.string, .control-group.text, .control-group.tel, .control-group.email
+          margin-bottom: 0
+          .controls
+            float: left
+        #resume_specialty_fake
+          float: left
+          width: 209px
+          margin-bottom: 10px
+        .control-group.file
+          margin-bottom: 10px
+          position: relative
+          .controls
+            height: 0
+            position: absolute
+            top: 0
+            left: 0
+      input[type=submit]
+        border: none
+        +vendor-prefix(border-radius, 0)
+        +vendor-prefix(box-shadow, 0)
+        background: transparent url(/assets/upload_button.png)
+        width: 62px
+        height: 11px
+        cursor: pointer
+        clear: both
+        float: right
+        text-indent: -9999px
+        margin-right: 5px
+    
+.administration, .registrations, .invitations
+  .userManageForm
+    background: white
+    padding: 50px
+    .non-password_fields
+      float: left
+      margin-right: 100px
+    .password_fields
+      float: left
+    input[type=submit]
+      border: none
+      border-radius: 0
+      -webkit-border-radius: 0
+      -ms-border-radius: 0
+      -moz-border-radius: 0
+      -o-border-radius: 0
+      box-shadow: 0
+      -webkit-box-shadow: 0
+      -ms-box-shadow: 0
+      -moz-box-shadow: 0
+      -o-box-shadow: 0
+      background: transparent url(/assets/submit_button.png)
+      width: 60px
+      height: 11px
+      cursor: pointer
+      text-indent: -9999px
+  
+body.administration-cms_index
+  overflow: visible
+  .new_alert_form
+    textarea
+      height: 100px
+      width: 570px
+  .new_announcement
+    .heading
+      h3
+  .new_announcement_form
+    table
+      width: 100% !important
+    textarea
+      height: 100px
+      width: 570px
+    .control-group.boolean
+      overflow: hidden
+      label,
+      input
+        float: left
+        margin-right: 10px
+    input[type=submit]
+      clear: both
+      display: block
+      margin-top: 10px
+      
+#calendar
+  .panel
+    padding-bottom: 0
+    margin-bottom: 40px
+  table
+    border-width: 0
+    margin-bottom: 0
+    th
+      border-left: 0
+      position: relative
+      z-index: 0
+      font-weight: normal
+    tbody
+      tr
+        &:last-child
+          td
+            border-bottom: 0
+        td
+          position: relative
+          bottom: 33px
+  h2
+    display: none
+  .public_event_calendar
+    top: 0
+    color: $lighter
+    .day_number
+      text-align: right
+      padding-right: 11px
+    td
+      height: 150px
+      max-height: 150px
+      width: 127px
+    .wday-0
+      border-left: 0
+    .events, .no-events
+      position: relative
+      .more_events, .less_events
+        position: absolute
+        bottom: 0
+        left: 8px
+      > div
+        position: relative
+        height: 167px
+        > div
+          position: absolute
+          top: -3px
+          left: 0
+          height: 140px
+          width: 127px
+          overflow: hidden
+          background: transparent
+    .no-events
+      .day_number
+        padding-right: 11px
+    .day_event_container
+      font-size: 11px
+      line-height: 14px
+      height: 30px
+      a
+        font-family: gbook
+        color: $blue
+        white-space: nowrap
+      .day_event_times
+        font-family: glight
+        color: $mediumgray
+        float: left
+      .day_event_indicator
+        float: left
+        background: url(/assets/solid_circles.png) no-repeat
+        width: 10px
+        height: 10px
+        position: relative
+        top: 3px
+        left: -2px
+      .day_event_indicator.event, .day_event_indicator.acregoogle
+        background-position: 0 0
+      .day_event_indicator.google
+        background-position: -20px 0
+      .day_event_indicator.grant
+        background-position: -10px 0
+    .saved
+      background: $saved
+.day_event_details
+  position: absolute
+  top: 0
+  left: 0
+  background: white
+  width: 155px
+  padding: 10px
+  border: 1px solid $grayborder
+.day_event_details:after, .day_event_details:before
+  right: 100%
+  border: solid transparent
+  content: " "
+  height: 0
+  width: 0
+  position: absolute
+  pointer-events: none
+.day_event_details:after
+  border-color: rgba(255, 255, 255, 0)
+  border-right-color: #ffffff
+  border-width: 5px
+  top: 15px
+  margin-top: -5px
+.day_event_details:before
+  border-color: rgba(175, 177, 180, 0)
+  border-right-color: #afb1b4
+  border-width: 6px
+  top: 15px
+  margin-top: -6px
+.day_event_details
+  font-size: 13px
+  line-height: 18px
+  font-family: glight
+  .day_event_title
+    font-family: gbook
+    color: $blue
+    margin-bottom: 10px
+  .day_event_date
+  .day_event_times
+  .day_event_address
+    margin-bottom: 10px
+  .day_event_description
+    word-break: break-word
+  .day_event_save
+    margin-top: 5px
+  
+.fbfeed
+  clear: both
+  li
+    border-bottom: 1px solid #afb1b4
+    padding: 15px 0
+    &:last-child
+      border-bottom: none
+      padding-bottom: 7px
+    &:first-child
+      padding-top: 0
+    .feed_story
+      font-size: 12px
+      line-height: 16px
+    .feed_time
+      font-size: 11px
+      line-height: 14px
+      font-family: glight
+      color: $light
+
+
+.adding_events_keys, .adding_events_form_type_selection
+  margin-bottom: 20px
+  .events_key
+    clear: both
+    font-family: glight
+    overflow: hidden
+    padding-bottom: 5px
+    ul
+      li
+        float: left
+        width: 108px
+        .circle
+          float: left
+          a
+            display: block
+            margin-right: 5px
+            width: 9px
+            height: 8px
+            margin-top: 5px
+            background: url(/assets/solid_circles.png)
+            cursor: pointer
+        .circle.off
+          a
+            background: url(/assets/empty_circles.png)
+        .key
+          float: left
+          width: 94px
+        .check
+          float: left
+          width: 17px
+          height: 17px
+          background: url(/assets/type_checks.png) no-repeat
+          margin-right: 5px
+          cursor: pointer
+        .check.on
+          background: url(/assets/type_checks.png) 0 -22px no-repeat
+      .acre_events
+        .circle, .circle.off
+          a
+            background-position: 0 0
+      .funding_and_grants
+        .circle, .circle.off
+          a
+            background-position: -10px 0
+      .your_calendar
+        .circle, .circle.off
+          a
+            background-position: -20px 0
+.adding_events
+  position: relative
+  z-index: 9
+  .add_event_form
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1)
+    display: none
+    position: absolute
+    top: 0
+    left: 0
+    width: 242px
+    .panel
+      padding: 10px 13px 5px
+    .heading
+      h2
+        background: url(/assets/down_arrow.png) center right no-repeat
+        cursor: pointer
+    .event_form, .grant_form, .google_form
+      .control-group
+        margin-bottom: 0
+      input[type=text]
+        margin-bottom: 10px
+        background: $grayinput
+        width: 190px
+      input[type=submit]
+        border: none
+        border-radius: 0
+        -webkit-border-radius: 0
+        -ms-border-radius: 0
+        -moz-border-radius: 0
+        -o-border-radius: 0
+        box-shadow: 0
+        -webkit-box-shadow: 0
+        -ms-box-shadow: 0
+        -moz-box-shadow: 0
+        -o-box-shadow: 0
+        background: transparent url(/assets/submit_button.png)
+        width: 60px
+        height: 11px
+        cursor: pointer
+        text-indent: -9999px
+        float: right
+        margin: 15px 15px 0
+    .grant_form, .google_form
+      display: none
+    .input-append
+      .add-on
+        position: relative
+        bottom: 1px
+      input.string
+        margin-bottom: 10px
+        background: $grayinput
+        width: 163px
+.adding_events_form_type_selection
+  .events_key
+    ul
+      li
+        width: 151px
+        
+.graduate_image, .tenant_image, .news_feature, .news_main_image
+  .panel
+    padding: 10px !important
+.subtenant, .subgraduate, .subchallenge
+  .panel
+    padding: 0 !important
+    background: rgba(255,255,255,0.9) !important
+    border: 10px solid white !important
+    
+.newses.symbols
+  text-align: center
+  padding: 50px 0
+  
+.modal
+  width: 515px
+  .modal-header
+    border: none
+    padding: 10px 15px 0
+    h2
+      margin: 0
+  .modal-body
+    max-height: 520px
+    padding-top: 0
+    img
+      width: 100%
+      
+.table td
+  border-top: none
+  border-bottom: 1px solid #ddd
+#calendar
+  .panel
+    background: rgba(255,255,255,0.95)
+    
+.tenant_backgrounds
+  #page
+    margin: 40px 0 20px
+
+.hero-unit
+  margin-top: 50px
+  h1
+    margin-bottom: 20px
+    font-size: 32px
+  
+.or
+  text-align: center
+  margin: 10px 0
+  
+.tenant_connect_wrapper
+  border-top: 1px solid $grayborder
+  padding-top: 20px
+  overflow: hidden
+  margin-bottom: 40px
+  .tenant_connect
+    float: right
+    margin-right: -10px
+    .connect_text
+      float: left
+      margin-right: 10px
+      color: white
+      padding-top: 12px
+    .connect_facebook
+      float: left
+      margin-right: 10px
+      a
+        background: url(/assets/tenant_connect.png) no-repeat -54px 0
+        display: block
+        height: 41px
+        width: 42px
+    .connect_twitter
+      float: left
+      margin-right: 10px
+      a
+        background: url(/assets/tenant_connect.png) no-repeat 0 0
+        display: block
+        height: 41px
+        width: 42px
+        
+.grants-index
+  tr > td:first-child+td
+    width: 50px
+    
+.alert_display
+  background: #fadcdc
+  padding: 18px
+  margin-bottom: 20px
+  .alert_header
+    background: url(/assets/alert.png) no-repeat
+    padding: 23px  0 5px 65px
+    font-size: 25px
+    line-height: 25px
+    color: #be1e2d
+    font-family: gbold
+    text-transform: uppercase
+    margin-bottom: 18px
+  .alert_body
+    font-size: 13px
+    color: #000
+    font-family: glight
+    p
+      margin-bottom: 0
+      
+.administration .dashboard_news .panel .dashboard_news_listing
+  .entries
+    ul
+      li
+        padding: 0
+        border: 0
+        
+.tenant_tenant_stats_is_dollar_value, .challenge_challenge_stats_is_dollar_value
+  width: 500px !important
+  position: relative
+  bottom: 15px
+  label
+    width: 120px !important
+  .controls
+    float: left
+.tenant_tenant_stats_description, .challenge_challenge_stats_description
+  position: relative
+  bottom: 5px
+.tenant_tenant_stats_publish, .challenge_challenge_stats_publish
+  position: relative
+  bottom: 10px
+  width: 200px !important
+  label
+    width: 45px !important
+  .controls
+    float: left
+.adminform
+  h2
+    font-size: 32px
+    margin: 20px 0 10px
+.challenge_numbers, .pages-about_tenant .tenant_numbers
+  padding: 20px 25px
+.tenant_numbers, .challenge_numbers
+  overflow: hidden
+  .statistic
+    float: left
+    margin-right: 20px
+    width: 279px
+    margin-bottom: 20px
+    position: relative
+    &:nth-child(even)
+      margin-right: 0
+    &:nth-child(2n+1)
+      clear: left
+    .statistic_value
+      color: $blue
+      font-size: 100px
+      font-family: battersea
+      line-height: 1
+      letter-spacing: -6px
+      .dollarsign
+        font-size: 42px
+        position: absolute
+        top: 10px
+        left: -20px
+    .statistic_name
+      text-transform: uppercase
+      font-family: gbook
+      color: $light
+      font-size: 22px
+      line-height: 1.2
+      
+.table td
+  padding: 8px 0
+.day_event_container
+  padding: 0 8px
+  
+.event_date_and_address
+  padding-left: 15px
+  position: relative
+  .event_indicator
+    background: url(/assets/solid_circles.png) no-repeat
+    width: 10px
+    height: 10px
+    position: absolute
+    left: -3px
+    top: 4px
+    background-position: 0 0
+.event_date_and_address.event, .event_date_and_address.acregoogle
+  .event_indicator
+    background-position: 0 0
+.event_date_and_address.google
+  .event_indicator
+    background-position: -20px 0
+.event_date_and_address.grant
+  .event_indicator
+    background-position: -10px 0
+    
+.eventDisplay
+  .details_and_map
+    overflow: hidden
+    margin-bottom: 20px
+  .details
+    float: left
+    margin-right: 20px
+    width: 314px
+    .panel
+      min-height: 197px
+    h2
+      text-transform: capitalize
+      line-height: 1.2
+      margin-bottom: 0
+    .save, .date, .location
+      margin-bottom: 15px
+  .map
+    float: left
+    width: 315px
+    margin-bottom: 0 !important
+  .event_image
+    margin-bottom: 20px
+    img
+      width: 100%
+  .events_and_updates
+    width: 249px
+    .events
+      margin-bottom: 20px
+      .panel
+        h2
+          float: left
+        .cal_link
+          float: right
+          padding-top: 8px
+        .events_key
+          clear: both
+          font-family: glight
+          overflow: hidden
+          border-bottom: 1px solid $grayborder
+          padding-bottom: 5px
+          ul
+            li
+              float: left
+              width: 108px
+              .circle
+                float: left
+                a
+                  display: block
+                  margin-right: 5px
+                  width: 9px
+                  height: 8px
+                  margin-top: 5px
+                  background: url(/assets/solid_circles.png)
+                  cursor: pointer
+              .circle.off
+                a
+                  background: url(/assets/empty_circles.png)
+              .key
+                float: left
+                width: 94px
+            .acre_events
+              .circle, .circle.off
+                a
+                  background-position: 0 0
+            .funding_and_grants
+              .circle, .circle.off
+                a
+                  background-position: -10px 0
+            .your_calendar
+              .circle, .circle.off
+                a
+                  background-position: -20px 0
+        .events_list
+          clear: both
+          ul
+            li
+              border-bottom: 1px solid #afb1b4
+              padding: 5px 0
+              &:last-child
+                border-bottom: none
+                padding-bottom: 1px
+              .event_link
+                font-size: 13px
+                line-height: 16px
+              .event_times
+                font-size: 11px
+                line-height: 14px
+                color: $light
+              .event_link
+                text-transform: capitalize
+              .event_type
+                float: left
+                margin-right: 5px
+                width: 9px
+                height: 8px
+                margin-top: 3px
+                background: url(/assets/solid_circles.png)
+                cursor: pointer
+              .event_type.off
+                background: url(/assets/empty_circles.png)
+            .grant
+              .event_type, .event_type.off
+                background-position: -10px 0
+            .event, .acregoogle
+              .event_type, .event_type.off
+                background-position: 0 0
+            .google
+              .event_type, .event_type.off
+                background-position: -20px 0
+            .saved
+              background: $saved url(/assets/inexplicable_clock.png) 200px 3px no-repeat
+  .back_to_calendar
+    margin-bottom: 20px
+    h2
+      line-height: 23px
+      margin-bottom: 3px
+      padding-top: 5px
+      background: url(/assets/right_arrow.png) 210px center no-repeat
+      a
+        color: #191919
+        
+        
+.pages-grant_display
+  .resourcesMain
+    width: 649px
+    margin-right: 20px
+    .heading
+      margin-bottom: 20px
+      .panel
+        h2
+          line-height: 1
+          margin: 8px 0 4px
+    .single_resource_display
+      display: block
+      .single_resource_display_contents
+        margin-bottom: 20px
+        .panel
+          .heading
+            margin-bottom: 0
+            h2
+              margin-bottom: 0
+              line-height: 1
+          .resource_meta
+            float: left
+            font-family: glight
+            color: $light
+            margin-right: 10px
+          .resource_save
+            float: left
+            a
+          .resource_content
+            padding-top: 40px
+            ul
+              margin-left: 16px
+          .resource_subcontent
+            ul
+              margin-left: 16px
+            h2
+              margin-bottom: 10px
+      .related_resources
+        width: 315px
+        .panel
+          .heading
+            margin-bottom: 5px
+            h2
+          ul
+            li
+              border-bottom: 1px solid $grayborder
+              margin-bottom: 10px
+              .info
+                font-family: glight
+                color: $light
+                p
+                  margin-bottom: 10px
+            
+    .main_resource_list
+      .panel
+        .heading
+          float: left
+          margin-bottom: 5px
+          h2
+        .key
+          float: right
+          margin-right: 25px
+          .color_box
+            float: left
+            width: 25px
+            height: 25px
+            background: $saved
+            margin-right: 5px
+          .key_text
+            float: left
+            padding-top: 5px
+        .database_lists
+          overflow: hidden
+          clear: both
+          .db_row
+            clear: both
+          .database_list
+            float: left
+            width: 291px
+            margin-bottom: 20px
+            &:nth-child(2n+1)
+              clear: left
+            .heading
+              border-bottom: 1px solid $grayborder
+              float: none
+              margin-bottom: 10px
+              h3
+                margin-bottom: 5px
+            ul
+              li
+                clear: both
+                .saved_indicator
+                  width: 8px
+                  height: 13px
+                  background: $saved
+                  float: left
+                  margin-right: 5px
+                  margin-top: 2px
+                .specialty
+                  float: left
+                  margin-right: 2px
+                  font-family: glight
+                  color: $light
+                  span
+                    color: $darkgray
+                    padding-right: 1px
+                    position: relative
+                    right: 1px
+                .name
+                  float: left
+                  a
+          .provider_database_list, .grant_database_list
+            margin-right: 20px
+    .resource_list
+      .panel
+        overflow: hidden
+        .heading
+          margin-bottom: 15px
+          h2
+        .search_and_key
+          margin-bottom: 40px
+          .search
+            float: left
+            width: 175px
+            position: relative
+            .search_by
+              padding: 5px 10px
+              background: $grayinput url(/assets/right_arrow.png) 155px 8px no-repeat
+              cursor: pointer
+            .search_keyword
+              display: none
+              position: absolute
+              top: 0
+              left: 0
+              width: 175px
+              background: $grayinput
+              form
+                margin: 0
+                input
+                  width: 155px
+                  padding: 5px 10px
+                  background: transparent
+                  border: none
+                  box-shadow: none
+            .search_expanded
+              position: absolute
+              top: 0
+              left: 0
+              background: white
+              width: 175px
+              box-shadow: 1px 1px 1px rgba(0,0,0,0.1)
+              display: none
+              .search_by
+                background: #fff url(/assets/down_arrow.png) 155px 8px no-repeat
+              .search_list
+                padding: 5px 10px 20px
+          .key
+            float: right
+            position: relative
+            bottom: -1px
+            .color_box
+              float: left
+              width: 25px
+              height: 25px
+              background: $saved
+              margin-right: 5px
+            .key_text
+              float: left
+              padding-top: 5px
+        .resource_display
+          .resource_group
+            float: left
+            width: 298px
+            margin-bottom: 20px
+            margin-right: 20px
+            h3
+              border-bottom: 1px solid $grayborder
+              padding-bottom: 5px
+              margin-bottom: 15px
+            &:nth-child(even)
+              margin-right: 0
+            &:nth-child(2n+1)
+              clear: left
+            ul
+              li
+                clear: both
+                .saved_indicator
+                  width: 8px
+                  height: 13px
+                  background: $saved
+                  float: left
+                  margin-right: 5px
+                  margin-top: 2px
+                .name
+                  float: left
+                  a
+
+
+    .provider_resource_list,
+    .resume_resource_list,
+    .grants_resource_list,
+    .contact_resource_list,
+    .news_resource_list
+      display: none
+    
+    .provider_resource_list
+    .resume_resource_list
+    .grants_resource_list
+    .contact_resource_list
+    .news_resource_list
+        
+  .resource_selections_events_and_updates
+    width: 249px
+    margin-right: 0px
+    .provider_database
+      margin-bottom: 20px
+    .resume_database
+      margin-bottom: 20px
+    .grants_database
+      margin-bottom: 20px
+    .contact_database
+      margin-bottom: 20px
+    .news_database
+      margin-bottom: 20px
+
+  .add_resource
+    display: none
+    .panel
+      h2
+        a
+          font-size: 16px
+    .add_resource_form
+      display: none
+      box-shadow: 0 0 4px rgba(0,0,0,0.2)
+
+  .events
+    margin-bottom: 20px
+    .panel
+      h2
+        float: left
+      .cal_link
+        float: right
+        padding-top: 8px
+      .events_key
+        clear: both
+        font-family: glight
+        overflow: hidden
+        border-bottom: 1px solid $grayborder
+        padding-bottom: 5px
+        ul
+          li
+            float: left
+            width: 108px
+            .circle
+              float: left
+              a
+                display: block
+                margin-right: 5px
+                width: 9px
+                height: 8px
+                margin-top: 5px
+                background: url(/assets/solid_circles.png)
+                cursor: pointer
+            .circle.off
+              a
+                background: url(/assets/empty_circles.png)
+            .key
+              float: left
+              width: 94px
+          .acre_events
+            .circle, .circle.off
+              a
+                background-position: 0 0
+          .funding_and_grants
+            .circle, .circle.off
+              a
+                background-position: -10px 0
+          .your_calendar
+            .circle, .circle.off
+              a
+                background-position: -20px 0
+      .events_list
+        clear: both
+        ul
+          li
+            border-bottom: 1px solid #afb1b4
+            padding: 5px 0
+            &:last-child
+              border-bottom: none
+              padding-bottom: 1px
+            .event_link
+              font-size: 13px
+              line-height: 16px
+            .event_times
+              font-size: 11px
+              line-height: 14px
+              color: $light
+            .event_link
+              text-transform: capitalize
+            .event_type
+              float: left
+              margin-right: 5px
+              width: 9px
+              height: 8px
+              margin-top: 3px
+              background: url(/assets/solid_circles.png)
+              cursor: pointer
+            .event_type.off
+              background: url(/assets/empty_circles.png)
+          .grant
+            .event_type, .event_type.off
+              background-position: -10px 0
+          .event, .acregoogle
+            .event_type, .event_type.off
+              background-position: 0 0
+          .google
+            .event_type, .event_type.off
+              background-position: -20px 0
+          .saved
+            background: $saved url(/assets/inexplicable_clock.png) 200px 3px no-repeat
+
+.about_acre
+  .panel
+    h2
+      margin-bottom: 0
+      line-height: 26px
+      padding-top: 5px
+      a
+        color: black
+
+.single_resource_display 
+  .related_resources
+    display: none
+    
+.pages-index
+  .main
+    overflow: visible
+.home-statement
+  clear: both
+  padding-top: 15px
+  p
+    font-size: 32px
+    line-height: 1.2
+    color: $yellow
+    padding-left: 185px
+    text-transform: uppercase
+    text-shadow: 0 0 4px rgba(0,0,0,0.8)
+    &:after
+      content: "»"
+      margin-left: 5px
+
+.pages-challenge
+  .challenge .cols .the_challenge.col .subchallenge .panel
+    height: auto
+
+.pages-contact
+  .submit_resume
+    .panel
+      padding-top: 0
+
+.administration .resourcesMain .single_resource_display .single_resource_display_contents .panel .resource_content ul.resource_links
+  margin-left: 0
+  margin-bottom: 20px
+.single_resource_display.symbols
+  color: white
+
+.acre_advisors
+  margin-bottom: 20px
+  .panel
+    overflow: hidden
+  li
+    float: left
+    width: 205px
+    padding-bottom: 10px
+    margin-bottom: 15px
+    border-bottom: 1px solid #d7d7d7
+    &:last-child
+      border: 0
+      margin-bottom: 0
+      padding-bottom: 0
+    .photo, .info
+      float: left
+    .photo
+      width: 64px
+      margin-right: 10px
+    .info
+      width: 121px
+      padding-right: 10px
+      line-height: 1.3
+    .name
+      font-size: 11px
+      font-family: gbold
+    .description
+      font-size: 9px
+      font-family: glight
+
+.mainabout
+  h4
+    margin-top: 0

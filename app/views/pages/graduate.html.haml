@@ -1,0 +1,80 @@
+= render :partial => "layouts/header"
+.content
+  .graduate
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .about.col
+        .heading
+          .panel
+            %h2
+              About
+              = @graduate.name
+        - unless @graduate.news_photos.where("caption=?", "main").blank?
+          .graduate_image
+            .panel
+              = link_to(image_tag(@graduate.news_photos.where("caption=?", "main").first.image(:main)), "http://#{@tenant.website}", :target => "_blank")
+        .mainabout
+          .panel
+            - unless @graduate.content_title.blank?
+              %h2
+                = @graduate.content_title
+            .graduate_content
+              = @graduate.content.html_safe
+            .graduate_subcontent
+              - unless @graduate.subcontent_title.blank?
+                %h2
+                  = @graduate.subcontent_title unless @graduate.subcontent_title.blank?
+              = @graduate.subcontent.html_safe unless @graduate.subcontent.blank?
+        -#
+          .subgraduate
+            .panel
+              .graduate_numbers
+                = image_tag(@graduate.graduate_secondary_image(:display)) unless @graduate.graduate_secondary_image_file_name.blank?
+      .events_and_stuff.col
+        .about_acre
+          .panel
+            %h2
+              About ACRE
+        .acre_tenants
+          .panel
+            %h2
+              ACRE tenants
+            .acre_tenants_blurb
+              = Snippet.find(1).content.html_safe
+            %ul.unstyled.tenant_list
+              - @tenants.each do |t|
+                %li
+                  = link_to t.name, "/about/#{t.name.gsub(" ", "%20")}"
+        .acre_graduates
+          .panel
+            %h2
+              ACRE Graduates
+            .acre_graduates_blurb
+              = Snippet.find(2).content.html_safe
+            %ul.unstyled.graduate_list
+              - @graduates.each do |g|
+                %li
+                  = link_to g.name, "/graduate/#{g.name.gsub(" ", "%20")}"
+        .upcoming
+          .panel
+            %h2
+              Upcoming
+            .cal_link
+              = link_to "full calendar &raquo;".html_safe, calendar_path, :class => "more"
+            .events_list
+              %ul.unstyled
+                - @events.each do |e|
+                  %li
+                    .event_link
+                      - if e.origin == "event"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "grant"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+                      - else
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+                    .event_times
+                      = e.eventdate.strftime("%m-%d-%y")
+                      \/
+                      = e.eventdate.strftime("%l:%M%p")
+                      \-
+                      = e.eventenddate.strftime("%l:%M%p")

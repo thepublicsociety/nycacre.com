@@ -1,0 +1,61 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @provider.name %>
+</p>
+<br>
+<p>
+  <b>Author:</b>
+  <br>
+  <%= @provider.author %>
+</p>
+<br>
+<p>
+  <b>Specialty:</b>
+  <br>
+  <%= @provider.specialty %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= @provider.description.blank? ? "" : strip_tags(@provider.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= @provider.content.blank? ? "" : strip_tags(@provider.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Related tenants:</b>
+  <br>
+  <%= @provider.tenant %>
+</p>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @provider.sector %>
+</p>
+<br>
+<br>
+<p>
+  <b>Tags:</b>
+  <br>
+  <%= @provider.tag %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @provider.publish %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_provider_path(@provider) %> |
+<%= link_to 'Back', providers_path %>
+</div>

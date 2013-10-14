@@ -1,0 +1,178 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing resources</h1>
+<p>To approve, select 'edit' and check 'publish'</p>
+<div class="resource_table">
+  <h2>Resumes</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Specialty</th>
+      <th>Cover letter</th>
+      <th>Resume pdf</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @resumes.each do |resume| %>
+    <tr>
+      <td><%= resume.name %></td>
+      <td><%= resume.specialty %></td>
+      <td><%= truncate(strip_tags(resume.cover_letter), :length => 100).html_safe unless resume.cover_letter.blank? %></td>
+      <td><%= link_to resume.resume_document_file_name, resume.resume_document.url, :target => "_blank" %></td>
+      <td><%= link_to 'Show', resume %></td>
+      <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
+      <td><%= link_to 'Destroy', resume, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<div class="resource_table">
+  <h2>Providers</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Author</th>
+      <th>Specialty</th>
+      <th>Description</th>
+      <th>Content</th>
+      <th>Category</th>
+      <th>Related tenants</th>
+      <th>Sector</th>
+      <th>Tags</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @providers.each do |provider| %>
+    <tr>
+      <td><%= provider.name %></td>
+      <td><%= provider.website %></td>
+      <td><%= provider.author %></td>
+      <td><%= provider.specialty %></td>
+      <td><%= provider.description.blank? ? "" : truncate(strip_tags(provider.description), :length => 100).html_safe %></td>
+      <td><%= provider.content.blank? ? "" : truncate(strip_tags(provider.content), :length => 100).html_safe %></td>
+      <td><%= provider.category %></td>
+      <td><%= provider.tenant %></td>
+      <td><%= provider.sector %></td>
+      <td><%= provider.tag %></td>
+      <td><%= provider.publish %></td>
+      <td><%= link_to 'Show', provider %></td>
+      <td><%= link_to 'Edit', edit_provider_path(provider) %></td>
+      <td><%= link_to 'Destroy', provider, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<div class="resource_table">
+  <h2>Grants</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Due date</th>
+      <th>Author</th>
+      <th>Specialty</th>
+      <th>Description</th>
+      <th>Content</th>
+      <th>Category</th>
+      <th>Related tenants</th>
+      <th>Sector</th>
+      <th>Tags</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @grants.each do |grant| %>
+    <tr>
+      <td><%= grant.name %></td>
+      <td><%= grant.due_date.blank? ? "" : grant.due_date.strftime("%m-%d-%y") %></td>
+      <td><%= grant.author %></td>
+      <td><%= grant.specialty %></td>
+      <td><%= grant.description.blank? ? "" : truncate(strip_tags(grant.description), :length => 100).html_safe %></td>
+      <td><%= grant.content.blank? ? "" : truncate(strip_tags(grant.content), :length => 100).html_safe %></td>
+      <td><%= grant.category %></td>
+      <td><%= grant.tenant %></td>
+      <td><%= grant.sector %></td>
+      <td><%= grant.tag %></td>
+      <td><%= grant.publish %></td>
+      <td><%= link_to 'Show', grant %></td>
+      <td><%= link_to 'Edit', edit_grant_path(grant) %></td>
+      <td><%= link_to 'Destroy', grant, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<div class="resource_table">
+  <h2>Tools</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Specialty</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @tools.each do |contact| %>
+    <tr>
+      <td><%= contact.name %></td>
+      <td><%= contact.website %></td>
+      <td><%= contact.specialty %></td>
+      <td><%= contact.description.blank? ? "" : truncate(strip_tags(contact.description), :length => 100).html_safe %></td>
+      <td><%= contact.category %></td>
+      <td><%= contact.tag %></td>
+      <td><%= contact.publish %></td>
+      <td><%= link_to 'Show', contact %></td>
+      <td><%= link_to 'Edit', edit_tool_path(contact) %></td>
+      <td><%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+<div class="resource_table">
+  <h2>News Sites</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Website</th>
+      <th>Content</th>
+      <th>Author</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Related tenants</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  
+  <% @newssites.each do |n| %>
+    <tr>
+      <td><%= n.name %></td>
+      <td><%= n.website %></td>
+      <td><%= n.content.blank? ? "" : truncate(strip_tags(n.content), :length => 100).html_safe %></td>
+      <td><%= n.author %></td>
+      <td><%= n.category %></td>
+      <td><%= n.tag %></td>
+      <td><%= n.tenant %></td>
+      <td><%= n.publish %></td>
+      <td><%= link_to 'Show', n %></td>
+      <td><%= link_to 'Edit', edit_news_site_path(n) %></td>
+      <td><%= link_to 'Destroy', n, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+
+</div>

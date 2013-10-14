@@ -1,0 +1,66 @@
+.single_resource_display_contents
+  .panel
+    .heading
+      %h2
+        - unless @resourcetype == "article"
+          = @resource.name
+        - else
+          = @resource.title
+    .resource_meta
+      - unless @resourcetype == "resume"
+        = "From #{@resource.author} / #{@resource.created_at.strftime("%m-%d-%y")}"
+      - else
+        = "From #{@resource.name} / #{@resource.created_at.strftime("%m-%d-%y")}"
+    .resource_save
+      = link_to "save a memo", "#", :class => "saveMemoLink", 'data-resource_type' => @resourcetype, 'data-resource_id' => @resource.id
+    .resource_content
+      %ul.resource_links.unstyled
+        - unless @resource.website.blank?
+          %li
+            %strong
+              Website:
+            %span
+              = @resource.website
+        - unless @resource.email.blank?
+          %li
+            %strong
+              Email:
+            %span
+              = @resource.email
+        - unless @resource.telephone.blank?
+          %li
+            %strong
+              Telephone:
+            %span
+              = @resource.telephone
+        
+      - unless @resourcetype == "resume"
+        = @resource.content.blank? ? "" : @resource.content.html_safe
+      - else
+        = @resource.cover_letter.blank? ? "" : @resource.cover_letter.html_safe
+        = link_to "link to resume", @resource.resume_document.url unless @resource.resume_document.blank?
+.related_resources
+  .panel
+    .heading
+      %h2
+        - if @resourcetype == "grant"
+          Related Funding & Grants
+        - elsif @resourcetype == "news_site"
+          Related News
+        - else
+          = "Related #{@resourcetype}s"
+    %ul.unstyled
+      - @related.each do |r|
+        %li
+          - if @resourcetype == "article"
+            = link_to r.title, "#", 'data-resource_type' => @resourcetype, 'data-resource_id' => r.id, :class => "resource_link"
+            .info
+              = word_truncate(r.content, :words => 10).html_safe
+          - elsif @resourcetype == "resume"
+            = link_to r.name, "#", 'data-resource_type' => @resourcetype, 'data-resource_id' => r.id, :class => "resource_link"
+            .info
+              = word_truncate(r.cover_letter, :words => 10).html_safe
+          - else
+            = link_to r.name, "#", 'data-resource_type' => @resourcetype, 'data-resource_id' => r.id, :class => "resource_link"
+            .info
+              = word_truncate(r.description, :words => 10).html_safe

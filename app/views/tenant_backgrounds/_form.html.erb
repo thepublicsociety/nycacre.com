@@ -1,0 +1,19 @@
+<%= simple_form_for(@tenant_background, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :page_controller, :as => "hidden" %>
+    <%= f.input :page_action, :as => "hidden" %>
+    <%= f.input :page_url, :as => "hidden" %>
+    <% if controller.action_name == "edit" %>
+      <%= select_tag("page", options_for_select([["Select Page", ""], ["Dashboard", "dashboard"], ["Resources", "resources"], ["News", "news"], ["Contact", "contact"], ["Calendar", "calendar"]], :selected => [@tenant_background.page_action.capitalize, @tenant_background.page_action])) %>
+    <% else %>
+      <%= select_tag("page", options_for_select([["Select Page", ""], ["Dashboard", "dashboard"], ["Resources", "resources"], ["News", "news"], ["Contact", "contact"], ["Calendar", "calendar"]])) %>
+    <% end %>
+    <%= f.input :tenant_background_image, :label => false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update background" %>
+  </div>
+<% end %>

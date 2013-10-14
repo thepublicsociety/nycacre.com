@@ -1,0 +1,10 @@
+= render :partial => "layouts/cms_header"
+.content
+  %h1
+    Editing resume
+  .form.adminform
+    = render 'form'
+  .links
+    = link_to 'Show', @resume
+    \|
+    = link_to 'Back', resumes_path

@@ -1,0 +1,5 @@
+%li
+  - if p.saved?(@user)
+    .saved_indicator
+  .name
+    = link_to p.name, "#", 'data-resource_type' => @resource, 'data-resource_id' => p.id, :class => "resource_link"

@@ -1,0 +1,123 @@
+= render :partial => "layouts/header"
+.content
+  .contact
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .contactMain.col
+        .heading
+          .panel
+            %h2
+              Contact
+        .address_contact_and_map
+          .address_and_contact
+            .address
+              .panel
+                %address
+                  %h2
+                    NYC ACRE
+                  .streetAddress
+                    137 Varick St, 2nd Floor
+                    %br
+                    New York, NY 10013
+                    %br
+                    Phone: (212) 292-3123
+                  .email
+                    = link_to "info@nycacre.com", "mailto:info@nycacre.com"
+                  .see_map
+                    = link_to "see map &raquo;".html_safe, "/map", :class => "more"
+            .contactATenant
+              .panel
+                .dropdown_panel.dropdown_panel-right
+                  %h2
+                    %a{:href => "#", :data => {:toggle => "tenant_contact"}}
+                      Email Us
+              .tenant_contact
+                .panel
+                  .tenant_contact_form
+                    = simple_form_for @message, :url => email_form_path do |f|
+                      = label_tag "Select Tenant"
+                      = select_tag("select_tenant_contact", options_from_collection_for_select(@emailers, "email", "name"), :include_blank => true)
+                      = label_tag "From"
+                      = text_field_tag "from"
+                      = f.input :email, :label => "To"
+                      = label_tag "Subject"
+                      = text_field_tag "subject"
+                      = f.input :body, :as => "text", :label => "Message"
+                      = f.button :submit, "Submit"
+                    .clear
+            .clear
+          .map
+            .panel
+              = image_tag("http://maps.googleapis.com/maps/api/staticmap?center=137+Varick+st,New+York,NY&zoom=15&size=299x241&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:A%7C137+Varick+St+New+York+NY&key=AIzaSyAB4WVGb5YRtWGMYIrfFBCJwA3GWbLaLHE&sensor=false")
+            .clear
+        .clear
+        .maincontact
+          .contact_text
+            .panel
+              %h2
+                = @apply_text.title
+              .contact_text_content
+                = @apply_text.content.html_safe
+              %h2
+                = @apply_text.subcontent_title
+              .contact_text_subcontent
+                = @apply_text.subcontent.html_safe
+          .tenant_application
+            .panel
+              %h2
+                Tenant Application
+              = link_to "BACK &raquo;".html_safe, "#", :class => "more tenant_application_back_link"
+              .tenant_application_form
+                = render :partial => "tenant_applications/form"
+      .application_resume_and_newsletter.col
+        .contact_page_side_image
+          .panel
+            = image_tag(Snippet.find(4).snippet_image.url)
+        .newsletter
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "signup_newsletter"}}
+                  Sign Up - Newsletter
+          .signup_newsletter
+            .panel
+              .signup_newsletter_form
+                = simple_form_for(@newsletter, :remote => true) do |f|
+                  = f.input :email, :label => "Email Address"
+                  = f.input :thing, :as => :hidden, :input_html => {:value => "newsletter"}
+                  .processingSubmission
+                  = f.button :submit
+        .application
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "tenant_application"}}
+                  Tenant Application
+        .resume
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "submit_resume"}}
+                  Submit a Resume
+          .submit_resume
+            .panel
+              .submit_resume_blurb
+                = Snippet.find(6).content.html_safe
+              .submit_resume_form
+                = simple_form_for(@resume, :html => {:multipart => true}, :remote => true) do |f|
+                  = f.input :resume_document, :as => "file", :label => "Insert pdf"
+                  = f.input :name
+                  = f.label :specialty, "Area of Specialty"
+                  = select_tag("specialty_fake", options_from_collection_for_select(@resume_specialty_options, "value", "name"), :include_blank => true)
+                  = f.input :specialty, :as => "hidden"
+                  = f.input :cover_letter, :label => "Tell us about yourself"
+                  .processingSubmission
+                  = f.button :submit
+#mapModal.modal.hide.fade{:tabindex => "-1", :role => "dialog", :aria => {:labelledby => "mapModalLabel", :hidden => "true"}}
+  .modal-header
+    %button{:class => "close", :data => {:dismiss => "modal"}, :aria => {:hidden => "true"}}
+      ×
+    %h2
+      Map
+  .modal-body
+    = image_tag("http://maps.googleapis.com/maps/api/staticmap?center=137+Varick+st,New+York,NY&zoom=15&size=623x623&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:A%7C137+Varick+St+New+York+NY&key=AIzaSyAB4WVGb5YRtWGMYIrfFBCJwA3GWbLaLHE&sensor=false")

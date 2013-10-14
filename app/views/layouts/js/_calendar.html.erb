@@ -1,0 +1,29 @@
+<script>
+	$(document).ready(function() {
+	
+    var jfcalplugin = $("#calendar").jFrontierCal({
+      date:new Date(),
+      dayClickCallback: dayClickHandler,
+      agendaClickCalback: agendaClickHandler,
+      dragAndDropEnabled: false
+    }).data("plugin");
+    
+    function dayClickHandler(eventObj){}
+    function agendaClickHandler(eventObj){}
+  
+  
+  
+      <% @events.each do |e| %>
+				jfcalplugin.addAgendaItem(
+				  "#calendar",
+				  "<%= e.eventdate.strftime("%-k:%M") %> - <%= e.eventenddate.strftime("%-k:%M") %> <%= e.title %>",
+				  new Date('<%= e.eventdate.strftime("%-m/%-d/%Y %-k:%M") %>'),
+				  new Date('<%= e.eventenddate.strftime("%-m/%-d/%Y %-k:%M") %>'),
+				  true
+				);
+			<% end %>
+  
+  
+  
+  });
+</script>

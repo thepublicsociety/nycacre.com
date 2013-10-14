@@ -1,0 +1,137 @@
+= render :partial => "layouts/header"
+.content
+  .tenant
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .about.col
+        .heading
+          .panel
+            %h2
+              About
+              = @tenant.name
+        - unless @tenant.news_photos.where("caption=?", "main").blank?
+          .tenant_image
+            .panel
+              = link_to(image_tag(@tenant.news_photos.where("caption=?", "main").first.image(:main)), "http://#{@tenant.website}", :target => "_blank")
+        .mainabout
+          .panel
+            - unless @tenant.content_title.blank?
+              %h2
+                = @tenant.content_title
+            .tenant_content
+              = @tenant.content.html_safe
+            .tenant_subcontent
+              - unless @tenant.subcontent_title.blank?
+                %h2
+                  = @tenant.subcontent_title unless @tenant.subcontent_title.blank?
+              = @tenant.subcontent.html_safe
+        - unless @tenant.tenant_stats.where("publish=?", true).empty?
+          .subtenant
+            .panel
+              .tenant_numbers
+                - @tenant.tenant_stats.where("publish=?", true).each do |s|
+                  .statistic
+                    .statistic_value
+                      - if s.is_dollar_value?
+                        %span.dollarsign
+                          $
+                      = s.value
+                    .statistic_name
+                      = s.name
+        .acre_news_and_twitter
+          .acre_news
+            .panel
+              %h2
+                = Post.find(:all, :conditions => ["publish=? and archive=? and tenant like ? and internal_only=?", true, false, "%#{@tenant.name}%", false], :order => "created_at DESC", :limit => 7).empty? ? "ACRE" : @tenant.name
+                News
+              %ul.unstyled
+                - @news.each do |n|
+                  %li
+                    = link_to n.title, "/news/#{n.title.gsub(" ", "%20")}"
+                    .subh.light
+                      = n.subheading
+              .more
+                = link_to "see all articles &raquo;".html_safe, news_path
+          .twitter
+            .panel
+              %h2
+                = @twitter_link.blank? ? "ACRE" : @tenant.name
+                On Twitter
+              .twitter_link
+                = link_to "@#{@twitter_handle}", @tenant.twitter_link.blank? ? "https://twitter.com/nycacre" : @tenant.twitter_link, :target => "_blank"
+              .twitter_list
+                %ul.unstyled
+                  - if @tweets.class == Array
+                    - @tweets.each do |t|
+                      %li
+                        .tweet_text
+                          = t.text.blank? ? "Error parsing Twitter feed" : t.text
+                        .tweet_date
+                          \-
+                          = time_ago_in_words(t.created_at) unless t.created_at.blank?
+                          - unless t.created_at.blank?
+                            ago via Twitter
+                  - else
+                    %li
+                      .tweet_text
+                        Error parsing Twitter feed
+                = link_to "more tweets &raquo;".html_safe, "https://twitter.com/nycacre", :target => "_blank", :class => "more"
+        .tenant_connect_wrapper
+          - unless @tenant.facebook_link.blank? && @tenant.twitter_link.blank?
+            .tenant_connect
+              .connect_text
+                = "Connect with #{@tenant.name}"
+              - unless @tenant.twitter_link.blank?
+                .connect_twitter
+                  = link_to "", @tenant.twitter_link, :target => "_blank"
+              - unless @tenant.facebook_link.blank?
+                .connect_facebook
+                  = link_to "", @tenant.facebook_link, :target => "_blank"
+      .events_and_stuff.col
+        .about_acre
+          .panel
+            %h2
+              = link_to "About ACRE", "/about"
+        .acre_tenants
+          .panel
+            %h2
+              ACRE Tenants
+            .acre_tenants_blurb
+              = Snippet.find(1).content.html_safe
+            %ul.unstyled.tenant_list
+              - @tenants.each do |t|
+                %li
+                  = link_to t.name, "/about/#{t.name.gsub(" ", "%20")}"
+        .acre_graduates
+          .panel
+            %h2
+              ACRE Graduates
+            .acre_graduates_blurb
+              = Snippet.find(2).content.html_safe
+            %ul.unstyled.graduate_list
+              - @graduates.each do |g|
+                %li
+                  = link_to g.name, "/graduate/#{g.name.gsub(" ", "%20")}"
+        .upcoming
+          .panel
+            %h2
+              Upcoming
+            .cal_link
+              = link_to "full calendar &raquo;".html_safe, calendar_path, :class => "more"
+            .events_list
+              %ul.unstyled
+                - @events.each do |e|
+                  %li
+                    .event_link
+                      - if e.origin == "event"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "grant"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+                      - else
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+                    .event_times
+                      = e.eventdate.strftime("%m-%d-%y")
+                      \/
+                      = e.eventdate.strftime("%l:%M%p")
+                      \-
+                      = e.eventenddate.strftime("%l:%M%p")

@@ -1,0 +1,12 @@
+<% if @resume.errors.any? %>
+  $("label.file").html("INVALID!");
+  clearInterval(loadAction);
+  $(".submit_resume_form .processingSubmission").html("");
+<% else %>
+  $(".add_resume_form").hide();
+  $(".resume").find(".dropdown_panel").toggleClass("dropdown_panel-right").toggleClass("dropdown_panel-down");
+  $(".submit_resume").hide();
+  $("label.file").val("");
+  clearInterval(loadAction);
+  $(".submit_resume_form .processingSubmission").html("");
+<% end %>

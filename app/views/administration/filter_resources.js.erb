@@ -1,0 +1,31 @@
+<% if @resource == "provider" %>
+  <% if @filter == "specialty" %>
+    $(".provider_resource_display").html("<%= escape_javascript(render :partial => "layouts/resource_group_display") %>");
+  <% else %>
+    $(".provider_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @results, :as => :p) %></ul>");
+  <% end %>
+<% elsif @resource == "resume" %>
+  <% if @filter == "specialty" %>
+    $(".resume_resource_display").html("<%= escape_javascript(render :partial => "layouts/resource_group_display") %>");
+  <% else %>
+    $(".resume_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @results, :as => :p) %></ul>");
+  <% end %>
+<% elsif @resource == "grant" %>
+  <% if @filter == "specialty" %>
+    $(".grant_resource_display").html("<%= escape_javascript(render :partial => "layouts/resource_group_display") %>");
+  <% else %>
+    $(".grant_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @results, :as => :p) %></ul>");
+  <% end %>
+<% elsif @resource == "tool" %>
+  <% if @filter == "specialty" %>
+    $(".contacts_resource_display").html("<%= escape_javascript(render :partial => "layouts/resource_group_display") %>");
+  <% else %>
+    $(".contacts_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @results, :as => :p) %></ul>");
+  <% end %>
+<% elsif @resource == "news" %>
+  <% if @filter == "specialty" %>
+    $(".news_resource_display").html("<%= escape_javascript(render :partial => "layouts/resource_group_display") %>");
+  <% else %>
+    $(".news_resource_display").html("<h3>Search Results</h3><ul class='unstyled'><%= escape_javascript(render :partial => "layouts/resource_display", :collection => @results, :as => :p) %></ul>");
+  <% end %>
+<% end %>

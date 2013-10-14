@@ -1,0 +1,29 @@
+<%= render :partial => "layouts/internal_header" %>
+<div class="content">
+  <div class="userManageForm">
+    <h2>Sign up</h2>
+    
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+    
+      <div class="inputs">
+        <div class="non-password_fields">
+          <%= f.input :email, :required => true, :autofocus => true %>
+          <%= f.input :name, :required => true %>
+          <%= label_tag "Choose Tenant" %>
+          <%= select_tag("tenant_id_fake", options_from_collection_for_select(Tenant.find(:all, :order => "name ASC"), "id", "name"), :include_blank => true) %>
+          <%= f.input :tenant_id, :as => "hidden" %>
+        </div>
+        <div class="password_fields">
+          <%= f.input :password, :required => true %>
+          <%= f.input :password_confirmation, :required => true %>
+      </div>
+      <div class="clear"></div>
+      <div class="actions">
+        <%= f.button :submit, "Sign up" %>
+      </div>
+    <% end %>
+    <div class="vspacer20"></div>
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<%= simple_form_for(@tenant_application) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="tenant_application_form_basics">
+      <%= f.input :company_name, :label => "Name of company" %>
+      <%= f.input :company_technology, :label => "Technology on which company is based" %>
+      <%= f.label :funding_status, "Current Funding Status (please select one)" %>
+      <%= select_tag("funding_status_fake", options_from_collection_for_select(@funding_status_options, "value", "name"), :include_blank => true) %>
+      <%= f.input :funding_status, :as => "hidden" %>
+      <div class="clear"></div>
+    </div>
+    <div class="form_section_header">
+      <h3>Business and Business Model</h3>
+    </div>
+    <div class="tenant_application_form_business-and-business-model">
+      <%= f.input :inception, :label => "Date of Inception (When was your company created? Indicate date and place of incorporation, if applicable.)" %>
+      <%= f.input :value_proposition, :as => "string", :label => "Value Proposition (What is the company's key value proposition (e.g. low cost producer, highest reliability)?)" %>
+      <%= f.input :current_structure_file, :label => "Current Structure (Include a chart with the company's organizational structure as well as brief bios for key team members.)" %>
+      <%= f.input :ownership, :as => "string", :label => "Ownership (Provide detail on current equity ownership, if applicable, as well as amounts/sources of any debt outstanding.)" %>
+    </div>
+    <div class="form_section_header">
+      <h3>General Desription</h3>
+    </div>
+    <div class="tenant_application_form_general-description">
+      <%= f.input :description, :as => "string", :label => "Describe product/service and technology involved" %>
+      <%= f.input :revenue_model, :as => "string", :label => "Include a revenue model that details how the company will generate income" %>
+      <%= f.input :benefits, :as => "string", :label => "Define and quantify key benefits to customers" %>
+      <%= f.input :evolution_status, :as => "string", :label => "Indicate where the product is in its evolution (e.g. fully tested prototype; in initial production, market readiness; etc.)" %>
+    </div>
+    <div class="form_section_header">
+      <h3>Competitive Position</h3>
+    </div>
+    <div class="tenant_application_form_competitive-position">
+      <%= f.input :competitors, :as => "string", :label => "Competitors: Describe the current competitive landscape." %>
+      <%= f.input :competition_edge, :as => "string", :label => "Edge over competition: What distinguishes your product/service from what is currently available?" %>
+      <%= f.input :sustainability, :as => "string", :label => "Sustainability: Is this competitive position sustainable?" %>
+      <%= f.input :intellectual_property, :as => "string", :label => "Intellectual Property: How will you protect your proprietary information?" %>
+    </div>
+    <div class="form_section_header">
+      <h3>Markets</h3>
+    </div>
+    <div class="tenant_application_form_markets">
+      <%= f.input :target_market, :as => "string", :label => "Target Market: Provide an assessment of the target market for your product/service and explain how you will capture a segment of this market." %>
+      <%= f.input :entry_barriers, :as => "string", :label => "Barriers to Entry: How will you maintain your competitive position?" %>
+    </div>
+    <div class="form_section_header">
+      <h3>Customers</h3>
+    </div>
+    <div class="tenant_application_form_customers">
+      <%= f.input :customers, :label => "Who are the specific customers that you are pursuing or will pursue? Indicate whether you have any letters of intent to purchase." %>
+    </div>
+    <div class="form_section_header">
+      <h3>Cash Flow Statement</h3>
+      <p>Please download and complete the 24 month cash flow template and send along with your application. A <a href='/template.xls' style='text-decoration: underline'>template</a> can be found on the website.</p>
+    </div>
+    <div class="tenant_application_form_cash-flow_and_applicant-info">
+      <%= f.input :name_and_title, :label => "Name and Title of Applicant:" %>
+      <%= f.input :address, :label => "Address:" %>
+      <%= f.input :phone, :label => "Phone:" %>
+      <%= f.input :email, :label => "Email:" %>
+      <%= f.input :cash_flow_statement, :label => "Please include your completed cash flow statement." %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

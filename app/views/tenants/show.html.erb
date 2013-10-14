@@ -1,0 +1,61 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @tenant.name %>
+</p>
+<br>
+<p>
+  <b>Content title:</b>
+  <br>
+  <%= @tenant.content_title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@tenant.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Subcontent title:</b>
+  <br>
+  <%= @tenant.subcontent_title %>
+</p>
+<br>
+<p>
+  <b>Subcontent:</b>
+  <br>
+  <%= strip_tags(@tenant.subcontent).html_safe %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= strip_tags(@tenant.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @tenant.sector %>
+</p>
+<br>
+<p>
+  <b>Active:</b>
+  <br>
+  <%= @tenant.active %>
+</p>
+<br>
+<p>
+  <b>Featured:</b>
+  <br>
+  <%= @tenant.featured %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_tenant_path(@tenant) %> |
+<%= link_to 'Back', tenants_path %>
+</div>

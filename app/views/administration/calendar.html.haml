@@ -1,0 +1,168 @@
+= render :partial => "layouts/internal_header"
+.content
+  .calendar
+    .cols
+      %nav.col
+        .logo
+          = link_to "", root_path, :title => "ACRE Home"
+        .navigation
+          %ul.unstyled
+            %li
+              = link_to "Resources", "/administration/resources"
+            %li
+              = link_to "News", "/administration/news"
+            %li
+              = link_to "Contact", "/administration/contact"
+            %li
+              = link_to "NYConnect", "http://cleantechnyconnect.com/", :target => "_blank"
+        .adding_events_keys
+          .panel
+            .events_key
+              %ul.unstyled
+                %li.acre_events
+                  .circle
+                    %a.event_circle{:href => "#", :data => {:event_type => "event"}}
+                  .key
+                    ACRE events
+                %li.funding_and_grants
+                  .circle
+                    %a.grant_circle{:href => "#", :data => {:event_type => "grant"}}
+                  .key
+                    Funding & Grants
+                %li.your_calendar
+                  .circle
+                    %a.google_circle{:href => "#", :data => {:event_type => "google"}}
+                  .key
+                    Your Calendar
+        .adding_events
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "add_event_form"}}
+                  New Event
+          .add_event_form
+            .panel
+              .heading
+                %h2
+                  New Event
+              .event_form
+                = simple_form_for(@event, :remote => true) do |f|
+                  = f.input :title
+                  = f.input :content, :as => "string", :label => "Description"
+                  <label class="string optional control-label" for="event_eventdate">Date & Time</label>
+                  <div id="event_datetimepicker" class="input-append">
+                  <input class="string optional date-time-pick" id="event_eventdate" name="event[eventdate]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+                  <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                  </span>
+                  </div>
+                  = f.input :eventenddate, :as => "hidden"
+                  = f.button :submit
+              .grant_form
+                = simple_form_for(@grant, :remote => true) do |f|
+                  = f.input :name, :label => "Title"
+                  = f.input :description, :as => "string", :label => "Description"
+                  <label class="string optional control-label" for="grant_due_date">Date & Time</label>
+                  <div id="grant_datetimepicker" class="input-append">
+                  <input class="string optional date-time-pick" id="grant_due_date" name="grant[due_date]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+                  <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                  </span>
+                  </div>
+                  = f.button :submit
+              .google_form
+                = simple_form_for(:google, :url => "/add-calendar-event", :remote => true) do
+                  <label>Title</label>
+                  = text_field_tag "title"
+                  <label>Description</label>
+                  = text_field_tag "description"
+                  <label class="string optional control-label" for="event_start">Date & Time</label>
+                  <div id="google_datetimepicker" class="input-append">
+                  <input class="string optional date-time-pick" id="event_start" name="event_start" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+                  <span class="add-on">
+                  <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i>
+                  </span>
+                  </div>
+                  = submit_tag :submit
+              .adding_events_form_type_selection
+                .events_key
+                  %ul.unstyled
+                    %li.acre_events
+                      .check.on{:data => {:event_type => "event"}}
+                      .circle
+                        %a{:href => "#", :data => {:event_type => "event"}}
+                      .key
+                        ACRE events
+                    %li.funding_and_grants
+                      .check{:data => {:event_type => "grant"}}
+                      .circle.off
+                        %a{:href => "#", :data => {:event_type => "grant"}}
+                      .key
+                        Funding & Grants
+                    %li.your_calendar
+                      .check{:data => {:event_type => "google"}}
+                      .circle.off
+                        %a{:href => "#", :data => {:event_type => "google"}}
+                      .key
+                        Your Calendar
+      .calendarMain.col
+        .heading_and_month_select
+          .heading
+            .panel
+              %h2
+                Calendar
+          .month_select
+            .panel
+              .previous_month
+                = link_to "<", "#", :class => "previousMonthLink"
+              .current_month
+                %h2
+                  May 2013
+              .next_month
+                = link_to ">", "#", :class => "nextMonthLink"
+        #calendar
+          .panel
+            = calendar @uevents, :class => "public_event_calendar table table-bordered" do |e|
+              .day_event_container{:class => "event_type_#{e.origin} #{e.saved?(@user) ? "saved" : ""}"}
+                = link_to truncate(e.name, :length => 20).html_safe, "#", 'data-event_id' => e.id
+                .clear
+                .day_event_indicator{:class => e.origin}
+                .day_event_times
+                  = e.event_start.strftime("%l:%M%P")
+                  \-
+                  = e.event_end.strftime("%l:%M%P")
+- @uevents.each do |e|
+  .day_event_details.hide{:id => "event_info_#{e.id}"}
+    .day_event_title
+      - if e.origin == "event"
+        = link_to e.name, "/events/#{e.id}", 'data-event-id' => e.id
+      - elsif e.origin == "grant"
+        = link_to e.name, "/grants/#{e.id}", 'data-event-id' => e.id
+      - elsif e.origin == "acregoogle"
+        = link_to e.name, "/event/#{e.id}", 'data-event-id' => e.id
+      - else
+        = link_to e.name, e.google_link, :target => "_blank"
+    .event_date_and_address{:class => e.origin}
+      .event_indicator
+      .day_event_date
+        = e.event_start.strftime("%A, %b %-d, %Y")
+      .day_event_times
+        = e.event_start.strftime("%l:%M%P")
+        \-
+        = e.event_end.strftime("%l:%M%P")
+      .day_event_address
+        = e.location.blank? ? "" : e.location.gsub(/__.*/, "")
+        - if e.location && e.location.include?("__")
+          %br
+          = e.location.blank? ? "" : e.location.gsub(/.*__/, "")
+    .day_event_description
+      - if e.origin == "event"
+        = smart_truncate(e.content, "/events/#{e.id}", :words => 15).html_safe unless e.content.blank?
+      - elsif e.origin == "grant"
+        = smart_truncate(e.content, "/grants/#{e.id}", :words => 15).html_safe unless e.content.blank?
+      - elsif e.origin == "acregoogle"
+        = smart_truncate(e.content, "/event/#{e.id}", :words => 15).html_safe unless e.content.blank?
+      - else
+        = smart_truncate(e.content, e.google_link, :words => 15).html_safe unless e.content.blank?
+    .day_event_save
+      = link_to "save a memo", "#", :class => "saveEventMemo", 'data-resource_type' => "userevent", 'data-resource_id' => e.id

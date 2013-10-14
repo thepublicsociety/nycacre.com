@@ -1,0 +1,165 @@
+= render :partial => "layouts/cms_header"
+- if current_user.role == "admin"
+  .container
+    .row
+      .span12
+        .user_list
+          %h1
+            User List
+          = link_to "Send invitation", new_user_invitation_path, :class => "btn btn-inverse", :style => "margin-bottom: 20px"
+          %table.table.userTable
+            %thead
+              %tr
+                %th
+                  User ID
+                %th
+                  Name
+                %th
+                  Email
+                %th
+                  Tenant
+                %th
+                  Access
+                %th
+                  Active
+                %th
+            - @users.each do |u|
+              %tr
+                %th
+                  = u.id
+                %th
+                  = u.name
+                %th
+                  = u.email
+                %th
+                  = u.tenant.blank? ? "None" : u.tenant.name
+                %th
+                  - if u.admin?
+                    = link_to "Restrict", {:controller => "administration", :action => "access_control", :admin => !u.admin, :id => u.id}, :method => :put
+                  - else
+                    = link_to "Grant", {:controller => "administration", :action => "access_control", :admin => !u.admin, :id => u.id}, :method => :put
+                %th
+                  = u.current_sign_in_at.blank? ? "false" : "true"
+                %th
+                  = link_to "Delete", {:controller => "administration", :action => "delete_user", :id => u.id}, :confirm => 'Permanently delete user?', :method => :delete  if current_user.super_admin?
+    .row
+      .span6
+        .current_announcement
+          - if @current_announcement.blank?
+            %h3
+              No Current Announcements
+          - else
+            %h3
+              Current Announcement
+            .current_announcement_image
+              = image_tag(@current_announcement.announcement_image.url(:thumb))
+            .current_announcement.text
+              %h4
+                - if !@current_announcement.post_id.blank?
+                  = Post.find(@current_announcement.post_id).title
+                - elsif !@current_announcement.tenant_id.blank?
+                  = Tenant.find(@current_announcement.tenant_id).name
+                - else
+                  = @current_announcement.headline
+              - if !@current_announcement.post_id.blank?
+                = word_truncate(Post.find(@current_announcement.post_id).content, :words => 50).html_safe
+              - elsif !@current_announcement.tenant_id.blank?
+                = word_truncate(Tenant.find(@current_announcement.tenant_id).content, :words => 50).html_safe
+              - else
+                = word_truncate(@current_announcement.content, :words => 50).html_safe
+            .remove_current_announcement
+              = link_to "Remove", "#", 'data-announcement_id' => @current_announcement.id, :class => 'btn btn-inverse btn-small hideAnnouncementLink'
+      .span6
+        .new_announcement
+          .heading
+            %h3
+              New Announcement
+          .select_announcement
+            = simple_form_for(@announcement, :html => {:multipart => true}) do |f|
+              = f.input :post_id, :as => "hidden"
+              = select_tag("post_fake", options_from_collection_for_select(@posts, "id", "title"), :prompt => "Select an article")
+              .or
+                Or
+              = f.input :tenant_id, :as => "hidden"
+              = select_tag("tenant_fake", options_from_collection_for_select(@tenants, "id", "name"), :prompt => "Select a tenant")
+              .vspacer20
+              = f.input :announcement_image, :label => "Image"
+              = f.button :submit, :class => "btn btn-inverse btn-small"
+              .or
+                Or
+              = link_to "Set a standalone announcement", "#", :class => "standaloneAnnouncement"
+        .new_announcement_form.hide
+          = simple_form_for(@announcement, :html => {:multipart => true}) do |f|
+            = f.input :headline
+            = f.input :content
+            = f.input :announcement_image, :label => "Image"
+            = f.button :submit, :class => "btn btn-inverse btn-small"
+    .vspacer20
+    .row
+      .span6
+        .alert_list
+          .heading
+            %h3
+              Current Alert(s)
+          - unless @alerts.blank?
+            %table.table
+              %tr
+                %th
+                  Name
+                %th
+                  Content
+                %th
+              - @alerts.each do |a|
+                %tr
+                  %td
+                    = a.title
+                  %td
+                    = truncate(a.content, :limit => 35) unless a.content.blank?
+                  %td
+                    = link_to "Remove", "/administration/remove-alert?id=#{a.id}"
+      .span6
+        .new_alert
+          .heading
+            %h3
+              New Alert
+          .new_alert_form
+            = simple_form_for(@alert, :url => "/administration/create-alert") do |f|
+              = f.input :title
+              = f.input :content
+              = f.input :publish
+              = f.button :submit, :class => "btn btn-inverse btn-small"
+    .vspacer20
+    -#
+      .row
+        .span6
+          .alert_list
+            .heading
+              %h3
+                Current Statement(s)
+            - unless @statements.blank?
+              %table.table
+                %tr
+                  %th
+                    Title
+                  %th
+                    Content
+                  %th
+                - @statements.each do |a|
+                  %tr
+                    %td
+                      = a.title
+                    %td
+                      = truncate(a.content, :limit => 35) unless a.content.blank?
+                    %td
+                      = link_to "Delete", a, method: :delete, data: { confirm: 'Are you sure?' }
+        .span6
+          .new_alert
+            .heading
+              %h3
+                New Statement
+            .new_alert_form
+              = simple_form_for(@statement) do |f|
+                = f.input :title
+                = f.input :content
+                = f.input :publish
+                = f.button :submit, :class => "btn btn-inverse btn-small"

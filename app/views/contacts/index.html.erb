@@ -1,0 +1,46 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing contacts</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Specialty</th>
+    <th>Description</th>
+    <th>Content</th>
+    <th>Category</th>
+    <th>Related tenants</th>
+    <th>Sector</th>
+    <th>Tags</th>
+    <th>Published</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%= contact.name %></td>
+    <td><%= contact.email %></td>
+    <td><%= contact.address %></td>
+    <td><%= contact.specialty %></td>
+    <td><%= contact.description.blank? ? "" : truncate(strip_tags(contact.description), :length => 100).html_safe %></td>
+    <td><%= contact.content.blank? ? "" : truncate(strip_tags(contact.content), :length => 100).html_safe %></td>
+    <td><%= contact.category %></td>
+    <td><%= contact.tenant %></td>
+    <td><%= contact.sector %></td>
+    <td><%= contact.tag %></td>
+    <td><%= contact.publish %></td>
+    <td><%= link_to 'Show', contact %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+    <td><%= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New contact'.html_safe, new_contact_path, :class => "btn btn-mini" %>
+</div>

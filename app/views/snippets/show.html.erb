@@ -1,0 +1,25 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @snippet.name %>
+</p>
+<br>
+<p>
+  <b>Title:</b>
+  <br>
+  <%= @snippet.title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@snippet.content).html_safe %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+<%= link_to 'Back', snippets_path %>
+</div>

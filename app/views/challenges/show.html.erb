@@ -1,0 +1,43 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @challenge.name %>
+</p>
+<br>
+<p>
+  <b>Content title:</b>
+  <br>
+  <%= @challenge.content_title %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= strip_tags(@challenge.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Subcontent title:</b>
+  <br>
+  <%= @challenge.subcontent_title %>
+</p>
+<br>
+<p>
+  <b>Subcontent:</b>
+  <br>
+  <%= strip_tags(@challenge.subcontent).html_safe %>
+</p>
+<br>
+<p>
+  <b>Featured:</b>
+  <br>
+  <%= @challenge.featured %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
+<%= link_to 'Back', challenges_path %>
+</div>

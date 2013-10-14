@@ -1,0 +1,9 @@
+<% if @resourcetype == "grant" %>
+  $(".resourcesMain > .heading > .panel > h2").html("Funding & Grants");
+<% elsif @resourcetype == "news_site" %>
+    $(".resourcesMain > .heading > .panel > h2").html("News");  
+<% else %>
+  $(".resourcesMain > .heading > .panel > h2").html("<%= escape_javascript(@resourcetype) %>s");
+<% end %>
+$(".single_resource_display").html("<%= escape_javascript(render :partial => "layouts/single_resource_display") %>").show();
+$(".multiple_resource_display").hide();

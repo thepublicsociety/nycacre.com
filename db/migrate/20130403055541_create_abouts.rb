@@ -1,0 +1,15 @@
+class CreateAbouts < ActiveRecord::Migration
+  def self.up
+    create_table :abouts do |t|
+      t.string :title
+      t.text :content
+      t.string :subtitle
+
+      t.timestamps
+    end
+  end
+
+  def self.down
+    drop_table :abouts
+  end
+end

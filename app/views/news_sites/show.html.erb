@@ -1,0 +1,67 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <br>
+  <%= @news_site.name %>
+</p>
+<br>
+<p>
+  <b>Website:</b>
+  <br>
+  <%= @news_site.website %>
+</p>
+<br>
+<p>
+  <b>Author:</b>
+  <br>
+  <%= @news_site.author %>
+</p>
+<br>
+<p>
+  <b>Specialty:</b>
+  <br>
+  <%= @news_site.specialty %>
+</p>
+<br>
+<p>
+  <b>Description:</b>
+  <br>
+  <%= @news_site.description.blank? ? "" : strip_tags(@news_site.description).html_safe %>
+</p>
+<br>
+<p>
+  <b>Content:</b>
+  <br>
+  <%= @news_site.content.blank? ? "" : strip_tags(@news_site.content).html_safe %>
+</p>
+<br>
+<p>
+  <b>Related tenants:</b>
+  <br>
+  <%= @news_site.tenant %>
+</p>
+<p>
+  <b>Sector:</b>
+  <br>
+  <%= @news_site.sector %>
+</p>
+<br>
+<br>
+<p>
+  <b>Tags:</b>
+  <br>
+  <%= @news_site.tag %>
+</p>
+<br>
+<p>
+  <b>Publish:</b>
+  <br>
+  <%= @news_site.publish %>
+</p>
+<br><br>
+<%= link_to 'Edit', edit_news_site_path(@news_site) %> |
+<%= link_to 'Back', news_sites_path %>
+</div>

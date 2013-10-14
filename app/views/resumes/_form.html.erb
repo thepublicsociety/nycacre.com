@@ -1,0 +1,19 @@
+<%= simple_form_for(@resume, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.label :specialty, "Area of Specialty" %>
+    <%= f.collection_select :specialty, @resume_specialty_options, :value, :name %>
+    <%= f.input :website %>
+    <%= f.input :email %>
+    <%= f.input :telephone %>
+    <%= f.input :cover_letter %>
+    <%= f.input :resume_document %>
+    <%= f.input :publish %> 
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

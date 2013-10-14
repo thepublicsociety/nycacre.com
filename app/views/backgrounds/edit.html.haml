@@ -1,0 +1,8 @@
+= render :partial => "layouts/cms_header"
+.content
+  %h1
+    Editing background
+  .form.adminform
+    = render 'form'
+  .links
+    = link_to 'Back', backgrounds_path

@@ -1,0 +1,9 @@
+.dashboard_news_listing
+  %ul.unstyled
+    - @entries.each do |n|
+      %li{:class => "#{n.category}"}
+        .news_headline
+          %h3
+            = link_to n.title.html_safe, n.link, :target => "_blank"
+        .news_meta_info
+          #{n.category} / By #{n.author.blank? ? "external source" : n.author} / #{n.published_date.blank? ? n.created_at.strftime("%m-%d-%y") : n.published_date.strftime("%m-%d-%y")}

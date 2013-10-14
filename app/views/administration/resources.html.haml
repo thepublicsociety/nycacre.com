@@ -1,0 +1,434 @@
+= render :partial => "layouts/internal_header"
+.content
+  .resources
+    .cols
+      = render :partial => "layouts/maincols/admin_nav_col"
+      .resourcesMain.col
+        .heading
+          .panel
+            %h2
+              Resources
+        .single_resource_display
+        .multiple_resource_display
+          .main_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  Recently Added
+              .key
+                .color_box
+                .key_text
+                  \= SAVED
+              .database_lists
+                
+                .grant_database_list.database_list
+                  .heading
+                    %h3
+                      Funding & Grants
+                  %ul.unstyled
+                    - if @recent_grants.empty?
+                      %li
+                        No recent grants
+                    - @recent_grants.each do |db|
+                      %li
+                        - if db.saved?(@user)
+                          .saved_indicator
+                        .name
+                          = link_to db.name, "#", 'data-resource_type' => 'grant', 'data-resource_id' => db.id, :class => "resource_link"
+                          %span
+                            _
+                        .specialty
+                          = db.specialty
+                          
+                .news_database_list.database_list
+                  .heading
+                    %h3
+                      News Database
+                  %ul.unstyled
+                    - if @recent_news.empty?
+                      %li
+                        No recent news
+                    - @recent_news.each do |db|
+                      %li
+                        - if db.saved?(@user)
+                          .saved_indicator
+                        .name
+                          = link_to db.name, "#", 'data-resource_type' => 'news_site', 'data-resource_id' => db.id, :class => "resource_link"
+                          %span
+                            _
+                        .specialty
+                          = db.specialty
+                
+                .provider_database_list.database_list
+                  .heading
+                    %h3
+                      Provider Database
+                  %ul.unstyled
+                    - if @recent_providers.empty?
+                      %li
+                        No recent providers
+                    - @recent_providers.each do |db|
+                      %li
+                        - if db.saved?(@user)
+                          .saved_indicator
+                        .name
+                          = link_to db.name, "#", 'data-resource_type' => 'provider', 'data-resource_id' => db.id, :class => "resource_link"
+                          %span
+                            _
+                        .specialty
+                          = db.specialty
+                          
+                        
+                .resume_database_list.database_list
+                  .heading
+                    %h3
+                      Resume Database
+                  %ul.unstyled
+                    - if @recent_resumes.empty?
+                      %li
+                        No recent resumes
+                    - @recent_resumes.each do |db|
+                      %li
+                        - if db.saved?(@user)
+                          .saved_indicator
+                        .name
+                          = link_to db.name, "#", 'data-resource_type' => 'resume', 'data-resource_id' => db.id, :class => "resource_link"
+                          %span
+                            _
+                        .specialty
+                          = db.specialty
+                          
+                .contact_database_list.database_list
+                  .heading
+                    %h3
+                      Tools Database
+                  %ul.unstyled
+                    - if @recent_tools.empty?
+                      %li
+                        No recent tools
+                    - @recent_tools.each do |db|
+                      %li
+                        - if db.saved?(@user)
+                          .saved_indicator
+                        .name
+                          = link_to db.name, "#", 'data-resource_type' => 'tool', 'data-resource_id' => db.id, :class => "resource_link"
+                          %span
+                            _
+                        .specialty
+                          = db.specialty
+                                          
+          .grants_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  Funding & Grants
+              .search_and_key
+                .search
+                  .search_by
+                    Search by
+                  .search_keyword
+                    = form_tag("/resource-search") do
+                      %input{:class => "resource_search_input", :value => "Type keyword here"}
+                      %input{:class => "resource_search_type", :value => "grant", :type => "hidden"}
+                  .search_expanded
+                    .search_by
+                      Search by
+                    .search_list
+                      %ul.unstyled
+                        %li
+                          = link_to "Keyword", "#", 'data-resource' => 'grant', 'data-search' => 'keyword'
+                        %li
+                          = link_to "Recent", "#", 'data-resource' => 'grant', 'data-search' => 'recent'
+                        %li
+                          = link_to "Specialty", "#", 'data-resource' => 'grant', 'data-search' => 'specialty'
+                        %li
+                          = link_to "Saved", "#", 'data-resource' => 'grant', 'data-search' => 'saved'
+                .key
+                  .color_box
+                  .key_text
+                    \= SAVED
+                .clear
+              .grant_resource_display.resource_display
+                - @specialty_grants.each do |speciality, grants|
+                  %div{:class => "#{speciality} grant_group resource_group"}
+                    %h3
+                      = speciality
+                    %ul.unstyled
+                      - grants.each do |g|
+                        %li
+                          - if g.saved?(@user)
+                            .saved_indicator
+                          .name
+                            = link_to g.name, "#", 'data-resource_type' => 'grant', 'data-resource_id' => g.id, :class => "resource_link"
+          
+          .news_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  News
+              .search_and_key
+                .search
+                  .search_by
+                    Search by
+                  .search_keyword
+                    = form_tag("/resource-search") do
+                      %input{:class => "resource_search_input", :value => "Type keyword here"}
+                      %input{:class => "resource_search_type", :value => "news", :type => "hidden"}
+                  .search_expanded
+                    .search_by
+                      Search by
+                    .search_list
+                      %ul.unstyled
+                        %li
+                          = link_to "Keyword", "#", 'data-resource' => 'news', 'data-search' => 'keyword'
+                        %li
+                          = link_to "Recent", "#", 'data-resource' => 'news', 'data-search' => 'recent'
+                        %li
+                          = link_to "Specialty", "#", 'data-resource' => 'news', 'data-search' => 'specialty'
+                        %li
+                          = link_to "Saved", "#", 'data-resource' => 'news', 'data-search' => 'saved'
+                .key
+                  .color_box
+                  .key_text
+                    \= SAVED
+                .clear
+              .news_resource_display.resource_display
+                - @specialty_news.each do |specialty, news|
+                  %div{:class => "#{specialty} news_group resource_group"}
+                    %h3
+                      = specialty
+                    %ul.unstyled
+                      - news.each do |n|
+                        %li
+                          - if n.saved?(@user)
+                            .saved_indicator
+                          .name
+                            = link_to n.name, "#", 'data-resource_type' => 'news_site', 'data-resource_id' => n.id, :class => "resource_link"
+                            
+          .provider_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  Providers
+              .search_and_key
+                .search
+                  .search_by
+                    Search by
+                  .search_keyword
+                    = form_tag("/resource-search") do
+                      %input{:class => "resource_search_input", :value => "Type keyword here"}
+                      %input{:class => "resource_search_type", :value => "provider", :type => "hidden"}
+                  .search_expanded
+                    .search_by
+                      Search by
+                    .search_list
+                      %ul.unstyled
+                        %li
+                          = link_to "Keyword", "#", 'data-resource' => 'provider', 'data-search' => 'keyword'
+                        %li
+                          = link_to "Recent", "#", 'data-resource' => 'provider', 'data-search' => 'recent'
+                        %li
+                          = link_to "Specialty", "#", 'data-resource' => 'provider', 'data-search' => 'specialty'
+                        %li
+                          = link_to "Saved", "#", 'data-resource' => 'provider', 'data-search' => 'saved'
+                        
+                .key
+                  .color_box
+                  .key_text
+                    \= SAVED
+                .clear
+              .provider_resource_display.resource_display
+                - @specialty_providers.each do |speciality, providers|
+                  %div{:class => "#{speciality} provider_group resource_group"}
+                    %h3
+                      = speciality
+                    %ul.unstyled
+                      - providers.each do |p|
+                        %li
+                          - if p.saved?(@user)
+                            .saved_indicator
+                          .name
+                            = link_to p.name, "#", 'data-resource_type' => 'provider', 'data-resource_id' => p.id, :class => "resource_link"
+          .resume_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  Resumes
+              .search_and_key
+                .search
+                  .search_by
+                    Search by
+                  .search_keyword
+                    = form_tag("/resource-search") do
+                      %input{:class => "resource_search_input", :value => "Type keyword here"}
+                      %input{:class => "resource_search_type", :value => "resume", :type => "hidden"}
+                  .search_expanded
+                    .search_by
+                      Search by
+                    .search_list
+                      %ul.unstyled
+                        %li
+                          = link_to "Keyword", "#", 'data-resource' => 'resume', 'data-search' => 'keyword'
+                        %li
+                          = link_to "Recent", "#", 'data-resource' => 'resume', 'data-search' => 'recent'
+                        %li
+                          = link_to "Specialty", "#", 'data-resource' => 'resume', 'data-search' => 'specialty'
+                        %li
+                          = link_to "Saved", "#", 'data-resource' => 'resume', 'data-search' => 'saved'
+                .key
+                  .color_box
+                  .key_text
+                    \= SAVED
+                .clear
+              .resume_resource_display.resource_display
+                - @specialty_resumes.each do |speciality, resumes|
+                  %div{:class => "#{speciality} resume_group resource_group"}
+                    %h3
+                      = speciality
+                    %ul.unstyled
+                      - resumes.each do |r|
+                        %li
+                          - if r.saved?(@user)
+                            .saved_indicator
+                          .name
+                            = link_to r.name, "#", 'data-resource_type' => 'resume', 'data-resource_id' => r.id, :class => "resource_link"
+          
+          .contact_resource_list.resource_list
+            .panel
+              .heading
+                %h2
+                  Tools
+              .search_and_key
+                .search
+                  .search_by
+                    Search by
+                  .search_keyword
+                    = form_tag("/resource-search") do
+                      %input{:class => "resource_search_input", :value => "Type keyword here"}
+                      %input{:class => "resource_search_type", :value => "tool", :type => "hidden"}
+                  .search_expanded
+                    .search_by
+                      Search by
+                    .search_list
+                      %ul.unstyled
+                        %li
+                          = link_to "Keyword", "#", 'data-resource' => 'tool', 'data-search' => 'keyword'
+                        %li
+                          = link_to "Recent", "#", 'data-resource' => 'tool', 'data-search' => 'recent'
+                        %li
+                          = link_to "Specialty", "#", 'data-resource' => 'tool', 'data-search' => 'specialty'
+                        %li
+                          = link_to "Saved", "#", 'data-resource' => 'tool', 'data-search' => 'saved'
+                .key
+                  .color_box
+                  .key_text
+                    \= SAVED
+                .clear
+              .contacts_resource_display.resource_display
+                - @specialty_tools.each do |speciality, tools|
+                  %div{:class => "#{speciality} contact_group resource_group"}
+                    %h3
+                      = speciality
+                    %ul.unstyled
+                      - tools.each do |c|
+                        %li
+                          - if c.saved?(@user)
+                            .saved_indicator
+                          .name
+                            = link_to c.name, "#", 'data-resource_type' => 'tool', 'data-resource_id' => c.id, :class => "resource_link"
+          
+      .resource_selections_events_and_updates.col
+        
+        .grants_database.select_database
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "grants_resource_list", :html => "Funding & Grants"}}
+                  Funding & Grants
+        .news_database.select_database
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "news_resource_list", :html => "News Database", :form_toggle => "add_news_site"}}
+                  News Database
+        .provider_database.select_database
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "provider_resource_list", :html => "Provider Database", :form_toggle => "add_provider"}}
+                  Provider Database
+        .resume_database.select_database
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "resume_resource_list", :html => "Resume Database", :form_toggle => "add_resume"}}
+                  Resume Database
+        .contact_database.select_database
+          .panel
+            .dropdown_panel.dropdown_panel-right
+              %h2
+                %a{:href => "#", :data => {:toggle => "contact_resource_list", :html => "Tools Database", :form_toggle => "add_contact"}}
+                  Tools Database
+                  
+        .events
+          .panel
+            %h2
+              Upcoming
+            .cal_link
+              = link_to "full calendar &raquo;".html_safe, administration_calendar_path, :class => "more"
+            .events_key
+              %ul.unstyled
+                %li.acre_events
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "event"}}
+                  .key
+                    ACRE events
+                %li.funding_and_grants
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "grant"}}
+                  .key
+                    Funding & Grants
+                %li.your_calendar
+                  .circle
+                    %a{:href => "#", :data => {:event_type => "google"}}
+                  .key
+                    Your Calendar
+            .events_list
+              - if @token.blank?
+                = link_to "Authorize Google Calendar", "/auth/google_oauth2"
+              %ul.unstyled
+                - @uevents.each do |e|
+                  %li{:class => "#{e.origin} #{e.saved?(@user) ? "saved" : ""}"}
+                    .event_type
+                    .event_link
+                      - if e.origin == "event"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/events/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "grant"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/grants/#{e.id}", 'data-event-id' => e.id
+                      - elsif e.origin == "acregoogle"
+                        = link_to word_truncate(e.name, :words => 5).html_safe, "/event/#{e.id}", 'data-event-id' => e.id
+                      - else
+                        = link_to word_truncate(e.name, :words => 5).html_safe, e.google_link, :target => "_blank"
+                    .event_times
+                      = e.event_start.strftime("%m-%d-%y")
+                      \/
+                      = e.event_start.strftime("%l:%M%p")
+                      \-
+                      = e.event_end.strftime("%l:%M%p")
+              
+        .updates
+          .panel
+            %h2
+              Internal Updates
+            %ul.unstyled.fbfeed
+              - @feed.each do |f|
+                %li
+                  .feed_story
+                    = f["message"].html_safe unless f["message"].blank?
+                    = f["name"].html_safe unless f["name"].blank?
+                    = f["link"].html_safe unless f["link"].blank?
+                  .feed_time
+                    \-
+                    = time_ago_in_words(f["created_time"])
+                    ago via Facebook
+            = link_to "more updates &raquo;".html_safe, "https://www.facebook.com/groups/116539501741873/", :target => "_blank", :class => "more"

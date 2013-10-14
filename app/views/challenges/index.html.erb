@@ -1,0 +1,36 @@
+<%= render :partial => "layouts/cms_header" %>
+<div class="content">
+<h1>Listing challenges</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Content title</th>
+    <th>Content</th>
+    <th>Subcontent title</th>
+    <th>Subcontent</th>
+    <th>Featured</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @challenges.each do |challenge| %>
+  <tr>
+    <td><%= challenge.name %></td>
+    <td><%= challenge.content_title %></td>
+    <td><%= truncate(strip_tags(challenge.content), :length => 100).html_safe unless challenge.content.blank? %></td>
+    <td><%= challenge.subcontent_title %></td>
+    <td><%= truncate(strip_tags(challenge.subcontent), :length => 100).html_safe unless challenge.subcontent.blank? %></td>
+    <td><%= challenge.featured %></td>
+    <td><%= link_to 'Show', challenge %></td>
+    <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+    <td><%= link_to 'Destroy', challenge, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '<i class="icon-pencil"></i> New Section'.html_safe, new_challenge_path, :class => "btn btn-mini" %>
+</div>

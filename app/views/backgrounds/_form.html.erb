@@ -1,0 +1,14 @@
+<%= simple_form_for(@background, :html => {:multipart => true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :page_controller %>
+    <%= f.input :page_action %>
+    <%= f.input :page_url, :as => "string" %>
+    <%= f.input :background_image %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

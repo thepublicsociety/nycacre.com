@@ -1,0 +1,8 @@
+= render :partial => "layouts/cms_header"
+.content
+  %h1
+    New site content
+  .form.adminform
+    = render 'form'
+  .links
+    = link_to 'Back', snippets_path

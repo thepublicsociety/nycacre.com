@@ -1,0 +1,65 @@
+= render :partial => "layouts/header"
+.content
+  .calendar
+    .cols
+      = render :partial => "layouts/maincols/nav_col"
+      .calendarMain.col
+        .heading_and_month_select
+          .heading
+            .panel
+              %h2
+                Calendar
+          .month_select
+            .panel
+              .previous_month
+                = link_to "<", "#", :class => "previousMonthLink"
+              .current_month
+                %h2
+                  May 2013
+              .next_month
+                = link_to ">", "#", :class => "nextMonthLink"
+        #calendar
+          .panel
+            = calendar @calendar_events, :class => "public_event_calendar table table-bordered" do |e|
+              .day_event_container
+                = link_to truncate(e.name, :length => 20).html_safe, "#", 'data-event_id' => e.id
+                .clear
+                -#
+                  .day_event_indicator{:class => e.origin}
+                .day_event_times
+                  = e.event_start.strftime("%l:%M%P")
+                  \-
+                  = e.event_end.strftime("%l:%M%P")
+- @calendar_events.each do |e|
+  .day_event_details.hide{:id => "event_info_#{e.id}"}
+    .day_event_title
+      - if e.origin == "event"
+        = link_to e.name, "/calendar/events/#{e.id}", 'data-event-id' => e.id
+      - elsif e.origin == "grant"
+        = link_to e.name, "/calendar/grants/#{e.id}", 'data-event-id' => e.id
+      - else
+        = link_to e.name, "/calendar/event/#{e.id}", 'data-event-id' => e.id
+    .event_date_and_address_details{:class => e.origin}
+      -#
+        .event_indicator
+      .day_event_date
+        = e.event_start.strftime("%A, %b %-d, %Y")
+      .day_event_times
+        = e.event_start.strftime("%l:%M%P")
+        \-
+        = e.event_end.strftime("%l:%M%P")
+      .day_event_address
+        = e.location.gsub(/__.*/, "") unless e.location.blank?
+        - if e.location && e.location.include?("__")
+          %br
+          = e.location.gsub(/.*__/, "") unless e.location.blank?
+    .day_event_description
+      - if e.origin == "event"
+        = smart_truncate(e.description, "/calendar/events/#{e.id}", :words => 15).html_safe unless e.description.blank?
+      - elsif e.origin == "grant"
+        = smart_truncate(e.description, "/calendar/grants/#{e.id}", :words => 15).html_safe unless e.description.blank?
+      - else
+        = smart_truncate(e.description, "/calendar/event/#{e.id}", :words => 15).html_safe unless e.description.blank?
+    -#
+      .day_event_save
+        = link_to "save a memo", "#", :class => "saveEventMemo", 'data-resource_type' => "calendar_event", 'data-resource_id' => e.id

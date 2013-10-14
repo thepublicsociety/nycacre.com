@@ -1,0 +1,98 @@
+%nav.col
+  .logo
+    = link_to "", root_path, :title => "ACRE Home"
+  .navigation
+    %ul.unstyled
+      %li
+        = link_to "Resources", "/administration/resources"
+      %li
+        = link_to "News", "/administration/news"
+      %li
+        = link_to "Contact", "/administration/contact"
+      %li
+        = link_to "NYConnect", "http://cleantechnyconnect.com/", :target => "_blank"
+  .add_provider.add_resource
+    .panel
+      .dropdown_panel.dropdown_panel-right
+        %h2
+          %a{:href => "#", :data => {:toggle => "add_provider_form"}}
+            Add A Provider
+    .add_provider_form.add_resource_form
+      .panel
+        .heading
+          %h2
+            Add a Provider
+        = simple_form_for(@provider, :remote => true) do |f|
+          = f.input :name, :label => "Name of Provider"
+          = f.input :website, :label => "Website of Provider"
+          = f.input :email, :label => "Email of Provider"
+          = f.input :telephone, :label => "Telephone of Provider"
+          = f.label :specialty, "Area of Specialty"
+          = select_tag("provider_specialty_fake", options_from_collection_for_select(@provider_specialty_options, "value", "name"), :include_blank => true)
+          = f.input :specialty, :as => "hidden"
+          = f.input :description
+          = f.button :submit
+  .add_resume.add_resource
+    .panel
+      .dropdown_panel.dropdown_panel-right
+        %h2
+          %a{:href => "#", :data => {:toggle => "add_resume_form"}}
+            Add A Resume
+    .add_resume_form.add_resource_form
+      .panel
+        .heading
+          %h2
+            Add a Resume
+        .submit_resume_form
+          = simple_form_for(@resume, :html => {:multipart => true}, :remote => true) do |f|
+            = f.input :resume_document, :as => "file", :label => "Insert pdf"
+            = f.input :name
+            = f.label :specialty, "Area of Specialty"
+            = select_tag("resume_specialty_fake", options_from_collection_for_select(@resume_specialty_options, "value", "name"), :include_blank => true)
+            = f.input :specialty, :as => "hidden"
+            = f.input :website, :label => "Website"
+            = f.input :email, :label => "Email"
+            = f.input :telephone, :label => "Telephone"
+            = f.input :cover_letter
+            .processingSubmission
+            = f.button :submit
+            .clear
+        .clear
+  .add_contact.add_resource
+    .panel
+      .dropdown_panel.dropdown_panel-right
+        %h2
+          %a{:href => "#", :data => {:toggle => "add_contact_form"}}
+            Add A Tool
+    .add_contact_form.add_resource_form
+      .panel
+        .heading
+          %h2
+            Add a Tool
+        = simple_form_for(@tool, :remote => true) do |f|
+          = f.input :name, :label => "Name of Tool"
+          = f.input :website, :label => "Website of Tool"
+          = f.label :specialty, "Area of Specialty"
+          = select_tag("tool_specialty_fake", options_from_collection_for_select(@tool_specialty_options, "value", "name"), :include_blank => true)
+          = f.input :specialty, :as => "hidden"
+          = f.input :description
+          = f.button :submit
+  .add_news_site.add_resource
+    .panel
+      .dropdown_panel.dropdown_panel-right
+        %h2
+          %a{:href => "#", :data => {:toggle => "add_news_site_form"}}
+            Add News Item
+    .add_news_site_form.add_resource_form
+      .panel
+        .heading
+          %h2
+            Add News Item
+        = simple_form_for(@news_site, :remote => true) do |f|
+          = f.input :name, :label => "Name of News Item"
+          = f.input :website, :label => "Website of News Item"
+          = f.input :email, :label => "Email of News Item"
+          = f.input :telephone, :label => "Telephone of News Item"
+          = f.input :specialty, :label => "Area of Specialty"
+          = f.input :description
+          = f.button :submit

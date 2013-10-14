@@ -1,0 +1,33 @@
+<%= render :partial => "layouts/internal_header" %>
+<div class="content">
+  <div class="userManageForm">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= f.error_notification %>
+    
+      <div class="inputs">
+        <div class="non-password_fields">
+          <%= f.input :email, :required => true %>
+          <%= f.input :name, :required => true %>
+          <%= label_tag "Choose Tenant" %>
+          <% if current_user.tenant.blank? %>
+            <%= select_tag("tenant_id_fake", options_from_collection_for_select(Tenant.find(:all, :order => "name ASC"), "id", "name"), :include_blank => true) %>
+          <% else %>
+            <%= select_tag("tenant_id_fake", options_from_collection_for_select(Tenant.find(:all, :order => "name ASC"), "id", "name", current_user.tenant.id), :include_blank => true) %>
+          <% end %>
+          <%= f.input :tenant_id, :as => "hidden" %>
+        </div>
+        <div class="password_fields">
+          <%= f.input :password, :hint => "leave it blank if you don't want to change it", :required => false %>
+          <%= f.input :password_confirmation, :required => false %>
+          <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="actions">
+        <%= f.button :submit, "Update" %>
+      </div>
+    <% end %>
+  </div>
+</div>

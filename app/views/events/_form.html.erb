@@ -1,0 +1,39 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <label class="string optional control-label" for="event_eventdate">Start date/time</label>
+    <div id="event_datetimepicker" class="input-append">
+      <input value="<%= @event.eventdate.strftime("%m/%d/%Y %I:%M:%S %p") unless @event.eventdate.blank? %>" class="string optional date-time-pick" id="event_eventdate" name="event[eventdate]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+    <label class="string optional control-label" for="event_eventenddate">End date/time</label>
+    <div id="event_datetimepicker2" class="input-append">
+      <input value="<%= @event.eventenddate.strftime("%m/%d/%Y %I:%M:%S %p") unless @event.eventenddate.blank? %>" class="string optional date-time-pick" id="event_eventenddate" name="event[eventenddate]" size="50" type="text" data-format="MM/dd/yyyy HH:mm:ss PP"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div>
+    <%= f.input :address_line_one %>
+    <%= f.input :address_line_two %>
+    <%= f.input :phone %>
+    <%= f.input :website %>
+    <%= f.input :content, :label => "Description" %>
+    <%= f.input :event_image, :label => "Image" %>
+    <% if controller.action_name == "edit" %>
+      <% unless @event.event_image_file_name.blank? %>
+        <div class="previewImage">
+          <%= image_tag(@event.event_image.url(:thumb)) %>
+          <a href="/delete-image?thing=event&id=<%= @event.id %>" class="delete_image">Delete</a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

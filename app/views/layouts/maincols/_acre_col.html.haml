@@ -1,0 +1,19 @@
+.acre.col
+  .panel
+    %h2
+      ACRE is&hellip;
+    .acre_image
+      = image_tag(@acre.blank? ? "/assets/empty.png" : @acre.acre_image(:display))
+    .acre_text
+      .acre_text_title
+        = @acre.blank? ? "" : @acre.title
+      .acre_text_subtitle
+        = @acre.blank? ? "" : @acre.subtitle
+      .acre_text_content
+        -#
+          = @acre.blank? ? "" : @acre.content.truncate_html(1000, at_end = "<div class='trunc'>&hellip; <a href='#' class='more'>read more &raquo;</a></div>").html_safe
+        
+        = @acre.blank? ? "" : smart_truncate(@acre.content, "#", :words => 130).html_safe
+      .extra_acre_text_content.hide
+        = @acre.blank? ? "" : @acre.content.html_safe
+        = link_to "less &laquo;".html_safe, "#", :class => "more"

@@ -1,0 +1,25 @@
+= render :partial => "layouts/cms_header"
+.container
+  .row
+    .span6
+      %h1
+        Answering Question
+      .question
+        %p
+          = @question.content
+      .answerForm
+        - simple_form_for([@question, @question.answers.build]) do |f|
+          = f.input :user_id, :as => "hidden", :input_html => {:value => current_user.id}
+          = f.input :content, :autofocus => true, :as => "text", :label => "Answer:"
+          = f.button :submit, "Submit"
+      .existingAnswers
+        - unless @thequestion.answers.empty?
+          %ul.unstyled
+            - @thequestion.answers.each do |a|
+              %li
+                .answer
+                  %p
+                    = a.content
+                .answerer
+                  Answered by:
+                  = a.user.name.blank? ? a.user.email : a.user.name

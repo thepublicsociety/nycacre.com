@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @resume_specialty_option.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @resume_specialty_option.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_resume_specialty_option_path(@resume_specialty_option) %> |
+<%= link_to 'Back', resume_specialty_options_path %>

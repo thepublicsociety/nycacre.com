@@ -1,0 +1,6 @@
+$(".internals-index .container .row").html("<%= escape_javascript(render :partial => "layouts/internal_index") %>");
+<% if @option == "checkin" %>
+  $(".userslist #userid_<%= escape_javascript(@userid) %> .checkedin").html("In office");
+<% else %>
+  $(".userslist #userid_<%= escape_javascript(@userid) %> .checkedin").html("Not in office");
+<% end %>
